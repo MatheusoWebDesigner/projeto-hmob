@@ -1,0 +1,1557 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hmob For Offices — Ambientes corporativos de alta performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>
+  // ============ TWEAKABLE DEFAULTS ============
+  window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
+    "accentHue": 42,
+    "heroH1": "Ambientes que refletem a seriedade da sua empresa.",
+    "primaryCta": "Solicitar Proposta",
+    "showGridRail": true
+  }/*EDITMODE-END*/;
+</script>
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --accent-hue: 42;      /* warm orange-amber */
+    --primary: oklch(0.52 0.16 var(--accent-hue));
+    --primary-container: oklch(0.62 0.17 var(--accent-hue));
+    --primary-ink: oklch(0.38 0.14 var(--accent-hue));
+    --surface-tint: oklch(0.52 0.16 var(--accent-hue));
+
+    --on-background: #1A1C1D;
+    --on-surface: #1A1C1D;
+    --on-surface-variant: #45484A;
+    --outline-variant: rgba(26,28,29,0.15);
+
+    --surface: #F9F9FA;
+    --surface-container-lowest: #FFFFFF;
+    --surface-container-low: #F4F3F4;
+    --surface-container-high: #E8E8E9;
+    --surface-container-highest: #DCDCDE;
+
+    --ink-dark: #0E1011;
+    --ink-dark-2: #15181A;
+    --ink-dark-3: #1D2022;
+
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2.5rem;
+    --space-2xl: 4rem;
+    --space-3xl: 6.5rem;
+
+    --radius-sm: 2px;
+    --radius-md: 4px;
+
+    --container: 1280px;
+    --rail: 56px;
+
+    --serif: "Noto Serif", "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family: var(--sans);
+    color: var(--on-background);
+    background: var(--surface);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01","cv11";
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a{ color:inherit; text-decoration:none; }
+  button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+  img{ display:block; max-width:100%; }
+
+  /* ============ TYPE SCALE ============ */
+  .display-lg{ font-family:var(--serif); font-weight:500; font-size:clamp(3rem,6.5vw,5.75rem); line-height:0.98; letter-spacing:-0.028em; }
+  .display-md{ font-family:var(--serif); font-weight:500; font-size:clamp(2.25rem,4.2vw,3.75rem); line-height:1.02; letter-spacing:-0.024em; }
+  .headline{ font-family:var(--serif); font-weight:500; font-size:clamp(1.75rem,2.6vw,2.5rem); line-height:1.1; letter-spacing:-0.02em; }
+  .title-lg{ font-family:var(--sans); font-weight:600; font-size:1.25rem; line-height:1.3; letter-spacing:-0.01em; }
+  .title-md{ font-family:var(--sans); font-weight:600; font-size:1rem; line-height:1.35; }
+  .body-lg{ font-family:var(--sans); font-weight:400; font-size:1.0625rem; line-height:1.6; color:var(--on-surface-variant); }
+  .body-md{ font-family:var(--sans); font-weight:400; font-size:0.9375rem; line-height:1.6; color:var(--on-surface-variant); }
+  .label-sm{ font-family:var(--sans); font-weight:500; font-size:0.6875rem; letter-spacing:0.08em; text-transform:uppercase; }
+  .mono{ font-family:var(--mono); font-size:0.6875rem; letter-spacing:0.04em; text-transform:uppercase; }
+  .serif-num{ font-family:var(--serif); font-style:italic; font-weight:500; }
+
+  /* ============ LAYOUT ============ */
+  .container{ max-width:var(--container); margin:0 auto; padding:0 clamp(1.25rem,3vw,2rem); position:relative; }
+  .container.rail-pad{ padding-left:clamp(calc(var(--rail) + 1.25rem), calc(var(--rail) + 3vw), calc(var(--rail) + 2rem)); }
+
+  /* ============ LEFT GRID RAIL (THE DIFFERENTIATOR) ============ */
+  .rail{
+    position:fixed; top:0; left:0; width:var(--rail); height:100vh; z-index:40;
+    display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+    padding:1.5rem 0;
+    color:#F5F5F5;
+    mix-blend-mode: difference;
+    pointer-events:none;
+    transition: opacity .4s var(--ease);
+  }
+  .rail.off{ opacity:0; }
+  .rail .rail-top, .rail .rail-bot{ display:flex; flex-direction:column; align-items:center; gap:.6rem; pointer-events:auto; }
+  .rail .rail-mark{
+    writing-mode: vertical-rl; transform:rotate(180deg);
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.32em; text-transform:uppercase;
+    opacity:.85;
+  }
+  .rail .rail-dots{ display:flex; flex-direction:column; gap:10px; align-items:center; pointer-events:auto; }
+  .rail .rail-dot{
+    width:6px; height:6px; border-radius:1px;
+    background:#F5F5F5; opacity:.25; transition:all .3s var(--ease);
+    cursor:pointer;
+  }
+  .rail .rail-dot.active{ opacity:1; height:22px; background:#F5F5F5; }
+  .rail .rail-dot:hover{ opacity:.75; }
+  .rail .rail-num{
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.2em;
+    opacity:.9;
+  }
+  .rail::before{
+    content:""; position:absolute; left:50%; top:0; bottom:0; width:1px;
+    background:linear-gradient(to bottom, transparent, rgba(245,245,245,.18) 15%, rgba(245,245,245,.18) 85%, transparent);
+    pointer-events:none;
+  }
+  @media (max-width: 860px){ .rail{ display:none; } .container.rail-pad{ padding-left:clamp(1.25rem,3vw,2rem);} }
+
+  /* ============ HEADER ============ */
+  .header{
+    position:fixed; top:0; left:0; right:0; z-index:30;
+    padding:0 clamp(calc(var(--rail) + 1rem), calc(var(--rail) + 3vw), calc(var(--rail) + 2.5rem));
+    height:72px;
+    display:flex; align-items:center; justify-content:space-between;
+    color:#F5F5F5;
+    transition: background .35s var(--ease), backdrop-filter .35s var(--ease), border-color .35s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  .header.scrolled{
+    background: rgba(14,16,17,.72);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border-bottom:1px solid rgba(245,245,245,.08);
+  }
+  .logo{ display:flex; align-items:baseline; gap:.5rem; letter-spacing:-.03em; }
+  .logo .mark{ font-family:var(--serif); font-weight:600; font-size:1.6rem; }
+  .logo .mark .bar{ display:inline-block; width:2px; height:.95em; background:currentColor; margin:0 .12em; transform:translateY(.08em); }
+  .logo .tag{ font-family:var(--sans); font-weight:300; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; opacity:.72; }
+  .nav{ display:flex; gap:2rem; align-items:center; }
+  .nav a{ font-size:.86rem; font-weight:500; letter-spacing:-.005em; opacity:.85; transition:opacity .2s; position:relative; padding:.25rem 0; }
+  .nav a:hover{ opacity:1; }
+  .nav a::after{ content:""; position:absolute; left:0; right:100%; bottom:-2px; height:1px; background:var(--primary-container); transition:right .25s var(--ease); }
+  .nav a:hover::after{ right:0; }
+  .nav .has-drop::before{ content:"▾"; font-size:.6em; margin-right:.35em; opacity:.6; }
+  .cta{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.8rem 1.15rem;
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+    color:#FFF;
+    font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    border-radius:var(--radius-sm);
+    transition: transform .2s var(--ease), filter .2s;
+    white-space:nowrap;
+  }
+  .cta:hover{ filter:brightness(1.08); transform:translateY(-1px); }
+  .cta.outline{
+    background:transparent;
+    border:1px solid rgba(245,245,245,.4);
+    color:#F5F5F5;
+  }
+  .cta.outline:hover{ border-color:#F5F5F5; background:rgba(245,245,245,.06); }
+  .cta.dark{
+    background:var(--ink-dark);
+    color:#F5F5F5;
+  }
+  .cta.tertiary{
+    background:transparent; color:var(--on-background); padding:.8rem .2rem;
+    letter-spacing:.06em;
+  }
+  .cta.tertiary::after{ content:"→"; margin-left:.4em; transition:margin .2s var(--ease); }
+  .cta.tertiary:hover::after{ margin-left:.8em; }
+
+  /* tight breakpoints to keep the 3 header groups from colliding */
+  @media(max-width:1180px){ .nav{ gap:1.35rem; } .nav a{ font-size:.82rem; } .logo .tag{ display:none; } }
+  @media(max-width:1040px){ .nav a:nth-child(5){ display:none; } /* drop Conteúdo first */ }
+  @media(max-width:960px){ .nav a:nth-child(1){ display:none; } /* drop Início */ }
+  @media(max-width:900px){ .nav{ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; min-height:100vh;
+    background: var(--ink-dark);
+    color:#F5F5F5;
+    overflow:hidden;
+    display:flex; align-items:center;
+    padding: 6rem 0 4rem;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(1200px 700px at 75% 40%, rgba(155,64,0,.35), transparent 55%),
+      radial-gradient(900px 600px at 100% 100%, rgba(195,82,0,.22), transparent 60%),
+      linear-gradient(180deg, #0E1011 0%, #15181A 60%, #1D2022 100%);
+  }
+  .hero-image{
+    position:absolute; inset:0; z-index:1;
+    background-image:
+      linear-gradient(100deg, rgba(14,16,17,.92) 0%, rgba(14,16,17,.68) 35%, rgba(14,16,17,.15) 70%, rgba(14,16,17,.05) 100%),
+      url('assets/hero-reuniao.jpg');
+    background-size: cover;
+    background-position: center right;
+  }
+  .hero-image::after{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(90deg, rgba(245,245,245,.025) 0 1px, transparent 1px 120px),
+      repeating-linear-gradient(0deg, rgba(245,245,245,.025) 0 1px, transparent 1px 120px);
+    mix-blend-mode:screen;
+  }
+  .hero-placeholder-label{
+    position:absolute; bottom:1.25rem; right:1.25rem; z-index:2;
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(245,245,245,.35); padding:.4rem .6rem;
+    border:1px dashed rgba(245,245,245,.2);
+  }
+  @media(max-width:900px){ .hero-placeholder-label{ display:none; } }
+  .hero-inner{ position:relative; z-index:3; width:100%; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items:end;
+  }
+  .hero-content{ max-width: 640px; }
+  .hero-tag{
+    display:inline-flex; align-items:center; gap:.65rem;
+    padding:.5rem .75rem;
+    background:rgba(245,245,245,.06);
+    border:1px solid rgba(245,245,245,.12);
+    color:#F5F5F5;
+    margin-bottom:1.75rem;
+  }
+  .hero-tag .sq{ width:8px; height:8px; background:var(--primary-container); }
+  .hero-h1{ color:#F9F9FA; margin-bottom:1.5rem; }
+  .hero-h1 .em{ font-style:italic; color:#E6D1BF; font-weight:500; }
+  .hero-sub{ color:rgba(245,245,245,.78); font-size:1.05rem; line-height:1.6; max-width:540px; margin-bottom:2.25rem; }
+  .hero-ctas{ display:flex; gap:.75rem; flex-wrap:wrap; }
+
+  .hero-meta{
+    justify-self:end; align-self:end;
+    display:grid; grid-template-columns: auto auto; gap: 2rem 2.5rem;
+    color:rgba(245,245,245,.7);
+    padding: 1rem 0;
+  }
+  .hero-meta .spec{ display:flex; flex-direction:column; gap:.25rem; }
+  .hero-meta .spec .k{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; opacity:.55; }
+  .hero-meta .spec .v{ font-family:var(--serif); font-weight:500; font-size:1.65rem; color:#F5F5F5; font-style:italic; letter-spacing:-.02em; }
+  .hero-meta .spec .v small{ font-family:var(--sans); font-weight:500; font-size:.7rem; font-style:normal; letter-spacing:.1em; text-transform:uppercase; margin-left:.35em; opacity:.7; }
+
+  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:3rem; } .hero-meta{ justify-self:start; grid-template-columns:1fr 1fr; gap:1.25rem; } }
+
+  .scroll-ind{
+    position:absolute; bottom:1.5rem; left:50%; transform:translateX(-50%); z-index:3;
+    display:flex; flex-direction:column; align-items:center; gap:.6rem;
+    color:rgba(245,245,245,.55); font-family:var(--mono); font-size:.625rem; letter-spacing:.25em; text-transform:uppercase;
+  }
+  .scroll-ind .line{ width:1px; height:42px; background:linear-gradient(to bottom, transparent, rgba(245,245,245,.6)); position:relative; }
+  .scroll-ind .line::after{ content:""; position:absolute; top:0; left:-2px; width:5px; height:16px; background:var(--primary-container); animation: scrollRun 2.4s var(--ease) infinite; }
+  @keyframes scrollRun{ 0%{ top:-10%; opacity:0;} 30%{opacity:1;} 90%{opacity:.2;} 100%{ top:100%; opacity:0;} }
+
+  /* ============ SECTION BASE ============ */
+  section{ position:relative; }
+  .sect-head{ display:grid; grid-template-columns: auto 1fr; gap:2.5rem; align-items:end; margin-bottom: 3.5rem; }
+  .sect-num{ font-family:var(--mono); font-size:.7rem; letter-spacing:.25em; color:var(--primary-ink); }
+  .sect-kicker{ display:flex; align-items:center; gap:.6rem; margin-bottom:1rem; color:var(--primary-ink); }
+  .sect-kicker .sq{ width:8px; height:8px; background:var(--primary); }
+  .sect-title{ max-width:780px; text-wrap:balance; }
+  @media(max-width:700px){ .sect-head{ grid-template-columns:1fr; gap:.75rem; } }
+
+  /* ============ TRUST BAR ============ */
+  .trust{
+    background: var(--surface-container-low);
+    padding: 2.5rem 0;
+  }
+  .trust-inner{ display:grid; grid-template-columns: repeat(4, 1fr); gap:0; }
+  .trust-item{
+    padding: .5rem 2rem;
+    display:flex; align-items:center; gap:1rem;
+    position:relative;
+  }
+  .trust-item + .trust-item::before{
+    content:""; position:absolute; left:0; top:15%; bottom:15%; width:1px;
+    background: var(--outline-variant);
+  }
+  .trust-item .ic{ flex-shrink:0; width:36px; height:36px; display:grid; place-items:center; color:var(--primary); }
+  .trust-item .tx .k{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--on-surface-variant); margin-bottom:.25rem; }
+  .trust-item .tx .v{ font-family:var(--sans); font-weight:600; font-size:.95rem; color:var(--on-background); line-height:1.25; }
+  @media(max-width:900px){ .trust-inner{ grid-template-columns: repeat(2, 1fr); } .trust-item + .trust-item:nth-child(3)::before{ display:none; } }
+  @media(max-width:560px){ .trust-inner{ grid-template-columns:1fr; } .trust-item + .trust-item::before{ display:none; } }
+
+  /* ============ ABOUT (SECT 04) ============ */
+  .about{ padding: var(--space-3xl) 0; background: var(--surface); }
+  .about-grid{ display:grid; grid-template-columns: 5fr 6fr; gap: 4rem; align-items:start; }
+  .about-copy{ padding-top: 1rem; }
+  .about-copy p{ color:var(--on-surface-variant); font-size:1.0625rem; line-height:1.7; margin: 1.5rem 0; max-width:520px; }
+  .about-checks{
+    display:grid; grid-template-columns:1fr 1fr; gap: .85rem 1.5rem;
+    padding: 1.5rem; background: var(--surface-container-low);
+    margin-top:1.75rem;
+  }
+  .about-checks li{ list-style:none; display:flex; gap:.65rem; align-items:flex-start; font-size:.9rem; color:var(--on-background); font-weight:500; line-height:1.4; }
+  .about-checks .chk{ color:var(--primary); flex-shrink:0; margin-top:2px; }
+  .about-visual{
+    position:relative; aspect-ratio: 5/6;
+    background: linear-gradient(150deg, #C9C7C2 0%, #A09D96 60%, #75716A 100%);
+    overflow:hidden;
+  }
+  .about-visual::before{
+    content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 80px),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.04) 0 1px, transparent 1px 80px);
+  }
+  .about-visual .ph-label{
+    position:absolute; bottom:1rem; left:1rem;
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.8); padding:.4rem .6rem;
+    border:1px dashed rgba(255,255,255,.5);
+  }
+  .about-visual .detail{
+    position:absolute; right:-10%; bottom:-10%; width:45%; aspect-ratio:1;
+    background: linear-gradient(160deg, #2A2E31, #45494D);
+    outline: 12px solid var(--surface);
+  }
+  .about-stats{
+    display:grid; grid-template-columns: repeat(3,1fr);
+    margin-top:2rem; gap:0;
+    background:var(--surface-container-lowest);
+  }
+  .about-stats .stat{ padding: 1.25rem 1.5rem; position:relative; }
+  .about-stats .stat + .stat::before{ content:""; position:absolute; left:0; top:20%; bottom:20%; width:1px; background:var(--outline-variant); }
+  .about-stats .stat .k{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--on-surface-variant); margin-bottom:.35rem; }
+  .about-stats .stat .v{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:2rem; letter-spacing:-.02em; color:var(--on-background); }
+  .about-stats .stat .v small{ font-family:var(--sans); font-style:normal; font-size:.85rem; font-weight:500; margin-left:.15em; letter-spacing:0; }
+
+  @media(max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:3rem; } .about-checks{ grid-template-columns:1fr; } }
+
+  /* ============ CATEGORIES (SECT 05) — DARK ============ */
+  .cats{
+    background: var(--ink-dark);
+    color:#F5F5F5;
+    padding: var(--space-3xl) 0;
+    position:relative;
+  }
+  .cats .sect-num{ color: rgba(245,245,245,.5); }
+  .cats .sect-kicker{ color:var(--primary-container); }
+  .cats .sect-kicker .sq{ background:var(--primary-container); }
+  .cats .sect-title{ color:#F5F5F5; }
+  .cats-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(245,245,245,.08);
+    margin-top: 1rem;
+  }
+  .cat{
+    background: var(--ink-dark);
+    padding: 0; position:relative; overflow:hidden;
+    cursor:pointer;
+    transition: background .35s var(--ease);
+    min-height: 420px;
+    display:flex; flex-direction:column;
+  }
+  .cat:hover{ background: #1F2224; }
+  .cat-img{
+    height: 240px; background: linear-gradient(135deg, #2A2E31, #45494D);
+    position:relative; overflow:hidden;
+    transition: transform .6s var(--ease);
+  }
+  .cat-img::before{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 2px, transparent 2px 18px);
+  }
+  .cat-img .ph{
+    position:absolute; left:1rem; bottom:1rem;
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.5); padding:.3rem .5rem;
+    border:1px dashed rgba(255,255,255,.3);
+  }
+  .cat:hover .cat-img{ transform: scale(1.04); }
+  .cat-img::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(135deg, rgba(155,64,0,0), rgba(155,64,0,0));
+    transition: background .35s var(--ease);
+  }
+  .cat:hover .cat-img::after{ background: linear-gradient(135deg, rgba(155,64,0,.0) 0%, rgba(155,64,0,.35) 100%); }
+
+  .cat-body{ padding: 1.5rem; flex:1; display:flex; flex-direction:column; }
+  .cat-num{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; color:rgba(245,245,245,.5); margin-bottom:.75rem; }
+  .cat h3{ font-family:var(--serif); font-weight:500; font-size:1.45rem; letter-spacing:-.02em; margin-bottom:.25rem; color:#F5F5F5; line-height:1.1; }
+  .cat .ct{ font-family:var(--sans); font-size:.7rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--primary-container); margin-bottom: 1rem; }
+  .cat p{ font-size:.875rem; color: rgba(245,245,245,.65); line-height:1.55; flex:1; margin-bottom:1.5rem; }
+  .cat-link{ font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#F5F5F5; display:inline-flex; align-items:center; gap:.4rem; }
+  .cat-link .arrow{ transition: transform .25s var(--ease); }
+  .cat:hover .cat-link .arrow{ transform: translateX(4px); color:var(--primary-container); }
+
+  .cats-footer{ margin-top: 3rem; display:flex; justify-content:center; gap:2rem; align-items:center; }
+  .cats-footer .divisory-card{
+    background: var(--ink-dark-3); padding: 1.25rem 1.75rem;
+    display:flex; align-items:center; gap:1.5rem;
+    transition: background .3s;
+    cursor:pointer;
+  }
+  .cats-footer .divisory-card:hover{ background:#272A2C; }
+  .cats-footer .divisory-card .t{ font-family:var(--serif); font-size:1.15rem; font-weight:500; letter-spacing:-.01em; }
+  .cats-footer .divisory-card .ct{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; color:rgba(245,245,245,.5); text-transform:uppercase; }
+
+  @media(max-width:1000px){ .cats-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width:560px){ .cats-grid{ grid-template-columns: 1fr; } }
+
+  /* ============ FLAGSHIP (SECT 06) ============ */
+  .flagship{
+    padding: var(--space-3xl) 0;
+    background: var(--surface-container-low);
+  }
+  .flagship-stage{
+    position:relative;
+    display:grid; grid-template-columns: 7fr 5fr;
+    min-height: 620px;
+    background: var(--surface-container-lowest);
+  }
+  .flagship-image{
+    position:relative; overflow:hidden;
+    background: linear-gradient(130deg, #2A2E31 0%, #55595D 100%);
+  }
+  .flagship-image .ph{
+    position:absolute; top:1rem; left:1rem;
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.7); padding:.4rem .6rem;
+    border:1px dashed rgba(255,255,255,.35);
+  }
+  .flagship-image::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 30% 60%, rgba(245,245,245,.08), transparent 50%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 1px, transparent 1px 4px);
+  }
+  .flagship-content{ padding: 3rem; display:flex; flex-direction:column; justify-content:space-between; gap: 2rem; }
+  .flagship-eyebrow{ display:flex; align-items:center; gap:1rem; }
+  .flagship-eyebrow .line{ width:36px; height:1px; background:var(--primary); }
+  .flagship-eyebrow .t{ font-family:var(--mono); font-size:.7rem; letter-spacing:.24em; text-transform:uppercase; color:var(--primary-ink); }
+  .flagship-title{ font-family:var(--serif); font-weight:500; font-size:clamp(2.25rem, 3.4vw, 3.1rem); line-height:1.02; letter-spacing:-.025em; margin: 1.25rem 0 1rem; }
+  .flagship-title .sub{ display:block; font-size:.46em; font-family:var(--sans); font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--on-surface-variant); margin-top:.85rem; }
+  .flagship-copy{ color:var(--on-surface-variant); font-size:1.0125rem; line-height:1.65; max-width:420px; }
+  .flagship-specs{
+    display:grid; grid-template-columns:1fr 1fr; gap: 1px;
+    background: var(--outline-variant);
+    margin-top:1.5rem;
+  }
+  .flagship-specs .s{ background: var(--surface-container-lowest); padding: .85rem 1rem; }
+  .flagship-specs .s .k{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--on-surface-variant); margin-bottom:.25rem; }
+  .flagship-specs .s .v{ font-family:var(--serif); font-style:italic; font-size:1.05rem; color:var(--on-background); }
+
+  .flagship-tabs{
+    display:flex; gap:0; margin-top: 2.5rem;
+    background: var(--surface-container-lowest);
+  }
+  .flagship-tabs button{
+    flex:1; padding: 1.25rem 1.25rem;
+    text-align:left;
+    font-family:var(--sans); font-weight:500; font-size:.82rem;
+    color:var(--on-surface-variant);
+    position:relative;
+    transition: color .25s, background .25s;
+  }
+  .flagship-tabs button::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:2px; background:transparent; transition:background .25s;
+  }
+  .flagship-tabs button .tn{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; display:block; margin-bottom:.35rem; opacity:.6; }
+  .flagship-tabs button:hover{ background: var(--surface-container-low); color:var(--on-background); }
+  .flagship-tabs button.active{ color:var(--on-background); background: var(--surface-container-lowest); }
+  .flagship-tabs button.active::before{ background: var(--primary); }
+  .flagship-tabs button.active .tn{ color:var(--primary-ink); opacity:1; }
+
+  @media(max-width:900px){ .flagship-stage{ grid-template-columns:1fr; } .flagship-image{ min-height:320px; } }
+
+  /* ============ DIFFERENTIALS (SECT 07) ============ */
+  .diffs{ padding: var(--space-3xl) 0; background: var(--surface); }
+  .diffs-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:2.5rem; margin-top: 2rem; }
+  .diff{
+    padding: 2rem 0;
+    border-top: 1px solid var(--outline-variant); /* allowed: intra-card top rule is part of blueprint grid */
+    display:flex; flex-direction:column; gap:1rem;
+    position:relative;
+  }
+  .diff .num{ font-family:var(--mono); font-size:.7rem; letter-spacing:.24em; color:var(--primary-ink); }
+  .diff .ic{ width:44px; height:44px; display:grid; place-items:center; color:var(--primary); margin: .5rem 0 .75rem; }
+  .diff h3{ font-family:var(--serif); font-weight:500; font-size:1.5rem; letter-spacing:-.02em; line-height:1.15; }
+  .diff p{ color:var(--on-surface-variant); font-size:.9625rem; line-height:1.6; }
+  .diff .foot{ margin-top:.5rem; font-family:var(--mono); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--primary-ink); }
+
+  @media(max-width:900px){ .diffs-grid{ grid-template-columns:1fr; gap:1rem; } }
+
+  /* ============ PROJECTS / LOGOS ============ */
+  .projects{ padding: var(--space-3xl) 0 4rem; background: var(--surface-container-low); }
+  .projects-marquee{
+    margin-top: 3rem;
+    display:flex; align-items:center; gap: 3.5rem; flex-wrap:wrap;
+    padding: 2rem 0;
+  }
+  .client{
+    font-family:var(--serif); font-weight:500; font-size:1.35rem; letter-spacing:-.01em;
+    color:var(--on-surface-variant); opacity:.65; transition: opacity .25s, color .25s;
+  }
+  .client:hover{ opacity:1; color:var(--on-background); }
+  .client .dot{ display:inline-block; width:6px; height:6px; background:currentColor; margin-right:.4rem; vertical-align:middle; }
+
+  .projects-feature{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .pcard{
+    background: var(--surface-container-lowest); padding: 2rem; position:relative;
+    display:grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items:end;
+    min-height: 280px;
+    transition: background .3s;
+    cursor:pointer;
+  }
+  .pcard:hover{ background: #FCFBFA; }
+  .pcard .pimg{
+    position:absolute; top:0; right:0; bottom:0; width:42%;
+    background: linear-gradient(135deg, #8E8A82, #5A564F);
+    overflow:hidden;
+  }
+  .pcard .pimg .ph{
+    position:absolute; top:1rem; right:1rem;
+    font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.7); padding:.3rem .5rem;
+    border:1px dashed rgba(255,255,255,.4);
+  }
+  .pcard-body{ z-index:2; max-width: 60%; }
+  .pcard .ec{ font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; color:var(--primary-ink); text-transform:uppercase; margin-bottom:.65rem; }
+  .pcard h4{ font-family:var(--serif); font-weight:500; font-size:1.5rem; line-height:1.1; letter-spacing:-.015em; margin-bottom:.5rem; }
+  .pcard .meta{ font-size:.825rem; color:var(--on-surface-variant); }
+  .pcard .metric{ margin-top:1.25rem; }
+  .pcard .metric .v{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:2rem; letter-spacing:-.02em; color:var(--primary); }
+  .pcard .metric .k{ font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--on-surface-variant); }
+
+  @media(max-width:900px){ .projects-feature{ grid-template-columns:1fr; } .pcard{ grid-template-columns:1fr; } .pcard .pimg{ position:relative; width:100%; height:180px; } .pcard-body{ max-width:100%; } }
+
+  /* ============ CTA BAND ============ */
+  /* ============ TESTIMONIALS ============ */
+  .testimonials{ padding: var(--space-3xl) 0; background: var(--surface); }
+  .testi-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:0; background: var(--outline-variant); }
+  .testi{
+    background: var(--surface-container-lowest);
+    padding: 2.5rem 2.25rem 2rem;
+    display:flex; flex-direction:column; gap:1rem;
+    position:relative;
+  }
+  .testi-num{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:2.25rem; color:var(--primary); letter-spacing:-.02em; line-height:1; }
+  .testi p{ font-family:var(--serif); font-weight:400; font-size:1.2rem; line-height:1.45; letter-spacing:-.012em; color:var(--on-background); text-wrap:pretty; }
+  .testi-author{ margin-top:auto; padding-top:1.25rem; }
+  .testi-author .a-name{ font-family:var(--sans); font-weight:600; font-size:.9rem; color:var(--on-background); }
+  .testi-author .a-role{ font-family:var(--mono); font-size:.625rem; letter-spacing:.18em; text-transform:uppercase; color:var(--on-surface-variant); margin-top:.25rem; }
+  @media(max-width:800px){ .testi-grid{ grid-template-columns:1fr; gap:1px; } }
+
+  /* ============ FAQ ============ */
+  .faq{ padding: var(--space-3xl) 0; background: var(--surface-container-low); }
+  .faq-list{ background: var(--surface-container-lowest); }
+  .faq-item{
+    padding: 0;
+    background: var(--surface-container-lowest);
+    transition: background .25s var(--ease);
+  }
+  .faq-item + .faq-item{ background-image: linear-gradient(var(--outline-variant), var(--outline-variant)); background-size: calc(100% - 3rem) 1px; background-repeat:no-repeat; background-position: 1.5rem 0; }
+  .faq-item[open]{ background: #FBFAF8; }
+  .faq-item summary{
+    cursor:pointer; list-style:none;
+    padding: 1.75rem 1.75rem;
+    display:grid; grid-template-columns: auto 1fr auto; gap:1.5rem; align-items:center;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-num{ font-family:var(--mono); font-size:.7rem; letter-spacing:.22em; color:var(--primary-ink); }
+  .faq-q{ font-family:var(--serif); font-weight:500; font-size:clamp(1.05rem, 1.5vw, 1.25rem); letter-spacing:-.015em; line-height:1.3; color:var(--on-background); text-wrap:balance; }
+  .faq-ic{
+    width:32px; height:32px; display:grid; place-items:center;
+    font-family:var(--sans); font-weight:300; font-size:1.5rem; color:var(--primary);
+    background: var(--surface-container-low); transition: transform .3s var(--ease), background .25s;
+  }
+  .faq-item[open] .faq-ic{ transform: rotate(45deg); background: var(--primary); color:#FFF; }
+  .faq-a{ padding: 0 1.75rem 1.75rem calc(1.75rem + 3.5rem + 1.5rem); }
+  .faq-a p{ color:var(--on-surface-variant); font-size:1rem; line-height:1.7; max-width: 720px; }
+  @media(max-width:700px){
+    .faq-item summary{ grid-template-columns: auto 1fr auto; gap:.9rem; padding: 1.25rem 1rem; }
+    .faq-a{ padding: 0 1rem 1.25rem 1rem; }
+  }
+
+  /* ============ BLOG ============ */
+  .blog{ padding: var(--space-3xl) 0; background: var(--surface); }
+  .blog-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; }
+  .post{
+    display:grid; grid-template-columns: 1fr; gap:0;
+    background: var(--surface-container-lowest);
+    cursor:pointer; transition: background .25s;
+    overflow:hidden;
+  }
+  .post:hover{ background: #FCFBFA; }
+  .post-img{
+    height: 320px; background: linear-gradient(135deg, #55595D, #2A2E31);
+    position:relative; overflow:hidden;
+  }
+  .post-img.sm{ height: 180px; }
+  .post-img::before{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 2px, transparent 2px 22px);
+  }
+  .post-img .ph{
+    position:absolute; top:1rem; left:1rem;
+    font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.65); padding:.3rem .5rem;
+    border:1px dashed rgba(255,255,255,.35);
+  }
+  .post-body{ padding: 1.75rem; display:flex; flex-direction:column; gap:.85rem; }
+  .post-meta{ display:flex; gap:.6rem; align-items:center; font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--primary-ink); }
+  .post-meta span:nth-child(2){ color:var(--on-surface-variant); }
+  .post h3{ font-family:var(--serif); font-weight:500; font-size:clamp(1.2rem, 1.8vw, 1.55rem); letter-spacing:-.02em; line-height:1.15; color:var(--on-background); text-wrap:balance; }
+  .post p{ color:var(--on-surface-variant); font-size:.95rem; line-height:1.55; }
+  .post-feat h3{ font-size: clamp(1.5rem, 2.4vw, 2rem); }
+  .post-date{ color:var(--on-surface-variant); }
+  .blog-grid .post:not(.post-feat){ align-self:stretch; }
+  .blog-grid > .post:nth-child(n+2):nth-child(-n+3){ }
+  .blog-grid{ grid-template-rows: auto; }
+  .blog-grid .post-feat{ grid-row: span 2; }
+  @media(max-width:900px){ .blog-grid{ grid-template-columns: 1fr; } .blog-grid .post-feat{ grid-row: auto; } }
+
+  .cta-band{
+    background:var(--ink-dark); color:#F5F5F5;
+    padding: 5rem 0;
+    position:relative; overflow:hidden;
+  }
+  .cta-band::before{
+    content:""; position:absolute; top:-30%; right:-10%; width:60%; height:180%;
+    background: radial-gradient(closest-side, rgba(155,64,0,.4), transparent 70%);
+    filter: blur(40px);
+  }
+  .cta-band-grid{ display:grid; grid-template-columns: 3fr 2fr; gap: 3rem; align-items:center; position:relative; z-index:1; }
+  .cta-band h2{ font-family:var(--serif); font-weight:500; font-size:clamp(1.75rem, 3vw, 2.75rem); letter-spacing:-.02em; line-height:1.05; color:#F9F9FA; }
+  .cta-band h2 em{ color:#E6D1BF; }
+  .cta-band .cta-actions{ display:flex; flex-direction:column; gap:.65rem; align-items:flex-start; }
+  .cta-band .cta-actions .mono{ color:rgba(245,245,245,.55); }
+  .cta-band .cta.outline{ width:100%; justify-content:space-between; }
+
+  @media(max-width:800px){ .cta-band-grid{ grid-template-columns:1fr; } }
+
+  /* ============ FOOTER ============ */
+  .footer{
+    background:#101113; color:#E8E8E9;
+    padding: 4rem 0 1.5rem;
+  }
+  .footer-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.1fr; gap: 3rem; }
+  .footer .col h5{ font-family:var(--mono); font-size:.625rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(232,232,233,.5); margin-bottom:1.25rem; }
+  .footer .col ul{ list-style:none; display:flex; flex-direction:column; gap:.65rem; }
+  .footer .col a{ font-size:.875rem; color:rgba(232,232,233,.8); transition:color .2s; }
+  .footer .col a:hover{ color:var(--primary-container); }
+  .footer .brand .mark{ font-family:var(--serif); font-weight:600; font-size:1.75rem; color:#F5F5F5; letter-spacing:-.02em; display:flex; align-items:baseline; gap:.35rem; margin-bottom:1rem; }
+  .footer .brand .mark .bar{ display:inline-block; width:2px; height:.95em; background:currentColor; margin:0 .12em; transform:translateY(.08em); }
+  .footer .brand .tag{ font-family:var(--sans); font-weight:300; font-size:.7rem; letter-spacing:.28em; text-transform:uppercase; opacity:.6; margin-left:.25em;}
+  .footer .brand p{ color:rgba(232,232,233,.6); font-size:.875rem; line-height:1.6; max-width:300px; margin-bottom:1.25rem; }
+  .footer .brand .seal{
+    display:inline-flex; gap:.65rem; align-items:center;
+    padding: .65rem .85rem; background: rgba(245,245,245,.04);
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(232,232,233,.7);
+  }
+  .footer .brand .seal .sq{ width:6px; height:6px; background:var(--primary-container); }
+  .footer .contact .wa{
+    display:flex; align-items:center; gap:.6rem;
+    padding: .85rem 1rem; background: var(--primary);
+    background:linear-gradient(135deg, var(--primary), var(--primary-container));
+    color:#FFF; font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    margin-bottom:1rem;
+  }
+  .footer .contact .ci{ display:flex; flex-direction:column; gap:.15rem; margin-bottom: .9rem; }
+  .footer .contact .ci .k{ font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(232,232,233,.45); }
+  .footer .contact .ci .v{ font-size:.9rem; color:#F5F5F5; font-weight:500; }
+  .footer .social{ display:flex; gap:.5rem; margin-top:.25rem; }
+  .footer .social a{
+    width:36px; height:36px; display:grid; place-items:center;
+    background:rgba(245,245,245,.04); transition: background .2s, color .2s;
+    color:rgba(232,232,233,.7);
+  }
+  .footer .social a:hover{ background:rgba(155,64,0,.18); color:var(--primary-container); }
+
+  .legal{
+    margin-top: 3rem; padding-top: 1.5rem;
+    display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;
+    font-family:var(--mono); font-size:.625rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(232,232,233,.5);
+    border-top: 1px solid rgba(245,245,245,.06);
+  }
+  .legal a{ color:inherit; margin-left:1.25rem; }
+  .legal a:hover{ color:var(--primary-container); }
+
+  @media(max-width:900px){ .footer-grid{ grid-template-columns: 1fr 1fr; gap:2rem; } }
+  @media(max-width:560px){ .footer-grid{ grid-template-columns: 1fr; } }
+
+  /* ============ TWEAKS PANEL ============ */
+  .tweaks-panel{
+    position:fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90;
+    width: 300px;
+    background: rgba(249,249,250,.82);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border: 1px solid rgba(26,28,29,.08);
+    padding: 1.1rem 1.25rem;
+    font-family: var(--sans);
+    display:none;
+    box-shadow: 0 24px 48px -12px rgba(26,28,29,0.12);
+  }
+  .tweaks-panel.show{ display:block; }
+  .tweaks-panel h6{ font-family:var(--mono); font-size:.625rem; letter-spacing:.22em; text-transform:uppercase; color:var(--primary-ink); margin-bottom:.85rem; display:flex; justify-content:space-between; align-items:center;}
+  .tweaks-panel h6 .close{ cursor:pointer; opacity:.5; font-size:1rem; letter-spacing:0; }
+  .tweaks-panel .row{ display:flex; flex-direction:column; gap:.35rem; margin-bottom:.9rem; }
+  .tweaks-panel label{ font-family:var(--mono); font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--on-surface-variant); }
+  .tweaks-panel input[type=range]{ width:100%; accent-color: var(--primary); }
+  .tweaks-panel input[type=text]{
+    background: var(--surface-container-lowest); border:0; border-bottom:2px solid var(--outline-variant);
+    padding:.5rem .25rem; font-family:var(--sans); font-size:.85rem; color:var(--on-background);
+    width:100%; outline:none;
+  }
+  .tweaks-panel input[type=text]:focus{ border-bottom-color: var(--primary); }
+  .tweaks-panel .toggle{ display:flex; align-items:center; gap:.5rem; cursor:pointer; font-size:.8rem; }
+  .tweaks-panel .toggle input{ accent-color: var(--primary); }
+  .tweaks-panel .swatch{ display:flex; gap:.35rem; margin-top:.4rem; }
+  .tweaks-panel .sw{ width:22px; height:22px; border:1px solid rgba(26,28,29,.1); cursor:pointer; }
+
+  /* ============ MISC ============ */
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<!-- ====================== GRID RAIL ====================== -->
+<aside class="rail" id="rail" aria-hidden="true">
+  <div class="rail-top">
+    <div class="rail-mark">HMOB · 01 · BR</div>
+  </div>
+  <div class="rail-dots" id="railDots">
+    <div class="rail-dot active" data-to="hero"></div>
+    <div class="rail-dot" data-to="trust"></div>
+    <div class="rail-dot" data-to="about"></div>
+    <div class="rail-dot" data-to="cats"></div>
+    <div class="rail-dot" data-to="flagship"></div>
+    <div class="rail-dot" data-to="diffs"></div>
+    <div class="rail-dot" data-to="projects"></div>
+    <div class="rail-dot" data-to="testimonials"></div>
+    <div class="rail-dot" data-to="faq"></div>
+    <div class="rail-dot" data-to="blog"></div>
+    <div class="rail-dot" data-to="contact"></div>
+  </div>
+  <div class="rail-bot">
+    <div class="rail-num" id="railNum">01/11</div>
+  </div>
+</aside>
+
+<!-- ====================== HEADER ====================== -->
+<header class="header" id="header">
+  <a class="logo" href="#hero" aria-label="Hmob For Offices">
+    <span class="mark">H<span class="bar"></span>MOB</span>
+    <span class="tag">for offices</span>
+  </a>
+  <nav class="nav">
+    <a href="#hero">Início</a>
+    <a href="#about">Sobre</a>
+    <a href="#cats" class="has-drop">Produtos</a>
+    <a href="#projects">Projetos</a>
+    <a href="#blog">Conteúdo</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contato</a>
+  </nav>
+  <a href="#contact" class="cta">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+    <span id="ctaLabel">Solicitar Proposta</span>
+  </a>
+</header>
+
+<!-- ====================== 01 HERO ====================== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-image"></div>
+
+  <div class="container rail-pad hero-inner">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="sq"></span>
+          <span class="label-sm">Mobiliário Corporativo de Alto Desempenho</span>
+        </div>
+        <h1 class="display-lg hero-h1" id="heroH1">Ambientes que refletem<br/><span class="em">a seriedade</span> da sua empresa.</h1>
+        <p class="hero-sub">Soluções em mobiliário corporativo com conformidade técnica, durabilidade comprovada e capacidade nacional de atendimento. Para empresas que precisam <em style="color:#E6D1BF;font-style:italic;">reduzir risco</em> — não apenas comprar móveis.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="cta" id="heroCta">Solicitar Proposta
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#cats" class="cta outline">Ver Catálogo de Produtos</a>
+        </div>
+      </div>
+
+      <div class="hero-meta">
+        <div class="spec">
+          <div class="k">Normas</div>
+          <div class="v">NR·17 <small>ABNT</small></div>
+        </div>
+        <div class="spec">
+          <div class="k">Atendimento</div>
+          <div class="v">27 <small>UF</small></div>
+        </div>
+        <div class="spec">
+          <div class="k">Operação</div>
+          <div class="v">15+ <small>anos</small></div>
+        </div>
+        <div class="spec">
+          <div class="k">Projetos entregues</div>
+          <div class="v">1.200+ <small>corporativos</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Role</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- ====================== 02 TRUST ====================== -->
+<section class="trust" id="trust">
+  <div class="container rail-pad">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="ic">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 3l11 5v8c0 7-5 12-11 13-6-1-11-6-11-13V8l11-5z"/>
+            <path d="M11 16l4 4 7-8"/>
+          </svg>
+        </div>
+        <div class="tx"><div class="k">Conformidade</div><div class="v">ABNT NR-17 <br/>e NBR certificada</div></div>
+      </div>
+      <div class="trust-item">
+        <div class="ic">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 4c6 4 10 9 10 14a10 10 0 0 1-20 0c0-5 4-10 10-14z"/>
+            <path d="M11 18c2 0 4-1 5-3"/>
+          </svg>
+        </div>
+        <div class="tx"><div class="k">Matéria-prima</div><div class="v">Certificada<br/>e sustentável</div></div>
+      </div>
+      <div class="trust-item">
+        <div class="ic">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M26 14c0 7-10 15-10 15S6 21 6 14a10 10 0 0 1 20 0z"/>
+            <circle cx="16" cy="14" r="3"/>
+          </svg>
+        </div>
+        <div class="tx"><div class="k">Atendimento</div><div class="v">Nacional<br/>com escala</div></div>
+      </div>
+      <div class="trust-item">
+        <div class="ic">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="4" y="6" width="24" height="20"/>
+            <path d="M4 12h24M10 6v20M22 6v20"/>
+          </svg>
+        </div>
+        <div class="tx"><div class="k">Especificação</div><div class="v">Engenharia de<br/>produto própria</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 04 ABOUT ====================== -->
+<section class="about" id="about">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 02 / Quem Somos</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">A Hmob em poucas linhas</span></div>
+        <h2 class="headline sect-title">Mais do que mobiliário. Uma <em>parceria técnica</em> para o crescimento da sua empresa.</h2>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>A Hmob combina engenharia de produto, conformidade com normas ABNT e capacidade nacional de entrega para oferecer soluções que reduzem risco, elevam a produtividade e geram valor de longo prazo aos projetos corporativos.</p>
+        <p>Atendemos empresas, arquitetos e construtoras com uma operação verticalizada — do desenho técnico à instalação — garantindo previsibilidade de prazo, rastreabilidade de insumos e performance comprovada em ambientes de alta exigência.</p>
+
+        <ul class="about-checks">
+          <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> +15 anos de experiência corporativa</li>
+          <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Normas ABNT certificadas</li>
+          <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Projetos personalizados</li>
+          <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Atendimento nacional</li>
+          <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Engenharia própria de produto</li>
+          <li><svg class="chk" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Rastreabilidade total de insumos</li>
+        </ul>
+
+        <div style="margin-top:2rem">
+          <a href="#" class="cta tertiary">Conhecer a Empresa</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="about-visual" style="background: url('assets/about-workspace.png') center/cover;">
+          <div class="detail"></div>
+        </div>
+        <div class="about-stats">
+          <div class="stat"><div class="k">Produção</div><div class="v">18.500<small>m² instalados/ano</small></div></div>
+          <div class="stat"><div class="k">Clientes B2B</div><div class="v">430+<small></small></div></div>
+          <div class="stat"><div class="k">Prazo médio</div><div class="v">22<small>dias</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 05 CATEGORIES ====================== -->
+<section class="cats" id="cats">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num" style="color:rgba(245,245,245,.5)">§ 03 / Portfólio</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Nosso portfólio</span></div>
+        <h2 class="display-md sect-title">Soluções completas para <em>ambientes corporativos</em> de alta exigência.</h2>
+      </div>
+    </div>
+
+    <div class="cats-grid">
+      <div class="cat">
+        <div class="cat-img" style="background:url('assets/about-workspace.png') center/cover;"></div>
+        <div class="cat-body">
+          <div class="cat-num">§ 03.01</div>
+          <div class="ct">Linha Workspace</div>
+          <h3>Mobiliário Corporativo</h3>
+          <p>Mesas, estações, arquivamento e soluções colaborativas para open offices de alta densidade.</p>
+          <a class="cat-link">Ver linha <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-img" style="background:url('assets/cat-cadeiras.png') center/cover;"></div>
+        <div class="cat-body">
+          <div class="cat-num">§ 03.02</div>
+          <div class="ct">Linha Seating</div>
+          <h3>Cadeiras &amp; Assentos</h3>
+          <p>Operativas, diretivas e colaborativas com ergonomia certificada para longa permanência.</p>
+          <a class="cat-link">Ver linha <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-img" style="background:url('assets/cat-lockers.png') center/cover;"></div>
+        <div class="cat-body">
+          <div class="cat-num">§ 03.03</div>
+          <div class="ct">Linha Access</div>
+          <h3>Lockers em Aço</h3>
+          <p>Free address, fechaduras eletrônicas e modulação flexível para ambientes dinâmicos.</p>
+          <a class="cat-link">Ver linha <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="cat-img" style="background:url('assets/cat-armarios.jpg') center/cover;"></div>
+        <div class="cat-body">
+          <div class="cat-num">§ 03.04</div>
+          <div class="ct">Linha Storage</div>
+          <h3>Armários Deslizantes</h3>
+          <p>Arquivamento inteligente e compacto, alta capacidade por metro quadrado.</p>
+          <a class="cat-link">Ver linha <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cats-footer">
+      <div class="divisory-card">
+        <div>
+          <div class="ct">§ 03.05</div>
+          <div class="t">Divisórias Corporativas</div>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </div>
+      <a class="cta">Ver Catálogo Completo
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 06 FLAGSHIP ====================== -->
+<section class="flagship" id="flagship">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 04 / Destaque</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Produto em destaque</span></div>
+        <h2 class="headline sect-title">A engenharia por trás de uma jornada de 8 horas sentado.</h2>
+      </div>
+    </div>
+
+    <div class="flagship-stage">
+      <div class="flagship-image" id="fshipImg" style="background:url('assets/about-workspace.png') center/cover;">
+      </div>
+      <div class="flagship-content">
+        <div>
+          <div class="flagship-eyebrow"><span class="line"></span><span class="t" id="fshipEy">Produto Flagship · 01</span></div>
+          <h3 class="flagship-title" id="fshipTitle">H | Série 200
+            <span class="sub" id="fshipSub">Alta performance · Ergonomia certificada</span>
+          </h3>
+          <p class="flagship-copy" id="fshipCopy">Desenvolvida para longa permanência com conforto comprovado. Ajuste lombar dinâmico, mecanismo sincronizado e encosto em malha técnica de alta durabilidade.</p>
+          <div class="flagship-specs" id="fshipSpecs">
+            <div class="s"><div class="k">Mecanismo</div><div class="v">Synchro · 4 travas</div></div>
+            <div class="s"><div class="k">Certificação</div><div class="v">ABNT NBR 13962</div></div>
+            <div class="s"><div class="k">Garantia</div><div class="v">10 anos</div></div>
+            <div class="s"><div class="k">Peso máx.</div><div class="v">150 kg</div></div>
+          </div>
+        </div>
+        <a href="#" class="cta dark">Ver produto
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="flagship-tabs" role="tablist">
+      <button class="active" data-tab="0">
+        <span class="tn">01</span>
+        H | Série 200 — Cadeira diretiva
+      </button>
+      <button data-tab="1">
+        <span class="tn">02</span>
+        H | Mesa Axial — Reunião técnica
+      </button>
+      <button data-tab="2">
+        <span class="tn">03</span>
+        H | Locker Flex — Free address
+      </button>
+      <button data-tab="3">
+        <span class="tn">04</span>
+        H | Divisória Linear — Acústica
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 07 DIFFERENTIALS ====================== -->
+<section class="diffs" id="diffs">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 05 / Diferenciais</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Nossos diferenciais</span></div>
+        <h2 class="display-md sect-title">O que separa a Hmob de <em>uma simples fornecedora</em>.</h2>
+      </div>
+    </div>
+
+    <div class="diffs-grid">
+      <div class="diff">
+        <div class="num">/ 01</div>
+        <div class="ic">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M18 3l13 6v9c0 8-6 14-13 15-7-1-13-7-13-15V9l13-6z"/>
+            <path d="M12 18l5 5 8-10"/>
+          </svg>
+        </div>
+        <h3>Conformidade<br/>técnica real.</h3>
+        <p>Ensaios de durabilidade, laudos ergonômicos e rastreabilidade de materiais. Cada produto acompanha documentação técnica completa, pronta para validação em auditorias corporativas.</p>
+        <div class="foot">NR-17 · NBR 13962 · NBR 13964</div>
+      </div>
+
+      <div class="diff">
+        <div class="num">/ 02</div>
+        <div class="ic">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="4" y="6" width="28" height="24"/>
+            <path d="M4 14h28M11 6v24M25 6v24"/>
+            <circle cx="11" cy="22" r="1.5" fill="currentColor"/>
+            <circle cx="18" cy="22" r="1.5" fill="currentColor"/>
+            <circle cx="25" cy="22" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Capacidade<br/>nacional em escala.</h3>
+        <p>Logística integrada a parceiros regionais em 27 unidades federativas. Um único ponto de contato para projetos multissite, com SLA unificado e instalação supervisionada por equipe própria.</p>
+        <div class="foot">Cobertura · 27 UF · SLA unificado</div>
+      </div>
+
+      <div class="diff">
+        <div class="num">/ 03</div>
+        <div class="ic">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 30V9l12-4 12 4v21"/>
+            <path d="M6 30h24M14 30V18h8v12M18 14v.01"/>
+          </svg>
+        </div>
+        <h3>Customização<br/>sob especificação.</h3>
+        <p>Do briefing ao desenho executivo: nossa engenharia de produto adapta dimensões, acabamentos e ferragens ao seu memorial descritivo. Projetos únicos, previsibilidade industrial.</p>
+        <div class="foot">Engenharia · 3D · Protótipos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PROJECTS / CLIENTS ====================== -->
+<section class="projects" id="projects">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 06 / Projetos</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Quem confia na Hmob</span></div>
+        <h2 class="headline sect-title">Empresas que escolheram a Hmob para <em>escalar seus ambientes</em>.</h2>
+      </div>
+    </div>
+
+    <div class="projects-feature">
+      <div class="pcard">
+        <div class="pimg" style="background:url('assets/case-01.png') center/cover;"></div>
+        <div class="pcard-body">
+          <div class="ec">CASE · 01 · Serviços Financeiros</div>
+          <h4>Sede corporativa — 14 andares, 2.100 postos</h4>
+          <div class="meta">Mobiliário, cadeiras e lockers · 120 dias · SP</div>
+          <div class="metric">
+            <div class="v">2.100</div>
+            <div class="k">postos entregues em 120 dias</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pimg" style="background:url('assets/case-02.png') center/cover;"></div>
+        <div class="pcard-body">
+          <div class="ec">CASE · 02 · Healthtech</div>
+          <h4>Hub operacional multissite — 6 cidades</h4>
+          <div class="meta">Divisórias, armários e estações · 45 dias · BR</div>
+          <div class="metric">
+            <div class="v">98%</div>
+            <div class="k">aderência ao cronograma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="projects-marquee">
+      <span class="client"><span class="dot"></span>Bradesco</span>
+      <span class="client"><span class="dot"></span>Natura</span>
+      <span class="client"><span class="dot"></span>Itaú BBA</span>
+      <span class="client"><span class="dot"></span>Odebrecht</span>
+      <span class="client"><span class="dot"></span>Votorantim</span>
+      <span class="client"><span class="dot"></span>WeWork</span>
+      <span class="client"><span class="dot"></span>B3</span>
+      <span class="client"><span class="dot"></span>Suzano</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TESTIMONIALS ====================== -->
+<section class="testimonials" id="testimonials">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 07 / Depoimentos</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">O que dizem nossos clientes</span></div>
+        <h2 class="headline sect-title">Validação vem de quem <em>opera</em> o ambiente, não de quem vende.</h2>
+      </div>
+    </div>
+
+    <div class="testi-grid">
+      <blockquote class="testi">
+        <div class="testi-num">“ 01</div>
+        <p>“Em 18 meses de operação diária — turnos cheios, alta rotatividade de postos — não tivemos um único chamado técnico. Isso muda a relação de fornecedor para parceiro estrutural.”</p>
+        <div class="testi-author">
+          <div class="a-name">Renata Salgado</div>
+          <div class="a-role">Diretora de Facilities · Serviços Financeiros</div>
+        </div>
+      </blockquote>
+      <blockquote class="testi">
+        <div class="testi-num">“ 02</div>
+        <p>“O memorial técnico foi entregue no nível que a gente pede de uma engenharia de produto. Laudos, ensaios, especificação de material — passou direto pela auditoria interna.”</p>
+        <div class="testi-author">
+          <div class="a-name">Carlos Menezes</div>
+          <div class="a-role">Coordenador de Engenharia · Construtora</div>
+        </div>
+      </blockquote>
+      <blockquote class="testi">
+        <div class="testi-num">“ 03</div>
+        <p>“Projeto multissite em 6 cidades, cronograma apertado. A Hmob entregou com um único ponto de contato e SLA unificado. Previsibilidade foi o maior ganho.”</p>
+        <div class="testi-author">
+          <div class="a-name">Juliana Prado</div>
+          <div class="a-role">Head de Operações · Healthtech</div>
+        </div>
+      </blockquote>
+      <blockquote class="testi">
+        <div class="testi-num">“ 04</div>
+        <p>“O que diferenciou foi o domínio técnico no briefing. Eles questionaram especificações, sugeriram ajustes ergonômicos e entregaram um projeto melhor do que o que encomendamos.”</p>
+        <div class="testi-author">
+          <div class="a-name">Arq. Fernando Lima</div>
+          <div class="a-role">Escritório de Arquitetura Corporativa</div>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FAQ ====================== -->
+<section class="faq" id="faq">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 08 / FAQ</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Dúvidas técnicas</span></div>
+        <h2 class="headline sect-title">Respostas diretas às <em>dúvidas que reduzem risco</em> na sua decisão.</h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>
+          <span class="faq-num">/ 01</span>
+          <span class="faq-q">Os produtos são realmente duráveis e resistentes ao uso contínuo?</span>
+          <span class="faq-ic" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Sim. Cada linha passa por ensaios cíclicos de resistência conforme a NBR específica da categoria — em cadeiras, por exemplo, a NBR 13962 exige mínimo de 300.000 ciclos de uso. Nossos produtos são testados acima disso, com laudos emitidos por laboratório acreditado pelo INMETRO.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span class="faq-num">/ 02</span>
+          <span class="faq-q">Qual a diferença entre um produto certificado e um comum?</span>
+          <span class="faq-ic" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Um produto certificado tem rastreabilidade de matéria-prima, laudo ergonômico (NR-17), ensaios mecânicos documentados e garantia técnica real. Em auditoria corporativa ou processo trabalhista, a certificação é o que protege a empresa — um produto “comum” não oferece essa cobertura.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span class="faq-num">/ 03</span>
+          <span class="faq-q">Vocês fabricam ou apenas revendem os produtos?</span>
+          <span class="faq-ic" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Operamos com engenharia de produto própria e parque fabril verticalizado para as linhas Workspace, Storage e Linear. Algumas categorias complementares são produzidas por parceiros sob nossa especificação técnica, com o mesmo controle de qualidade aplicado à fabricação interna.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span class="faq-num">/ 04</span>
+          <span class="faq-q">Atendem projetos personalizados ou sob medida?</span>
+          <span class="faq-ic" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Sim — é um dos nossos diferenciais. A partir do briefing e memorial descritivo, nossa engenharia adapta dimensões, acabamentos, ferragens e mecanismos. Entregamos protótipos, renders 3D e documentação técnica antes da produção em série.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>
+          <span class="faq-num">/ 05</span>
+          <span class="faq-q">Qual o prazo de entrega e como funciona a logística?</span>
+          <span class="faq-ic" aria-hidden="true">+</span>
+        </summary>
+        <div class="faq-a">
+          <p>Prazo médio de 22 dias úteis para linhas de catálogo e 35–60 dias para projetos sob medida, contados após aprovação técnica. Logística integrada cobre 27 UFs com parceiros regionais auditados, SLA unificado e equipe própria para supervisão de instalação.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== BLOG / CONTENT ====================== -->
+<section class="blog" id="blog">
+  <div class="container rail-pad">
+    <div class="sect-head">
+      <div class="sect-num">§ 09 / Conteúdo</div>
+      <div>
+        <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Conteúdo técnico</span></div>
+        <h2 class="headline sect-title">Análises e matérias técnicas para quem <em>decide com engenharia</em>.</h2>
+      </div>
+    </div>
+
+    <div class="blog-grid">
+      <a class="post post-feat" href="#">
+        <div class="post-img" style="background:url('assets/post-featured.png') center/cover;"></div>
+        <div class="post-body">
+          <div class="post-meta"><span>Engenharia</span><span>· 12 min de leitura</span></div>
+          <h3>NR-17 na prática: o que auditoria trabalhista realmente avalia no seu mobiliário.</h3>
+          <p>Uma leitura crítica da norma e dos pontos que aparecem em mais de 70% das autuações em empresas de serviços.</p>
+          <span class="post-date mono">ABR · 2026</span>
+        </div>
+      </a>
+      <a class="post" href="#">
+        <div class="post-img sm" style="background:url('assets/post-projeto.jpg') center/cover;"></div>
+        <div class="post-body">
+          <div class="post-meta"><span>Projeto</span><span>· 7 min</span></div>
+          <h3>Open office de alta densidade: 5 erros de especificação que custam caro.</h3>
+          <span class="post-date mono">MAR · 2026</span>
+        </div>
+      </a>
+      <a class="post" href="#">
+        <div class="post-img sm" style="background:url('assets/post-esg.jpg') center/cover;"></div>
+        <div class="post-body">
+          <div class="post-meta"><span>ESG</span><span>· 9 min</span></div>
+          <h3>Matéria-prima rastreável: por que ESG virou requisito técnico no B2B.</h3>
+          <span class="post-date mono">MAR · 2026</span>
+        </div>
+      </a>
+    </div>
+
+    <div style="margin-top:2.5rem; display:flex; justify-content:flex-end;">
+      <a class="cta tertiary" href="#">Ver todos os artigos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CTA BAND ====================== -->
+<section class="cta-band" id="contact">
+  <div class="container rail-pad">
+    <div class="cta-band-grid">
+      <div>
+        <div class="mono" style="color:rgba(245,245,245,.55); margin-bottom:.75rem;">§ 07 / Começar um projeto</div>
+        <h2>Pronto para desenhar um ambiente <em>à altura da sua operação</em>?</h2>
+      </div>
+      <div class="cta-actions">
+        <span class="mono" style="color:rgba(245,245,245,.55);">Resposta em até 24h úteis</span>
+        <a href="#" class="cta" style="padding:1rem 1.25rem; width:100%; justify-content:space-between;">
+          <span>Falar com um consultor</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <a href="#" class="cta outline">
+          <span>Solicitar catálogo técnico</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v14M5 10l7 7 7-7M5 21h14"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="footer">
+  <div class="container rail-pad">
+    <div class="footer-grid">
+      <div class="col brand">
+        <div class="mark">H<span class="bar"></span>MOB <span class="tag">for offices</span></div>
+        <p>Soluções corporativas certificadas para ambientes de alta performance. Engenharia de produto, conformidade e operação nacional.</p>
+        <div class="seal"><span class="sq"></span><span>ABNT NR-17 · certificado</span></div>
+      </div>
+      <div class="col">
+        <h5>Institucional</h5>
+        <ul>
+          <li><a href="#">Sobre a Hmob</a></li>
+          <li><a href="#">Linha do tempo</a></li>
+          <li><a href="#">Garantia e certificações</a></li>
+          <li><a href="#">ESG e sustentabilidade</a></li>
+          <li><a href="#">Blog técnico</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h5>Soluções</h5>
+        <ul>
+          <li><a href="#">Mobiliário corporativo</a></li>
+          <li><a href="#">Cadeiras ergonômicas</a></li>
+          <li><a href="#">Lockers inteligentes</a></li>
+          <li><a href="#">Armários técnicos</a></li>
+          <li><a href="#">Divisórias corporativas</a></li>
+        </ul>
+      </div>
+      <div class="col contact">
+        <h5>Contato</h5>
+        <a class="wa" href="#">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Falar com um Consultor</span>
+        </a>
+        <div class="ci"><div class="k">Comercial</div><div class="v">+55 11 3000 4500</div></div>
+        <div class="ci"><div class="k">E-mail</div><div class="v">comercial@hmob.com.br</div></div>
+        <div class="ci"><div class="k">Endereço</div><div class="v">São Paulo · SP — <a href="#" style="text-decoration:underline">Ver mapa</a></div></div>
+        <div class="social">
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.4-1.1 2.5-2.5 2.5S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5zM.2 21h4.6V8H.2v13zm7.6-13h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7V21h-4.6v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H7.8V8z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4A3 3 0 0 0 23 16.5 31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.75 15.5v-7L15.5 12l-5.75 3.5z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 Hmob For Offices. Todos os direitos reservados.</div>
+      <div><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ====================== TWEAKS PANEL ====================== -->
+<div class="tweaks-panel" id="tweaksPanel">
+  <h6>
+    <span>Tweaks · Hmob</span>
+    <span class="close" id="tweaksClose">×</span>
+  </h6>
+  <div class="row">
+    <label>Accent hue</label>
+    <input type="range" min="10" max="80" step="1" id="tHue" />
+    <div class="swatch" id="tSwatch"></div>
+  </div>
+  <div class="row">
+    <label>Hero H1</label>
+    <input type="text" id="tH1" />
+  </div>
+  <div class="row">
+    <label>Primary CTA label</label>
+    <input type="text" id="tCta" />
+  </div>
+  <div class="row">
+    <label class="toggle"><input type="checkbox" id="tRail" /> Show grid rail (differentiator)</label>
+  </div>
+</div>
+
+<script>
+  // ============ HEADER SCROLL ============
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // ============ RAIL / SECTION OBSERVER ============
+  const sections = ['hero','trust','about','cats','flagship','diffs','projects','testimonials','faq','blog','contact'];
+  const dots = document.querySelectorAll('.rail-dot');
+  const railNum = document.getElementById('railNum');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id = e.target.id;
+        const idx = sections.indexOf(id);
+        if(idx<0) return;
+        dots.forEach(d=>d.classList.toggle('active', d.dataset.to===id));
+        railNum.textContent = String(idx+1).padStart(2,'0') + '/' + String(sections.length).padStart(2,'0');
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
+  dots.forEach(d=> d.addEventListener('click', ()=>{
+    document.getElementById(d.dataset.to)?.scrollIntoView({behavior:'smooth', block:'start'});
+  }));
+
+  // ============ FLAGSHIP TABS ============
+  const FLAG = [
+    {
+      ey:'Produto Flagship · 01',
+      title:'H | Série 200',
+      sub:'Alta performance · Ergonomia certificada',
+      copy:'Desenvolvida para longa permanência com conforto comprovado. Ajuste lombar dinâmico, mecanismo sincronizado e encosto em malha técnica de alta durabilidade.',
+      specs:[['Mecanismo','Synchro · 4 travas'],['Certificação','ABNT NBR 13962'],['Garantia','10 anos'],['Peso máx.','150 kg']]
+    },
+    {
+      ey:'Linha Axial · 02',
+      title:'H | Mesa Axial',
+      sub:'Modularidade estrutural · Cabeamento técnico',
+      copy:'Estrutura de aço tubular com passa-cabos integrado e tampo de 25 mm em MDF low-emission. Configurações de 2, 4, 6 e 8 postos sem ferragens aparentes.',
+      specs:[['Estrutura','Aço tubular 60×30'],['Tampo','MDF 25mm E1'],['Capacidade','8 postos/módulo'],['Cabeamento','Calha técnica']]
+    },
+    {
+      ey:'Linha Flex · 03',
+      title:'H | Locker Flex',
+      sub:'Free address · Fechadura eletrônica',
+      copy:'Gabinete em aço #18 com tratamento anticorrosivo. Fechadura RFID integrada a sistema de reservas corporativo. Modulação vertical de 4, 6 e 8 portas.',
+      specs:[['Gabinete','Aço #18'],['Fechadura','RFID Mifare'],['Portas','4/6/8 por coluna'],['Integração','API REST']]
+    },
+    {
+      ey:'Linha Linear · 04',
+      title:'H | Divisória Linear',
+      sub:'Isolamento acústico · Painel técnico',
+      copy:'Divisória piso-teto com núcleo acústico em lã de rocha e vidro duplo 8+8 mm. Índice Rw de 42 dB. Instalação limpa e modular.',
+      specs:[['Isolamento','Rw 42 dB'],['Vidro','Duplo 8+8 mm'],['Espessura','95 mm'],['Instalação','Clip técnico']]
+    }
+  ];
+  const $ey = document.getElementById('fshipEy');
+  const $title = document.getElementById('fshipTitle');
+  const $sub = document.getElementById('fshipSub');
+  const $copy = document.getElementById('fshipCopy');
+  const $specs = document.getElementById('fshipSpecs');
+  const $img = document.getElementById('fshipImg');
+  const tabs = document.querySelectorAll('.flagship-tabs button');
+  function renderFlag(i){
+    const f = FLAG[i];
+    $ey.textContent = f.ey;
+    $title.childNodes[0].nodeValue = f.title + ' ';
+    $sub.textContent = f.sub;
+    $copy.textContent = f.copy;
+    $specs.innerHTML = f.specs.map(([k,v])=>`<div class="s"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+    tabs.forEach((b,bi)=> b.classList.toggle('active', bi===i));
+    // swap product image
+    const imgs = ['assets/about-workspace.png','assets/hero-reuniao.jpg','assets/cat-lockers.png','assets/cat-cadeiras.png'];
+    $img.style.background = `url('${imgs[i]}') center/cover`;
+  }
+  tabs.forEach((b,i)=> b.addEventListener('click', ()=> renderFlag(i)));
+
+  // ============ REVEAL ON SCROLL ============
+  const revealEls = document.querySelectorAll('.sect-head, .about-grid, .cats-grid, .flagship-stage, .flagship-tabs, .diffs-grid, .projects-feature, .projects-marquee, .testi-grid, .faq-list, .blog-grid, .cta-band-grid, .hero-content, .hero-meta');
+  revealEls.forEach(el=> el.classList.add('reveal'));
+  const rio = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); rio.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el=> rio.observe(el));
+
+  // ============ TWEAKS ============
+  const T = window.__TWEAKS__;
+  const applyTweaks = () => {
+    document.documentElement.style.setProperty('--accent-hue', T.accentHue);
+    document.getElementById('heroH1').innerHTML = T.heroH1.replace(/(a seriedade|seriedade|o futuro|a precisão|a ambição)/i, m=>`<span class="em">${m}</span>`);
+    document.getElementById('ctaLabel').textContent = T.primaryCta;
+    document.querySelector('#heroCta').childNodes[0].nodeValue = T.primaryCta + ' ';
+    document.getElementById('rail').classList.toggle('off', !T.showGridRail);
+  };
+  applyTweaks();
+
+  // ============ TWEAKS PANEL WIRING ============
+  const panel = document.getElementById('tweaksPanel');
+  const tHue = document.getElementById('tHue');
+  const tH1  = document.getElementById('tH1');
+  const tCta = document.getElementById('tCta');
+  const tRail= document.getElementById('tRail');
+  const tSwatch = document.getElementById('tSwatch');
+  const SWATCHES = [16, 28, 42, 56, 200, 250];
+  tSwatch.innerHTML = SWATCHES.map(h=>`<span class="sw" data-h="${h}" style="background:oklch(0.52 0.16 ${h})"></span>`).join('');
+  tSwatch.addEventListener('click', e=>{
+    const h = e.target.dataset.h; if(!h) return;
+    T.accentHue = +h; tHue.value = h; applyTweaks(); persist();
+  });
+  const hydratePanel = ()=>{
+    tHue.value = T.accentHue;
+    tH1.value  = T.heroH1;
+    tCta.value = T.primaryCta;
+    tRail.checked = !!T.showGridRail;
+  };
+  hydratePanel();
+  const persist = ()=> {
+    try { window.parent.postMessage({type:'__edit_mode_set_keys', edits: T}, '*'); } catch(e){}
+  };
+  tHue.addEventListener('input', ()=>{ T.accentHue = +tHue.value; applyTweaks(); persist(); });
+  tH1.addEventListener('input',  ()=>{ T.heroH1    = tH1.value;    applyTweaks(); persist(); });
+  tCta.addEventListener('input', ()=>{ T.primaryCta= tCta.value;   applyTweaks(); persist(); });
+  tRail.addEventListener('change',()=>{ T.showGridRail = tRail.checked; applyTweaks(); persist(); });
+  document.getElementById('tweaksClose').addEventListener('click', ()=> panel.classList.remove('show'));
+
+  // ============ EDIT-MODE INTEGRATION ============
+  window.addEventListener('message', (e)=>{
+    const d = e.data || {};
+    if(d.type === '__activate_edit_mode'){ panel.classList.add('show'); }
+    if(d.type === '__deactivate_edit_mode'){ panel.classList.remove('show'); }
+  });
+  try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+
+  // ============ HERO MOUSE PARALLAX (subtle) ============
+  const heroImage = document.querySelector('.hero-image');
+  document.querySelector('.hero')?.addEventListener('mousemove', (e)=>{
+    const r = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - r.left)/r.width - 0.5;
+    const y = (e.clientY - r.top)/r.height - 0.5;
+    heroImage.style.transform = `translate(${x*-8}px, ${y*-6}px) scale(1.04)`;
+  });
+</script>
+
+</body>
+</html>

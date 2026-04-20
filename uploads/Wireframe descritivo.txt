@@ -1,0 +1,349 @@
+WIREFRAME DESCRITIVO — HOME | HMOB FOR OFFICES 
+
+Redesign Estratégico | Agência FED 
+
+ 
+
+Referências visuais declaradas pelo cliente: Marelly, Alberflex, Minimal e Axis 
+Tom: Autoridade técnica, engenharia, confiabilidade, premium B2B 
+Público: Empresas, arquitetos, construtoras — quem precisa de solução durável e tecnicamente validada 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 01 — HEADER / BARRA DE NAVEGAÇÃO 
+
+Posição: Fixa no topo (sticky), fundo escuro (quase preto #111 ou dark charcoal) 
+Altura: ~72px 
+
+Layout (3 colunas): 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│  [LOGO H|MOB — versão branca/clara]    [NAV MENU — centro]    [CTA + ÍCONE] │ 
+│  Logotipo vetorial horizontal           Início                [📞] Falar com  │ 
+│  "for offices" em destaque fino         Sobre a Hmob           um Consultor  │ 
+│                                         Produtos ▾            [botão laranja]│ 
+│                                         Projetos                             │ 
+│                                         Blog / Conteúdo                      │ 
+│                                         Contato                              │ 
+└──────────────────────────────────────────────────────────────────────────────┘ 
+
+Notas técnicas: 
+
+Menu "Produtos" com mega-dropdown dividido em categorias: Mobiliário / Cadeiras / Lockers / Armários / Divisórias 
+
+Botão CTA "Falar com um Consultor" em laranja (#E8650A ou similar da marca) — abre WhatsApp direto 
+
+Ao rolar a página, header fica com leve backdrop-blur e borda inferior sutil 
+
+Mobile: menu hambúrguer com drawer lateral full-height 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 02 — HERO SECTION (Acima da dobra) 
+
+Altura: 100vh (tela cheia) 
+Layout: Imagem/vídeo de fundo em ambiente corporativo real da Hmob 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                              │ 
+│   [IMAGEM DE FUNDO: foto real de ambiente corporativo — sala de reunião      │ 
+│    ou open office montado com produtos Hmob — com overlay escuro gradiente]  │ 
+│                                                                              │ 
+│   ┌──────────────────────────────────────────────────┐                      │ 
+│   │  TAG PEQUENA:  ■ Mobiliário Corporativo de Alto  │                      │ 
+│   │                  Desempenho                       │                      │ 
+│   │                                                   │                      │ 
+│   │  H1:  Ambientes que refletem                      │                      │ 
+│   │       a seriedade da sua empresa.                 │                      │ 
+│   │                                                   │                      │ 
+│   │  SUBTÍTULO: Soluções em mobiliário corporativo    │                      │ 
+│   │  com conformidade técnica, durabilidade comprovada│                      │ 
+│   │  e capacidade de atendimento nacional.            │                      │ 
+│   │                                                   │                      │ 
+│   │  [BOTÃO 1 — Laranja]   [BOTÃO 2 — Outline branco]│                      │ 
+│   │  "Solicitar Proposta"  "Ver Catálogo de Produtos" │                      │ 
+│   └──────────────────────────────────────────────────┘                      │ 
+│                                                                              │ 
+│   ▼ (seta ou scroll indicator animado no rodapé do hero)                    │ 
+└──────────────────────────────────────────────────────────────────────────────┘ 
+
+Notas técnicas: 
+
+H1 em fonte serif moderna ou sans-serif bold com peso visual forte (ex: Playfair Display + Inter) 
+
+Overlay escuro: gradiente da esquerda para transparência (direita), para que a imagem respire 
+
+Sem formulário no hero — decisão estratégica: o formulário será mais abaixo, após o visitante ser aquecido 
+
+Possibilidade de vídeo loop (produto sendo instalado ou ambiente real) como background 
+
+Indicadores de scroll animados (chevron ou dot) 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 03 — BARRA DE CREDENCIAIS (Trust Bar) 
+
+Posição: Logo abaixo do hero — fundo branco ou cinza claro (#F5F5F5) 
+Altura: ~90px 
+Objetivo: Quebrar qualquer objeção inicial de credibilidade 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                              │ 
+│  [Ícone] Conformidade    [Ícone] Matéria-prima    [Ícone] Atendimento       │ 
+│  ABNT NR-17 e NBR        certificada e            nacional com              │ 
+│  certificada             sustentável              escala                    │ 
+│                                                                              │ 
+│  ──────────────────  ──────────────────────  ──────────────────────         │ 
+│  [Lacre/norma]           [Folha verde]            [Mapa Brasil]             │ 
+│                                                                              │ 
+└──────────────────────────────────────────────────────────────────────────────┘ 
+
+Notas técnicas: 
+
+3 ou 4 pilares separados por linha divisória vertical sutil 
+
+Ícones minimalistas lineares (outline) 
+
+Tipografia pequena mas legível — reforça "empresa séria" 
+
+Fundo contrastante com o hero para demarcar seção 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 04 — SOBRE A HMOB (Posicionamento de Marca) 
+
+Layout: 2 colunas — texto esquerda, imagem direita (ou inverso) 
+Fundo: Branco 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                              │ 
+│  [COLUNA ESQUERDA — 50%]          [COLUNA DIREITA — 50%]                   │ 
+│                                                                              │ 
+│  TAG: ■ Quem Somos                [IMAGEM: Fachada, equipe ou               │ 
+│                                    ambiente interno da Hmob —               │ 
+│  H2: Mais do que mobiliário.       foto real de alta qualidade]             │ 
+│  Uma parceria técnica para                                                   │ 
+│  o crescimento da sua empresa.                                               │ 
+│                                                                              │ 
+│  Parágrafo: A Hmob combina        [Detalhe de acabamento ou                 │ 
+│  engenharia de produto,            produto close-up com textura]            │ 
+│  conformidade com normas ABNT                                                │ 
+│  e capacidade nacional de                                                    │ 
+│  entrega para oferecer soluções                                              │ 
+│  que reduzem risco e geram        ┌──────────────────────────────┐          │ 
+│  valor ao seu projeto.            │ ✓ +15 anos de experiência   │          │ 
+│                                   │ ✓ Normas ABNT certificadas  │          │ 
+│  [Botão outline escuro]           │ ✓ Projetos personalizados   │          │ 
+│  "Conhecer a Empresa"             │ ✓ Atendimento nacional      │          │ 
+│                                   └──────────────────────────────┘          │ 
+└──────────────────────────────────────────────────────────────────────────────┘ 
+
+Notas técnicas: 
+
+Checklist visual com ícones de check em laranja 
+
+Imagem com borda arredondada leve ou clip diagonal para modernidade 
+
+Texto direto, sem rodeios — foco em diferencial técnico e estratégico 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 05 — CATEGORIAS DE PRODUTOS 
+
+Layout: Grid responsivo 
+Fundo: Cinza escuro (#1A1A1A) ou preto — contraste forte para elevar a percepção de premium 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                              │ 
+│              TAG: ■ Nosso Portfólio                                         │ 
+│              H2: Soluções completas para                                     │ 
+│                  ambientes corporativos de alta exigência.                  │ 
+│                                                                              │ 
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐   │ 
+│  │              │  │              │  │              │  │              │   │ 
+│  │  [IMAGEM     │  │  [IMAGEM     │  │  [IMAGEM     │  │  [IMAGEM     │   │ 
+│  │   MOBILIÁRIO]│  │   CADEIRAS]  │  │   LOCKERS]   │  │   ARMÁRIOS]  │   │ 
+│  │              │  │              │  │              │  │              │   │ 
+│  │  MOBILIÁRIO  │  │  CADEIRAS &  │  │  LOCKERS     │  │  ARMÁRIOS    │   │ 
+│  │  Corporativo │  │  ASSENTOS    │  │  em Aço      │  │  DESLIZANTES │   │ 
+│  │              │  │              │  │              │  │              │   │ 
+│  │  Mesas, esta-│  │  Operativas, │  │  Free address│  │  Arquivamento│   │ 
+│  │  ções, arqui-│  │  diretivas e │  │  e ambientes │  │  inteligente │   │ 
+│  │  vamento...  │  │  colaborat...│  │  dinâmicos...│  │  e compacto..│   │ 
+│  │              │  │              │  │              │  │              │   │ 
+│  │  [Ver linha→]│  │  [Ver linha→]│  │  [Ver linha→]│  │  [Ver linha→]│   │ 
+│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘   │ 
+│                                                                              │ 
+│                   [BOTÃO CENTRAL]                                           │ 
+│                   "Ver Catálogo Completo"                                   │ 
+│                                                                              │ 
+└──────────────────────────────────────────────────────────────────────────────┘ 
+
+Notas técnicas: 
+
+Cards com hover effect: leve zoom na imagem + overlay laranja semitransparente com seta 
+
+Imagens: sempre fotos reais dos produtos Hmob (cliente confirmou que tem material) 
+
+5ª categoria "Divisórias" pode aparecer como card menor centralizado abaixo dos 4 
+
+Versão mobile: swipe horizontal (carrossel touch) 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 06 — DESTAQUE DE PRODUTO (Hero de Produto) 
+
+Layout: Full-width — imagem grande + texto sobreposto 
+Objetivo: Apresentar o produto mais estratégico de forma premium 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                              │ 
+│  ┌─────────────────────────────────────────────────────────────────────┐    │ 
+│  │                                                                     │    │ 
+│  │  [IMAGEM GRANDE — fundo limpo, produto H|Série 200 ou mesa de      │    │ 
+│  │   reunião — produto flagship da marca]                              │    │ 
+│  │                                                                     │    │ 
+│  │                    ┌────────────────────────────┐                  │    │ 
+│  │                    │  DESTAQUE:                 │                  │    │ 
+│  │                    │  H | Série 200             │                  │    │ 
+│  │                    │                            │                  │    │ 
+│  │                    │  Alta performance.         │                  │    │ 
+│  │                    │  Ergonomia certificada.    │                  │    │ 
+│  │                    │  Desenvolvida para longa   │                  │    │ 
+│  │                    │  permanência com conforto  │                  │    │ 
+│  │                    │  comprovado.               │                  │    │ 
+│  │                    │                            │                  │    │ 
+│  │                    │  [Ver Produto]             │                  │    │ 
+│  │                    └────────────────────────────┘                  │    │ 
+│  │                                                                     │    │ 
+│  └─────────────────────────────────────────────────────────────────────┘    │ 
+│                                                                              │ 
+└──────────────────────────────────────────────────────────────────────────────┘ 
+
+Notas técnicas: 
+
+Fundo do card de texto: branco com sombra suave ou dark com texto claro 
+
+Tipografia grande, clean — inspira confiança técnica 
+
+Pode alternar entre produtos (tabs ou slider lateral sutil) 
+
+ 
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+
+SEÇÃO 07 — DIFERENCIAIS TÉCNICOS (Por que a Hmob) 
+
+Layout: 3 colunas com ícone + título + texto 
+Fundo: Branco ou off-white (#FAFAFA) 
+
+text 
+
+┌──────────────────────────────────────────────────────────────────────────────┐ 
+│                                                                              │ 
+│              TAG: ■ Nossos Diferenciais                                     │ 
+│              H2: O que separa a Hmob de uma simples fornecedora.            │ 
+│                                                                              │ 
+│  ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐           │ 
+│  │  [Ícone:        │   │  [Ícone:        │   │  [Ícone:        │           │ 
+│  │   Certificado]  │   │   Escala Nac.]  │   │   Customização] │           │ 
+│  │                 │   │                 │   │                 │           │ 
+│  │  Conformidade   │   │  Capacidade     │   │  Projetos       │            
+
+
+SEÇÃO 8 — FOOTER (Rodapé Global)
+Posição: Fixo somente visualmente como último bloco da página (não sticky).
+Fundo: Cinza bem escuro (#101010 ou #111111), texto claro (#F5F5F5).
+Altura: 3 faixas horizontais (footer principal, barra legal, cookie/privacidade opcional).
+
+Layout geral (desktop)
+Grid em 4 colunas com respiro generoso, alinhado à largura máxima do site (ex: 1200px) e mesma lógica de gutters usada no restante da página.
+
+Coluna 1 — Identidade e propósito
+
+Logo Hmob (versão monocromática branca).
+
+Texto curto de posicionamento em 2–3 linhas, mantendo o tom técnico e B2B.
+
+Selo ou microtexto de credenciais (ex: “Soluções corporativas certificadas para ambientes de alta performance”).
+
+Coluna 2 — Navegação institucional
+Título: “Institucional”
+
+Sobre a Hmob
+
+Linha do tempo / História
+
+Garantia e certificações
+
+ESG e sustentabilidade
+
+Blog / Conteúdos técnicos
+
+Coluna 3 — Soluções e produtos
+Título: “Soluções”
+
+Mobiliário corporativo
+
+Cadeiras ergonômicas
+
+Lockers inteligentes
+
+Armários técnicos
+
+Divisórias corporativas
+Obs.: manter nomes coerentes com as categorias usadas no menu e nas seções de produtos.
+
+Coluna 4 — Contato e atendimento
+Título: “Contato”
+
+Telefones (Comercial / Escritório)
+
+E-mail de atendimento
+
+Botão/linha “Falar com um Consultor” (ícone WhatsApp) mantendo a identidade do CTA principal.
+
+Endereço resumido (cidade / estado + link “Ver mapa”).
+
+Links de redes sociais (LinkedIn, Instagram, YouTube) com ícones minimalistas em outline ou preenchidos em branco com hover laranja.
+
+Versão mobile
+Stack vertical em blocos colapsáveis (accordion) para não gerar um “tijolo” de links.
+
+Ordem sugerida: Contato → Soluções → Institucional → Identidade/Logo.
+
+CTA “Falar com um Consultor” destacado em largura total, antes dos links de navegação.
+
+Barra legal inferior
+Faixa abaixo do footer principal, com 1 linha de texto centralizada ou em 2 colunas:
+
+Esquerda: “© 2026 Hmob For Offices. Todos os direitos reservados.”
+
+Direita: links de “Política de Privacidade” e “Termos de Uso”.
+
+Tipografia menor (12–13px), contraste suficiente para leitura, sem competir com o conteúdo principal do rodapé.
+ 
