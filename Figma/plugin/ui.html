@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; padding: 16px; margin: 0; background: #FFF; color: #1A1C1D; font-size: 12px; }
+  h2 { font-size: 13px; font-weight: 600; margin: 0 0 6px; }
+  p { font-size: 11px; color: #45484A; margin: 0 0 12px; line-height: 1.45; }
+  button {
+    width: 100%; padding: 10px 14px; height: 36px;
+    background: #B85A00; color: #FFF;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    border: none; cursor: pointer; border-radius: 4px;
+  }
+  button:hover { background: #D46B00; }
+  button:disabled { background: #999; cursor: not-allowed; }
+  #log {
+    margin-top: 12px; padding: 8px; height: 90px; overflow-y: auto;
+    background: #F4F3F4; border-radius: 4px;
+    font-family: ui-monospace, "Cascadia Mono", Menlo, monospace; font-size: 10px;
+    color: #45484A; white-space: pre-wrap; line-height: 1.4;
+  }
+  .ok { color: #0a7d2e; }
+  .err { color: #c62828; }
+</style>
+</head>
+<body>
+  <h2>Hmob Site — Importar</h2>
+  <p>Gera frames editáveis do site no Figma (1440px de largura).</p>
+  <button id="run">Gerar Site</button>
+  <div id="log">Aguardando…</div>
+  <script>
+    const log = document.getElementById('log');
+    const btn = document.getElementById('run');
+    function add(text, cls) {
+      const line = document.createElement('div');
+      if (cls) line.className = cls;
+      line.textContent = text;
+      log.appendChild(line);
+      log.scrollTop = log.scrollHeight;
+    }
+    btn.addEventListener('click', () => {
+      log.innerHTML = '';
+      add('Iniciando…');
+      btn.disabled = true;
+      parent.postMessage({ pluginMessage: { type: 'run' } }, '*');
+    });
+    window.onmessage = (e) => {
+      const msg = e.data.pluginMessage;
+      if (!msg) return;
+      if (msg.type === 'log') add(msg.text);
+      else if (msg.type === 'ok') { add(msg.text, 'ok'); btn.disabled = false; }
+      else if (msg.type === 'err') { add('ERRO: ' + msg.text, 'err'); btn.disabled = false; }
+    };
+  </script>
+</body>
+</html>

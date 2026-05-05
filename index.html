@@ -149,11 +149,19 @@
   .logo .mark .bar{ display:inline-block; width:2px; height:.95em; background:currentColor; margin:0 .12em; transform:translateY(.08em); }
   .logo .tag{ font-family:var(--sans); font-weight:300; font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; opacity:.72; }
   .nav{ display:flex; gap:2rem; align-items:center; }
-  .nav a{ font-size:.86rem; font-weight:500; letter-spacing:-.005em; opacity:.85; transition:opacity .2s; position:relative; padding:.25rem 0; }
-  .nav a:hover{ opacity:1; }
-  .nav a::after{ content:""; position:absolute; left:0; right:100%; bottom:-2px; height:1px; background:var(--primary-container); transition:right .25s var(--ease); }
-  .nav a:hover::after{ right:0; }
-  .nav .has-drop::before{ content:"▾"; font-size:.6em; margin-right:.35em; opacity:.6; }
+  .nav-item > a, .nav-item > button{
+    font-size:.86rem; font-weight:500; letter-spacing:-.005em; opacity:.85;
+    transition:opacity .2s; position:relative; padding:.25rem 0;
+    display:inline-flex; align-items:center; gap:.35em;
+    background:transparent; border:0; color:inherit; cursor:pointer; font-family:var(--sans);
+  }
+  .nav-item > a:hover, .nav-item > button:hover{ opacity:1; }
+  .nav-item > a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:-2px; height:1px;
+    background:var(--primary-container); transition:right .25s var(--ease);
+  }
+  .nav-item > a:hover::after, .nav-item > a.active::after{ right:0; }
+  .nav-item.has-mega > button::after{ content:"▾"; font-size:.6em; opacity:.6; margin-left:.05em; }
   .cta{
     display:inline-flex; align-items:center; gap:.5rem;
     padding:.8rem 1.15rem;
@@ -185,8 +193,6 @@
   /* tight breakpoints to keep the 3 header groups from colliding */
   @media(max-width:1180px){ .nav{ gap:1.35rem; } .nav a{ font-size:.82rem; } .logo .tag{ display:none; } }
   @media(max-width:1040px){ .nav a:nth-child(5){ display:none; } /* drop Conteúdo first */ }
-  @media(max-width:960px){ .nav a:nth-child(1){ display:none; } /* drop Início */ }
-  @media(max-width:900px){ .nav{ display:none; } }
 
   /* ============ HERO ============ */
   .hero{
@@ -208,7 +214,7 @@
     position:absolute; inset:0; z-index:1;
     background-image:
       linear-gradient(100deg, rgba(14,16,17,.92) 0%, rgba(14,16,17,.68) 35%, rgba(14,16,17,.15) 70%, rgba(14,16,17,.05) 100%),
-      url('assets/hero-reuniao.jpg');
+      url('assets/modern_office_hero.png');
     background-size: cover;
     background-position: center right;
   }
@@ -733,6 +739,89 @@
   /* ============ MISC ============ */
   .reveal{ opacity:0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
   .reveal.in{ opacity:1; transform:none; }
+
+  /* ============ MEGA-MENU (multipage nav) ============ */
+  .nav-item{ position:relative; padding:.25rem 0; }
+
+  .mega{
+    position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%) translateY(-6px);
+    min-width:280px;
+    background: rgba(14,16,17,.96);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border:1px solid rgba(245,245,245,.08);
+    padding:1.25rem;
+    display:flex; flex-direction:column; gap:.15rem;
+    opacity:0; visibility:hidden;
+    transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+    z-index:35;
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,.5);
+  }
+  .nav-item:hover .mega, .nav-item:focus-within .mega, .nav-item.open .mega{
+    opacity:1; visibility:visible;
+    transform:translateX(-50%) translateY(0);
+  }
+  .mega::before{ content:""; position:absolute; top:-8px; left:0; right:0; height:14px; }
+  .mega .mega-title{
+    font-family:var(--mono); font-size:.6rem; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--primary-container);
+    margin-bottom:.5rem; padding-bottom:.5rem;
+    border-bottom:1px solid rgba(245,245,245,.08);
+  }
+  .mega a{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.6rem .65rem;
+    font-size:.84rem; font-weight:500;
+    color:rgba(245,245,245,.78);
+    transition: background .2s, color .2s, padding .2s;
+    border-radius:var(--radius-sm);
+    white-space: nowrap;
+  }
+  .mega a:hover{ background:rgba(245,245,245,.06); color:#F5F5F5; padding-left:1rem; }
+  .mega a::after{ content:"→"; opacity:0; transform:translateX(-6px); transition:opacity .2s, transform .2s; color:var(--primary-container); }
+  .mega a:hover::after{ opacity:1; transform:translateX(0); }
+
+  /* mobile nav */
+  .nav-toggle{
+    display:none; width:40px; height:40px; align-items:center; justify-content:center;
+    border:1px solid rgba(245,245,245,.2); background:transparent; color:#F5F5F5;
+    border-radius:var(--radius-sm); cursor:pointer;
+  }
+  .nav-toggle span{ display:block; width:18px; height:2px; background:currentColor; position:relative; transition:transform .25s; }
+  .nav-toggle span::before, .nav-toggle span::after{ content:""; position:absolute; left:0; right:0; height:2px; background:currentColor; transition:transform .25s, top .25s; }
+  .nav-toggle span::before{ top:-6px; }
+  .nav-toggle span::after{ top:6px; }
+  .nav-toggle.open span{ background:transparent; }
+  .nav-toggle.open span::before{ top:0; transform:rotate(45deg); }
+  .nav-toggle.open span::after{ top:0; transform:rotate(-45deg); }
+  @media(max-width:980px){
+    .nav{
+      position:fixed; top:72px; left:0; right:0; bottom:0;
+      background:rgba(14,16,17,.98); backdrop-filter:blur(20px);
+      flex-direction:column; gap:0; align-items:stretch;
+      padding:1.5rem 1.25rem; overflow-y:auto;
+      transform:translateX(100%); transition:transform .3s var(--ease);
+      z-index:25;
+    }
+    .nav.open{ transform:translateX(0); }
+    .nav-item{ border-bottom:1px solid rgba(245,245,245,.06); padding:0; }
+    .nav-item > a, .nav-item > button{ width:100%; padding:1rem 0; opacity:1; font-size:.95rem; }
+    .mega{
+      display: none;
+      position:static; transform:none; min-width:0; border:0; padding:0 0 1rem 1rem;
+      background:transparent; opacity:1; visibility:visible; box-shadow:none;
+    }
+    .nav-item.open .mega{
+      display: flex;
+      transform: none;
+    }
+    .nav-item.has-mega > button { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .nav-item.has-mega > button::after { content: "▾"; font-size: .8em; opacity: .6; transition: transform 0.2s; }
+    .nav-item.open > button::after { transform: rotate(180deg); }
+    .mega .mega-title{ display:none; }
+    .nav-toggle{ display:flex; }
+    .header > .cta{ display:none; }
+  }
 </style>
 </head>
 <body>
@@ -766,18 +855,52 @@
     <span class="mark">H<span class="bar"></span>MOB</span>
     <span class="tag">for offices</span>
   </a>
-  <nav class="nav">
-    <a href="#hero">Início</a>
-    <a href="#about">Sobre</a>
-    <a href="#cats" class="has-drop">Produtos</a>
-    <a href="#projects">Projetos</a>
-    <a href="#blog">Conteúdo</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contato</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  <nav class="nav" id="primaryNav">
+    <div class="nav-item"><a href="index.html">Início</a></div>
+    <div class="nav-item has-mega">
+      <button type="button">Mobiliário</button>
+      <div class="mega">
+        <div class="mega-title">Mobiliário</div>
+        <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
+        <a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a>
+        <a href="arquivamento.html">Arquivamento</a>
+        <a href="acabamentos.html">Acabamentos</a>
+      </div>
+    </div>
+    <div class="nav-item has-mega">
+      <button type="button">Cadeiras</button>
+      <div class="mega">
+        <div class="mega-title">Cadeiras &amp; Assentos</div>
+        <a href="diretivas.html">Diretivas</a>
+        <a href="operativas.html">Operativas</a>
+        <a href="dialogo.html">Diálogo</a>
+        <a href="coletivas.html">Coletivas</a>
+        <a href="colaborativos.html">Colaborativas</a>
+      </div>
+    </div>
+    <div class="nav-item has-mega">
+      <button type="button">Lockers</button>
+      <div class="mega">
+        <div class="mega-title">Lockers</div>
+        <a href="lockers-em-aco.html">Aço</a>
+        <a href="lockers-em-madeira.html">Madeira</a>
+      </div>
+    </div>
+    <div class="nav-item has-mega">
+      <button type="button">Armários</button>
+      <div class="mega">
+        <div class="mega-title">Armários Deslizantes</div>
+        <a href="armarios-deslizantes.html">Linhas</a>
+        <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
+      </div>
+    </div>
+    <div class="nav-item"><a href="divisorias.html">Divisórias</a></div>
+    <div class="nav-item"><a href="contato.html">Contato</a></div>
   </nav>
-  <a href="#contact" class="cta">
+  <a href="contato.html" class="cta">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-    <span id="ctaLabel">Solicitar Proposta</span>
+    <span id="ctaLabel">Solicitar Orçamento</span>
   </a>
 </header>
 
@@ -796,7 +919,7 @@
         <h1 class="display-lg hero-h1" id="heroH1">Ambientes que refletem<br/><span class="em">a seriedade</span> da sua empresa.</h1>
         <p class="hero-sub">Soluções em mobiliário corporativo com conformidade técnica, durabilidade comprovada e capacidade nacional de atendimento. Para empresas que precisam <em style="color:#E6D1BF;font-style:italic;">reduzir risco</em> — não apenas comprar móveis.</p>
         <div class="hero-ctas">
-          <a href="#contact" class="cta" id="heroCta">Solicitar Proposta
+          <a href="#contact" class="cta" id="heroCta">Solicitar Orçamento
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
           <a href="#cats" class="cta outline">Ver Catálogo de Produtos</a>
@@ -877,7 +1000,7 @@
 <section class="about" id="about">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 02 / Quem Somos</div>
+      <div class="sect-num"> 02 / Quem Somos</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">A Hmob em poucas linhas</span></div>
         <h2 class="headline sect-title">Mais do que mobiliário. Uma <em>parceria técnica</em> para o crescimento da sua empresa.</h2>
@@ -921,51 +1044,51 @@
 <section class="cats" id="cats">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num" style="color:rgba(245,245,245,.5)">§ 03 / Portfólio</div>
+      <div class="sect-num" style="color:rgba(245,245,245,.5)"> 03 / Portfólio</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Nosso portfólio</span></div>
-        <h2 class="display-md sect-title">Soluções completas para <em>ambientes corporativos</em> de alta exigência.</h2>
+        <h2 class="display-md sect-title">Soluções completas para <em>ambientes corporativos</em> de alta performance.</h2>
       </div>
     </div>
 
     <div class="cats-grid">
       <div class="cat">
-        <div class="cat-img" style="background:url('assets/about-workspace.png') center/cover;"></div>
+        <div class="cat-img" style="background:url('assets/cat-armarios.jpg') center/cover;"></div>
         <div class="cat-body">
-          <div class="cat-num">§ 03.01</div>
-          <div class="ct">Linha Workspace</div>
+          <div class="cat-num"> 03.01</div>
+          <div class="ct">SISTEMAS</div>
           <h3>Mobiliário Corporativo</h3>
           <p>Mesas, estações, arquivamento e soluções colaborativas para open offices de alta densidade.</p>
           <a class="cat-link">Ver linha <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="cat">
-        <div class="cat-img" style="background:url('assets/cat-cadeiras.png') center/cover;"></div>
+        <div class="cat-img" style="background:url('Figma/Cadeiras%20e%20assentos.png') center/cover;"></div>
         <div class="cat-body">
-          <div class="cat-num">§ 03.02</div>
-          <div class="ct">Linha Seating</div>
+          <div class="cat-num"> 03.02</div>
+          <div class="ct">ERGONOMIA</div>
           <h3>Cadeiras &amp; Assentos</h3>
           <p>Operativas, diretivas e colaborativas com ergonomia certificada para longa permanência.</p>
           <a class="cat-link">Ver linha <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="cat">
-        <div class="cat-img" style="background:url('assets/cat-lockers.png') center/cover;"></div>
+        <div class="cat-img" style="background:url('Figma/LOCKER%20EM%20A%C3%87O.png') center/cover;"></div>
         <div class="cat-body">
-          <div class="cat-num">§ 03.03</div>
-          <div class="ct">Linha Access</div>
+          <div class="cat-num"> 03.03</div>
+          <div class="ct">SEGURANÇA</div>
           <h3>Lockers em Aço</h3>
           <p>Free address, fechaduras eletrônicas e modulação flexível para ambientes dinâmicos.</p>
           <a class="cat-link">Ver linha <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="cat">
-        <div class="cat-img" style="background:url('assets/cat-armarios.jpg') center/cover;"></div>
+        <div class="cat-img" style="background:url('Figma/LOCKER%20MADEIRA%20ESCRITORIO.jpeg') center/cover;"></div>
         <div class="cat-body">
-          <div class="cat-num">§ 03.04</div>
-          <div class="ct">Linha Storage</div>
-          <h3>Armários Deslizantes</h3>
-          <p>Arquivamento inteligente e compacto, alta capacidade por metro quadrado.</p>
+          <div class="cat-num"> 03.04</div>
+          <div class="ct">ORGANIZAÇÃO</div>
+          <h3>Lockers em Madeira</h3>
+          <p>Free address em ambientes dinâmicos e seguros.</p>
           <a class="cat-link">Ver linha <span class="arrow">→</span></a>
         </div>
       </div>
@@ -974,7 +1097,7 @@
     <div class="cats-footer">
       <div class="divisory-card">
         <div>
-          <div class="ct">§ 03.05</div>
+          <div class="ct"> 03.05</div>
           <div class="t">Divisórias Corporativas</div>
         </div>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -990,7 +1113,7 @@
 <section class="flagship" id="flagship">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 04 / Destaque</div>
+      <div class="sect-num"> 04 / Destaque</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Produto em destaque</span></div>
         <h2 class="headline sect-title">A engenharia por trás de uma jornada de 8 horas sentado.</h2>
@@ -998,7 +1121,7 @@
     </div>
 
     <div class="flagship-stage">
-      <div class="flagship-image" id="fshipImg" style="background:url('assets/about-workspace.png') center/cover;">
+      <div class="flagship-image" id="fshipImg" style="background:url('Figma/serie-2000-1-Cadeiras-e-poltronas-fixas-em-diversos-modelos-que-alinham-beleza-e-resist%C3%AAncia-.avif') right/cover;">
       </div>
       <div class="flagship-content">
         <div>
@@ -1045,10 +1168,10 @@
 <section class="diffs" id="diffs">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 05 / Diferenciais</div>
+      <div class="sect-num"> 05 / Diferenciais</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Nossos diferenciais</span></div>
-        <h2 class="display-md sect-title">O que separa a Hmob de <em>uma simples fornecedora</em>.</h2>
+        <h2 class="display-md sect-title">Por que a Hmob é muito mais do que <em>uma simples fornecedora</em>.</h2>
       </div>
     </div>
 
@@ -1102,16 +1225,16 @@
 <section class="projects" id="projects">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 06 / Projetos</div>
+      <div class="sect-num"> 06 / Projetos</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Quem confia na Hmob</span></div>
-        <h2 class="headline sect-title">Empresas que escolheram a Hmob para <em>escalar seus ambientes</em>.</h2>
+        <h2 class="headline sect-title">Empresas que confiam na Hmob para <em>escalar seus ambientes corporativos</em>.</h2>
       </div>
     </div>
 
     <div class="projects-feature">
       <div class="pcard">
-        <div class="pimg" style="background:url('assets/case-01.png') center/cover;"></div>
+        <div class="pimg" style="background-image:url('assets/case-01.png'); background-size:cover; background-position:center;"></div>
         <div class="pcard-body">
           <div class="ec">CASE · 01 · Serviços Financeiros</div>
           <h4>Sede corporativa — 14 andares, 2.100 postos</h4>
@@ -1124,7 +1247,7 @@
       </div>
 
       <div class="pcard">
-        <div class="pimg" style="background:url('assets/case-02.png') center/cover;"></div>
+        <div class="pimg" style="background-image:url('assets/case-02.png'); background-size:cover; background-position:center;"></div>
         <div class="pcard-body">
           <div class="ec">CASE · 02 · Healthtech</div>
           <h4>Hub operacional multissite — 6 cidades</h4>
@@ -1154,10 +1277,10 @@
 <section class="testimonials" id="testimonials">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 07 / Depoimentos</div>
+      <div class="sect-num"> 07 / Depoimentos</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">O que dizem nossos clientes</span></div>
-        <h2 class="headline sect-title">Validação vem de quem <em>opera</em> o ambiente, não de quem vende.</h2>
+        <h2 class="headline sect-title">Ambiente de verdade se valida na <em>operação,</em> não no discurso de quem vende.</h2>
       </div>
     </div>
 
@@ -1202,10 +1325,10 @@
 <section class="faq" id="faq">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 08 / FAQ</div>
+      <div class="sect-num"> 08 / FAQ</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Dúvidas técnicas</span></div>
-        <h2 class="headline sect-title">Respostas diretas às <em>dúvidas que reduzem risco</em> na sua decisão.</h2>
+        <h2 class="headline sect-title">Respostas diretas para eliminar <em>as dúvidas e reduzir o risco</em> da sua decisão.</h2>
       </div>
     </div>
 
@@ -1268,7 +1391,7 @@
 <section class="blog" id="blog">
   <div class="container rail-pad">
     <div class="sect-head">
-      <div class="sect-num">§ 09 / Conteúdo</div>
+      <div class="sect-num"> 09 / Conteúdo</div>
       <div>
         <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Conteúdo técnico</span></div>
         <h2 class="headline sect-title">Análises e matérias técnicas para quem <em>decide com engenharia</em>.</h2>
@@ -1314,7 +1437,7 @@
   <div class="container rail-pad">
     <div class="cta-band-grid">
       <div>
-        <div class="mono" style="color:rgba(245,245,245,.55); margin-bottom:.75rem;">§ 07 / Começar um projeto</div>
+        <div class="mono" style="color:rgba(245,245,245,.55); margin-bottom:.75rem;"> 07 / Começar um projeto</div>
         <h2>Pronto para desenhar um ambiente <em>à altura da sua operação</em>?</h2>
       </div>
       <div class="cta-actions">
@@ -1415,6 +1538,38 @@
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
 
+  // ============ MOBILE NAV TOGGLE ============
+  const navToggle = document.getElementById('navToggle');
+  const primaryNav = document.getElementById('primaryNav');
+  if (navToggle && primaryNav){
+    navToggle.addEventListener('click', () => {
+      const open = navToggle.classList.toggle('open');
+      primaryNav.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+
+  // ============ MEGA MENU TOGGLE ============
+  const megaButtons = document.querySelectorAll('.nav-item.has-mega > button');
+  megaButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const parent = btn.parentElement;
+      const isOpen = parent.classList.contains('open');
+      document.querySelectorAll('.nav-item.has-mega').forEach(item => item.classList.remove('open'));
+      if (!isOpen) {
+        parent.classList.add('open');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item.has-mega')) {
+      document.querySelectorAll('.nav-item.has-mega').forEach(item => item.classList.remove('open'));
+    }
+  });
+
   // ============ RAIL / SECTION OBSERVER ============
   const sections = ['hero','trust','about','cats','flagship','diffs','projects','testimonials','faq','blog','contact'];
   const dots = document.querySelectorAll('.rail-dot');
@@ -1482,8 +1637,8 @@
     $specs.innerHTML = f.specs.map(([k,v])=>`<div class="s"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
     tabs.forEach((b,bi)=> b.classList.toggle('active', bi===i));
     // swap product image
-    const imgs = ['assets/about-workspace.png','assets/hero-reuniao.jpg','assets/cat-lockers.png','assets/cat-cadeiras.png'];
-    $img.style.background = `url('${imgs[i]}') center/cover`;
+    const imgs = ['Figma/serie-2000-1-Cadeiras-e-poltronas-fixas-em-diversos-modelos-que-alinham-beleza-e-resist%C3%AAncia-.avif','','',''];
+    $img.style.background = imgs[i] ? `url('${imgs[i]}') center/cover` : '#1a1a1a';
   }
   tabs.forEach((b,i)=> b.addEventListener('click', ()=> renderFlag(i)));
 
