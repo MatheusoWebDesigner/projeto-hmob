@@ -14,7 +14,7 @@
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
   <nav class="nav" id="primaryNav">
     <div class="nav-item"><a href="index.html">Início</a></div>
-    <div class="nav-item"><a href="sobre.html">Sobre</a></div>
+    <div class="nav-item"><a href="sobre.html">Sobre Nós</a></div>
     <div class="nav-item has-mega"><button type="button">Mobiliário</button>
       <div class="mega"><div class="mega-title">Mobiliário</div>
         <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
