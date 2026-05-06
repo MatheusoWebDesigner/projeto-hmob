@@ -14,6 +14,7 @@
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
   <nav class="nav" id="primaryNav">
     <div class="nav-item"><a href="index.html">Início</a></div>
+    <div class="nav-item"><a href="sobre.html">Sobre</a></div>
     <div class="nav-item has-mega"><button type="button">Mobiliário</button>
       <div class="mega"><div class="mega-title">Mobiliário</div>
         <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
@@ -41,11 +42,22 @@
       </div></div>
     <div class="nav-item"><a href="divisorias.html">Divisórias</a></div>
     <div class="nav-item"><a href="contato.html">Contato</a></div>
+    
+    <div class="nav-item search-item" style="position:relative; margin-left: 0.5rem;">
+      <button type="button" aria-label="Pesquisar produto" class="search-btn" id="searchBtn" style="color: #F5F5F5; display: flex; align-items: center; justify-content: center; opacity: 0.85; transition: opacity 0.2s; cursor: pointer; background: none; border: none; padding: .25rem 0;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <div class="search-dropdown" id="searchDropdown">
+        <div class="search-input-wrapper">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="searchInput" placeholder="Pesquisar produtos..." autocomplete="off">
+        </div>
+        <div class="search-results" id="searchResults">
+          <div class="search-empty">Digite para buscar...</div>
+        </div>
+      </div>
+    </div>
   </nav>
-  <a href="contato.html" class="cta">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-    <span>Solicitar Proposta</span>
-  </a>
 </header>`;
 
   const FOOTER_HTML = `
@@ -103,6 +115,73 @@
       const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
       onScroll();
       window.addEventListener('scroll', onScroll, { passive:true });
+    }
+
+    // SEARCH FUNCTIONALITY
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const searchItem = document.querySelector('.search-item');
+
+    const products = [
+      { title: 'Mesas e Plataformas', cat: 'Mobiliário', url: 'mesas-e-plataformas.html' },
+      { title: 'Reuniões e Colaborativas', cat: 'Mobiliário', url: 'reunioes-e-colaborativas.html' },
+      { title: 'Arquivamento', cat: 'Mobiliário', url: 'arquivamento.html' },
+      { title: 'Acabamentos', cat: 'Mobiliário', url: 'acabamentos.html' },
+      { title: 'Cadeiras Diretivas', cat: 'Cadeiras', url: 'diretivas.html' },
+      { title: 'Cadeiras Operativas', cat: 'Cadeiras', url: 'operativas.html' },
+      { title: 'Cadeiras de Diálogo', cat: 'Cadeiras', url: 'dialogo.html' },
+      { title: 'Cadeiras Coletivas', cat: 'Cadeiras', url: 'coletivas.html' },
+      { title: 'Assentos Colaborativos', cat: 'Cadeiras', url: 'colaborativos.html' },
+      { title: 'Lockers em Aço', cat: 'Lockers', url: 'lockers-em-aco.html' },
+      { title: 'Lockers em Madeira', cat: 'Lockers', url: 'lockers-em-madeira.html' },
+      { title: 'Armários Deslizantes - Linhas', cat: 'Armários', url: 'armarios-deslizantes.html' },
+      { title: 'Armários Deslizantes - Aplicações', cat: 'Armários', url: 'armarios-deslizantes-aplicacao.html' },
+      { title: 'Divisórias Corporativas', cat: 'Divisórias', url: 'divisorias.html' },
+      { title: 'H | Série 200 (Flagship)', cat: 'Produto', url: 'index.html#flagship' },
+      { title: 'H | Mesa Axial', cat: 'Produto', url: 'index.html#flagship' },
+      { title: 'H | Locker Flex', cat: 'Produto', url: 'index.html#flagship' },
+      { title: 'H | Divisória Linear', cat: 'Produto', url: 'index.html#flagship' }
+    ];
+
+    if (searchBtn && searchInput) {
+      searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        searchItem.classList.toggle('open');
+        if (searchItem.classList.contains('open')) {
+          setTimeout(() => searchInput.focus(), 100);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-item')) {
+          searchItem.classList.remove('open');
+        }
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        if (!q) {
+          searchResults.innerHTML = '<div class="search-empty">Digite para buscar...</div>';
+          return;
+        }
+        const filtered = products.filter(p => p.title.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+        
+        if (filtered.length === 0) {
+          searchResults.innerHTML = '<div class="search-empty">Nenhum produto encontrado.</div>';
+          return;
+        }
+
+        searchResults.innerHTML = filtered.map(p => `
+          <a href="${p.url}" class="search-result-item">
+            <div class="item-img"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+            <div class="item-info">
+              <span class="item-title">${p.title}</span>
+              <span class="item-cat">${p.cat}</span>
+            </div>
+          </a>
+        `).join('');
+      });
     }
 
     // MOBILE NAV TOGGLE
