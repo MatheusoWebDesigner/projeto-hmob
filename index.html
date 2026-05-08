@@ -986,43 +986,29 @@
     <div class="nav-item"><a href="index.html">Início</a></div>
     <div class="nav-item"><a href="sobre.html">Sobre Nós</a></div>
     <div class="nav-item has-mega">
-      <button type="button">Mobiliário</button>
-      <div class="mega">
+      <button type="button">Produtos</button>
+      <div class="mega" style="max-height: 70vh; overflow-y: auto;">
         <div class="mega-title">Mobiliário</div>
         <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
         <a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a>
         <a href="arquivamento.html">Arquivamento</a>
         <a href="acabamentos.html">Acabamentos</a>
-      </div>
-    </div>
-    <div class="nav-item has-mega">
-      <button type="button">Cadeiras</button>
-      <div class="mega">
-        <div class="mega-title">Cadeiras &amp; Assentos</div>
+        <div class="mega-title" style="margin-top: 1rem;">Cadeiras &amp; Assentos</div>
         <a href="diretivas.html">Diretivas</a>
         <a href="operativas.html">Operativas</a>
         <a href="dialogo.html">Diálogo</a>
         <a href="coletivas.html">Coletivas</a>
         <a href="colaborativos.html">Colaborativas</a>
-      </div>
-    </div>
-    <div class="nav-item has-mega">
-      <button type="button">Lockers</button>
-      <div class="mega">
-        <div class="mega-title">Lockers</div>
+        <div class="mega-title" style="margin-top: 1rem;">Lockers</div>
         <a href="lockers-em-aco.html">Aço</a>
         <a href="lockers-em-madeira.html">Madeira</a>
-      </div>
-    </div>
-    <div class="nav-item has-mega">
-      <button type="button">Armários</button>
-      <div class="mega">
-        <div class="mega-title">Armários Deslizantes</div>
+        <div class="mega-title" style="margin-top: 1rem;">Armários Deslizantes</div>
         <a href="armarios-deslizantes.html">Linhas</a>
         <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
+        <div class="mega-title" style="margin-top: 1rem;">Divisórias</div>
+        <a href="divisorias.html">Divisórias Corporativas</a>
       </div>
     </div>
-    <div class="nav-item"><a href="divisorias.html">Divisórias</a></div>
     <div class="nav-item"><a href="contato.html">Contato</a></div>
     
     <div class="nav-item search-item" style="position:relative; margin-left: 0.5rem;">
@@ -1054,7 +1040,7 @@
           <span class="sq"></span>
           <span class="label-sm">Mobiliário Corporativo de Alto Desempenho</span>
         </div>
-        <h1 class="display-lg hero-h1" id="heroH1">Ambientes que refletem<br/><span class="em">a seriedade</span> da sua empresa.</h1>
+        <h1 class="display-lg hero-h1" id="heroH1">Produtos que refletem<br/><span class="em">a seriedade</span> da sua empresa.</h1>
         <p class="hero-sub">Soluções em mobiliário corporativo com conformidade técnica, durabilidade comprovada e capacidade nacional de atendimento. Para empresas que precisam <em style="color:#E6D1BF;font-style:italic;">reduzir risco</em> — não apenas comprar móveis.</p>
         <div class="hero-ctas">
           <a href="#cats" class="cta outline">Ver Catálogo de Produtos</a>
@@ -1829,7 +1815,7 @@
   const T = window.__TWEAKS__;
   const applyTweaks = () => {
     document.documentElement.style.setProperty('--accent-hue', T.accentHue);
-    document.getElementById('heroH1').innerHTML = T.heroH1.replace(/(a seriedade|seriedade|o futuro|a precisão|a ambição)/i, m=>`<span class="em">${m}</span>`);
+    // heroH1 logic removed to allow manual HTML editing
     const ctaLabel = document.getElementById('ctaLabel');
     if (ctaLabel) ctaLabel.textContent = T.primaryCta;
     const heroCta = document.querySelector('#heroCta');

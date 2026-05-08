@@ -15,32 +15,28 @@
   <nav class="nav" id="primaryNav">
     <div class="nav-item"><a href="index.html">Início</a></div>
     <div class="nav-item"><a href="sobre.html">Sobre Nós</a></div>
-    <div class="nav-item has-mega"><button type="button">Mobiliário</button>
-      <div class="mega"><div class="mega-title">Mobiliário</div>
+    <div class="nav-item has-mega"><button type="button">Produtos</button>
+      <div class="mega" style="max-height: 70vh; overflow-y: auto;">
+        <div class="mega-title">Mobiliário</div>
         <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
         <a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a>
         <a href="arquivamento.html">Arquivamento</a>
         <a href="acabamentos.html">Acabamentos</a>
-      </div></div>
-    <div class="nav-item has-mega"><button type="button">Cadeiras</button>
-      <div class="mega"><div class="mega-title">Cadeiras &amp; Assentos</div>
+        <div class="mega-title" style="margin-top: 1rem;">Cadeiras &amp; Assentos</div>
         <a href="diretivas.html">Diretivas</a>
         <a href="operativas.html">Operativas</a>
         <a href="dialogo.html">Diálogo</a>
         <a href="coletivas.html">Coletivas</a>
         <a href="colaborativos.html">Colaborativas</a>
-      </div></div>
-    <div class="nav-item has-mega"><button type="button">Lockers</button>
-      <div class="mega"><div class="mega-title">Lockers</div>
+        <div class="mega-title" style="margin-top: 1rem;">Lockers</div>
         <a href="lockers-em-aco.html">Aço</a>
         <a href="lockers-em-madeira.html">Madeira</a>
-      </div></div>
-    <div class="nav-item has-mega"><button type="button">Armários</button>
-      <div class="mega"><div class="mega-title">Armários Deslizantes</div>
+        <div class="mega-title" style="margin-top: 1rem;">Armários Deslizantes</div>
         <a href="armarios-deslizantes.html">Linhas</a>
         <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
+        <div class="mega-title" style="margin-top: 1rem;">Divisórias</div>
+        <a href="divisorias.html">Divisórias Corporativas</a>
       </div></div>
-    <div class="nav-item"><a href="divisorias.html">Divisórias</a></div>
     <div class="nav-item"><a href="contato.html">Contato</a></div>
     
     <div class="nav-item search-item" style="position:relative; margin-left: 0.5rem;">
