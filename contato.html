@@ -13,71 +13,7 @@
 <body>
 
 <!-- HEADER -->
-<header class="header solid" id="header">
-  <a class="logo" href="index.html" aria-label="Hmob For Offices">
-    <span class="mark">H<span class="bar"></span>MOB</span>
-    <span class="tag">for offices</span>
-  </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
-  <nav class="nav" id="primaryNav">
-    <div class="nav-item"><a href="index.html">Início</a></div>
-    <div class="nav-item"><a href="sobre.html">Sobre Nós</a></div>
-    <div class="nav-item has-mega">
-      <button type="button">Mobiliário</button>
-      <div class="mega">
-        <div class="mega-title">Mobiliário</div>
-        <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
-        <a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a>
-        <a href="arquivamento.html">Arquivamento</a>
-        <a href="acabamentos.html">Acabamentos</a>
-      </div>
-    </div>
-    <div class="nav-item has-mega">
-      <button type="button">Cadeiras</button>
-      <div class="mega">
-        <div class="mega-title">Cadeiras &amp; Assentos</div>
-        <a href="diretivas.html">Diretivas</a>
-        <a href="operativas.html">Operativas</a>
-        <a href="dialogo.html">Diálogo</a>
-        <a href="coletivas.html">Coletivas</a>
-        <a href="colaborativos.html">Colaborativas</a>
-      </div>
-    </div>
-    <div class="nav-item has-mega">
-      <button type="button">Lockers</button>
-      <div class="mega">
-        <div class="mega-title">Lockers</div>
-        <a href="lockers-em-aco.html">Aço</a>
-        <a href="lockers-em-madeira.html">Madeira</a>
-      </div>
-    </div>
-    <div class="nav-item has-mega">
-      <button type="button">Armários</button>
-      <div class="mega">
-        <div class="mega-title">Armários Deslizantes</div>
-        <a href="armarios-deslizantes.html">Linhas</a>
-        <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
-      </div>
-    </div>
-    <div class="nav-item"><a href="divisorias.html">Divisórias</a></div>
-    <div class="nav-item"><a href="contato.html">Contato</a></div>
-    
-    <div class="nav-item search-item" style="position:relative; margin-left: 0.5rem;">
-      <button type="button" aria-label="Pesquisar produto" class="search-btn" id="searchBtn" style="color: #F5F5F5; display: flex; align-items: center; justify-content: center; opacity: 0.85; transition: opacity 0.2s; cursor: pointer; background: none; border: none; padding: .25rem 0;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.85">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </button>
-      <div class="search-dropdown" id="searchDropdown">
-        <div class="search-input-wrapper">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="searchInput" placeholder="Pesquisar produtos..." autocomplete="off">
-        </div>
-        <div class="search-results" id="searchResults">
-          <div class="search-empty">Digite para buscar...</div>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+<div id="site-header"></div>
 
 <!-- SUBHERO -->
 <section class="subhero" id="hero">
@@ -184,56 +120,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="container rail-pad">
-    <div class="footer-grid">
-      <div class="col brand">
-        <div class="mark">H<span class="bar"></span>MOB <span class="tag">for offices</span></div>
-        <p>Soluções corporativas certificadas para ambientes de alta performance. Engenharia de produto, conformidade e operação nacional.</p>
-        <div class="seal"><span class="sq"></span><span>ABNT NR-17 · certificado</span></div>
-      </div>
-      <div class="col">
-        <h5>Mobiliário</h5>
-        <ul>
-          <li><a href="mesas-e-plataformas.html">Mesas e Plataformas</a></li>
-          <li><a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a></li>
-          <li><a href="arquivamento.html">Arquivamento</a></li>
-          <li><a href="acabamentos.html">Acabamentos</a></li>
-          <li><a href="divisorias.html">Divisórias</a></li>
-        </ul>
-      </div>
-      <div class="col">
-        <h5>Cadeiras &amp; Lockers</h5>
-        <ul>
-          <li><a href="diretivas.html">Diretivas</a></li>
-          <li><a href="operativas.html">Operativas</a></li>
-          <li><a href="dialogo.html">Diálogo</a></li>
-          <li><a href="lockers-em-aco.html">Lockers em Aço</a></li>
-          <li><a href="armarios-deslizantes.html">Armários Deslizantes</a></li>
-        </ul>
-      </div>
-      <div class="col contact-col">
-        <h5>Contato</h5>
-        <a class="wa" href="contato.html">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
-          <span>Falar com um Consultor</span>
-        </a>
-        <div class="ci"><div class="k">Comercial</div><div class="v">(11) 4705-9947 · (11) 5627-9020</div></div>
-        <div class="ci"><div class="k">E-mail</div><div class="v">atendimento.hmob@gmail.com</div></div>
-        <div class="ci"><div class="k">Endereço</div><div class="v">Barra Funda · São Paulo · SP</div></div>
-        <div class="social">
-          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.4-1.1 2.5-2.5 2.5S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5zM.2 21h4.6V8H.2v13zm7.6-13h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7V21h-4.6v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H7.8V8z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4A3 3 0 0 0 23 16.5 31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.75 15.5v-7L15.5 12l-5.75 3.5z"/></svg></a>
-        </div>
-      </div>
-    </div>
-    <div class="legal">
-      <div>© 2026 Hmob For Offices. Todos os direitos reservados.</div>
-      <div><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div>
-    </div>
-  </div>
-</footer>
+<div id="site-footer"></div>
 
 <script src="assets/main.js"></script>
 </body>

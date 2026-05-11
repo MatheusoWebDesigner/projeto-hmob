@@ -19,7 +19,7 @@
       <div class="mega" style="max-height: 70vh; overflow-y: auto;">
         <div class="mega-title">Mobiliário</div>
         <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
-        <a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a>
+
         <a href="arquivamento.html">Arquivamento</a>
         <a href="acabamentos.html">Acabamentos</a>
         <div class="mega-title" style="margin-top: 1rem;">Cadeiras &amp; Assentos</div>
@@ -67,7 +67,7 @@
       </div>
       <div class="col"><h5>Mobiliário</h5><ul>
         <li><a href="mesas-e-plataformas.html">Mesas e Plataformas</a></li>
-        <li><a href="reunioes-e-colaborativas.html">Reuniões e Colaborativas</a></li>
+
         <li><a href="arquivamento.html">Arquivamento</a></li>
         <li><a href="acabamentos.html">Acabamentos</a></li>
         <li><a href="divisorias.html">Divisórias</a></li>
@@ -121,7 +121,7 @@
 
     const products = [
       { title: 'Mesas e Plataformas', cat: 'Mobiliário', url: 'mesas-e-plataformas.html' },
-      { title: 'Reuniões e Colaborativas', cat: 'Mobiliário', url: 'reunioes-e-colaborativas.html' },
+
       { title: 'Arquivamento', cat: 'Mobiliário', url: 'arquivamento.html' },
       { title: 'Acabamentos', cat: 'Mobiliário', url: 'acabamentos.html' },
       { title: 'Cadeiras Diretivas', cat: 'Cadeiras', url: 'diretivas.html' },
