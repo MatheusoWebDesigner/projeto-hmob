@@ -781,6 +781,24 @@
   .mega a::after{ content:"→"; opacity:0; transform:translateX(-6px); transition:opacity .2s, transform .2s; color:var(--primary-container); }
   .mega a:hover::after{ opacity:1; transform:translateX(0); }
 
+  /* MEGA MENU CATEGORIES */
+  .mega-details { border-bottom: 1px solid rgba(245,245,245,.06); }
+  .mega-details:last-child { border-bottom: none; }
+  .mega-details summary {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .6rem .65rem; font-size: .84rem; font-weight: 500;
+    color: rgba(245,245,245,.78); cursor: pointer;
+    transition: background .2s, color .2s; border-radius: var(--radius-sm);
+    list-style: none; white-space: nowrap; margin-bottom: .15rem;
+  }
+  .mega-details summary::-webkit-details-marker { display: none; }
+  .mega-details summary::after { content: "▾"; font-size: .8em; opacity: .8; transition: transform 0.2s; }
+  .mega-details[open] summary::after { transform: rotate(180deg); }
+  .mega-details summary:hover { background: rgba(245,245,245,.06); color: #F5F5F5; }
+  .mega-sub { display: flex; flex-direction: column; padding-bottom: .4rem; }
+  .mega-sub a { padding-left: 1.5rem; font-size: .8rem; }
+  .mega-sub a:hover, .mega-sub a.active { padding-left: 1.85rem; }
+
   /* mobile nav */
   .nav-toggle{
     display:none; width:40px; height:40px; align-items:center; justify-content:center;
@@ -989,17 +1007,38 @@
       <button type="button">Produtos</button>
       <div class="mega" style="max-height: 70vh; overflow-y: auto;">
         <a href="acabamentos.html">Acabamentos</a>
-        <a href="armarios-deslizantes-aplicacao.html">Armários Deslizantes - Aplicações</a>
-        <a href="armarios-deslizantes.html">Armários Deslizantes - Linhas</a>
+        
+        <details class="mega-details">
+          <summary>Armários Deslizantes</summary>
+          <div class="mega-sub">
+            <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
+            <a href="armarios-deslizantes.html">Linhas</a>
+          </div>
+        </details>
+        
         <a href="arquivamento.html">Arquivamento</a>
-        <a href="colaborativos.html">Assentos Colaborativos</a>
-        <a href="coletivas.html">Cadeiras Coletivas</a>
-        <a href="dialogo.html">Cadeiras de Diálogo</a>
-        <a href="diretivas.html">Cadeiras Diretivas</a>
-        <a href="operativas.html">Cadeiras Operativas</a>
+        
+        <details class="mega-details">
+          <summary>Cadeiras e Assentos</summary>
+          <div class="mega-sub">
+            <a href="colaborativos.html">Assentos Colaborativos</a>
+            <a href="coletivas.html">Cadeiras Coletivas</a>
+            <a href="dialogo.html">Cadeiras de Diálogo</a>
+            <a href="diretivas.html">Cadeiras Diretivas</a>
+            <a href="operativas.html">Cadeiras Operativas</a>
+          </div>
+        </details>
+
         <a href="divisorias.html">Divisórias Corporativas</a>
-        <a href="lockers-em-aco.html">Lockers em Aço</a>
-        <a href="lockers-em-madeira.html">Lockers em Madeira</a>
+
+        <details class="mega-details">
+          <summary>Lockers</summary>
+          <div class="mega-sub">
+            <a href="lockers-em-aco.html">Lockers em Aço</a>
+            <a href="lockers-em-madeira.html">Lockers em Madeira</a>
+          </div>
+        </details>
+
         <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
       </div>
     </div>

@@ -202,6 +202,24 @@ img{ display:block; max-width:100%; }
 }
 .mega a:hover::after{ opacity:1; transform:translateX(0); }
 
+/* MEGA MENU CATEGORIES */
+.mega-details { border-bottom: 1px solid rgba(245,245,245,.06); }
+.mega-details:last-child { border-bottom: none; }
+.mega-details summary {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .6rem .65rem; font-size: .84rem; font-weight: 500;
+  color: rgba(245,245,245,.78); cursor: pointer;
+  transition: background .2s, color .2s; border-radius: var(--radius-sm);
+  list-style: none; white-space: nowrap; margin-bottom: .15rem;
+}
+.mega-details summary::-webkit-details-marker { display: none; }
+.mega-details summary::after { content: "▾"; font-size: .8em; opacity: .8; transition: transform 0.2s; }
+.mega-details[open] summary::after { transform: rotate(180deg); }
+.mega-details summary:hover { background: rgba(245,245,245,.06); color: #F5F5F5; }
+.mega-sub { display: flex; flex-direction: column; padding-bottom: .4rem; }
+.mega-sub a { padding-left: 1.5rem; font-size: .8rem; }
+.mega-sub a:hover, .mega-sub a.active { padding-left: 1.85rem; }
+
 /* CTA BUTTONS */
 .cta{
   display:inline-flex; align-items:center; gap:.5rem;
