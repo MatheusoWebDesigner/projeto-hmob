@@ -17,25 +17,19 @@
     <div class="nav-item"><a href="sobre.html">Sobre Nós</a></div>
     <div class="nav-item has-mega"><button type="button">Produtos</button>
       <div class="mega" style="max-height: 70vh; overflow-y: auto;">
-        <div class="mega-title">Mobiliário</div>
-        <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
-
-        <a href="arquivamento.html">Arquivamento</a>
         <a href="acabamentos.html">Acabamentos</a>
-        <div class="mega-title" style="margin-top: 1rem;">Cadeiras &amp; Assentos</div>
-        <a href="diretivas.html">Diretivas</a>
-        <a href="operativas.html">Operativas</a>
-        <a href="dialogo.html">Diálogo</a>
-        <a href="coletivas.html">Coletivas</a>
-        <a href="colaborativos.html">Colaborativas</a>
-        <div class="mega-title" style="margin-top: 1rem;">Lockers</div>
-        <a href="lockers-em-aco.html">Aço</a>
-        <a href="lockers-em-madeira.html">Madeira</a>
-        <div class="mega-title" style="margin-top: 1rem;">Armários Deslizantes</div>
-        <a href="armarios-deslizantes.html">Linhas</a>
-        <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
-        <div class="mega-title" style="margin-top: 1rem;">Divisórias</div>
+        <a href="armarios-deslizantes-aplicacao.html">Armários Deslizantes - Aplicações</a>
+        <a href="armarios-deslizantes.html">Armários Deslizantes - Linhas</a>
+        <a href="arquivamento.html">Arquivamento</a>
+        <a href="colaborativos.html">Assentos Colaborativos</a>
+        <a href="coletivas.html">Cadeiras Coletivas</a>
+        <a href="dialogo.html">Cadeiras de Diálogo</a>
+        <a href="diretivas.html">Cadeiras Diretivas</a>
+        <a href="operativas.html">Cadeiras Operativas</a>
         <a href="divisorias.html">Divisórias Corporativas</a>
+        <a href="lockers-em-aco.html">Lockers em Aço</a>
+        <a href="lockers-em-madeira.html">Lockers em Madeira</a>
+        <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
       </div></div>
     <div class="nav-item"><a href="contato.html">Contato</a></div>
     
