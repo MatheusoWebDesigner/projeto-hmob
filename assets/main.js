@@ -26,8 +26,9 @@
             <a href="armarios-deslizantes.html">Linhas</a>
           </div>
         </details>
-        
-        <a href="arquivamento.html">Arquivamento</a>
+
+        <a href="biombos.html">Biombos Acústicos</a>
+        <a href="cabines.html">Cabines</a>
         
         <details class="mega-details">
           <summary>Cadeiras e Assentos</summary>
@@ -40,7 +41,7 @@
           </div>
         </details>
 
-        <a href="divisorias.html">Divisórias Corporativas</a>
+        <a href="estantes.html">Estantes</a>
 
         <details class="mega-details">
           <summary>Lockers</summary>
@@ -50,7 +51,9 @@
           </div>
         </details>
 
-        <a href="mesas-e-plataformas.html">Mesas e Plataformas</a>
+        <a href="mobiliario-colaborativo.html">Mobiliário Colaborativo</a>
+        <a href="mobiliario-corporativo.html">Mobiliário Corporativo</a>
+        <a href="traineis.html">Trainéis</a>
       </div></div>
     <div class="nav-item"><a href="contato.html">Contato</a></div>
     
