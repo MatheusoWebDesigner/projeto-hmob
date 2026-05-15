@@ -532,7 +532,7 @@ section{ position:relative; }
 }
 .series-card:hover{ background:#FCFBFA; }
 .series-img{
-  height:280px;
+  height:500px;
   background:linear-gradient(135deg, #C9C7C2 0%, #75716A 100%);
   position:relative; overflow:hidden;
   transition: transform .6s var(--ease);
