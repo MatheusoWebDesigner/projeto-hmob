@@ -522,7 +522,7 @@ section{ position:relative; }
 .series{ padding: var(--space-3xl) 0; background: var(--surface-container-low); }
 .series-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:1px; background: var(--outline-variant); margin-top:1rem; }
 .series-grid.stacked{ grid-template-columns:1fr; }
-.series-grid.stacked .series-img{ height:420px; }
+.series-grid.stacked .series-img{ height:20px; }
 .series-card{
   background: var(--surface-container-lowest);
   padding:0;
