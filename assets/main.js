@@ -10,7 +10,7 @@
   // -----------------------------------------------------------
   const HEADER_HTML = `
 <header class="header" id="header">
-  <a class="logo" href="index.html"><span class="mark">H<span class="bar"></span>MOB</span><span class="tag">for offices</span></a>
+  <a class="logo" href="index.html"><img src="uploads/logo.png" alt="Hmob For Offices" style="width:350px;height:auto;display:block;"></a>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
   <nav class="nav" id="primaryNav">
     <div class="nav-item"><a href="index.html">Início</a></div>
