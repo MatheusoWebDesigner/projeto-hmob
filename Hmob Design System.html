@@ -309,6 +309,148 @@
   /* utility */
   .hr-tonal{ height: 28px; background: var(--surface-container-low); margin: 2.5rem 0; }
   .ratio-21{ aspect-ratio: 21/9; }
+
+  /* ============ MOTION ============ */
+  .motion-row{ display:grid; grid-template-columns: 180px 1fr 200px; gap:2rem; padding: 1rem 0; align-items:center; border-top:1px solid var(--outline-variant); }
+  .motion-row:first-child{ border-top:0; }
+  .motion-row .lbl strong{ display:block; color:var(--on-background); font-family:var(--sans); font-weight:600; font-size:.82rem; margin-bottom:.2rem; }
+  .motion-row .lbl span{ font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--on-surface-variant); }
+  .motion-demo{ height:36px; width:36px; background:var(--primary); }
+  .motion-specs{ font-family:var(--mono); font-size:.65rem; line-height:1.55; color:var(--on-surface-variant); }
+
+  /* ============ BREAKPOINTS ============ */
+  .bp-table{ width:100%; border-collapse:collapse; margin-top:1.5rem; }
+  .bp-table th{ font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--on-surface-variant); text-align:left; padding:.6rem 1rem; background:var(--surface-container-low); }
+  .bp-table td{ font-family:var(--sans); font-size:.875rem; padding:.75rem 1rem; border-top:1px solid var(--outline-variant); color:var(--on-background); }
+  .bp-table td:first-child{ font-family:var(--mono); font-weight:500; font-size:.75rem; color:var(--primary-ink); }
+  .bp-table td code{ font-family:var(--mono); font-size:.72rem; color:var(--on-surface-variant); }
+  .bp-visual{ display:flex; gap:6px; align-items:flex-end; margin-top:1.5rem; height:56px; }
+  .bp-visual .bar{ background:var(--primary); border-radius:2px 2px 0 0; flex:1; opacity:.18; min-width:14px; position:relative; }
+  .bp-visual .bar.current{ opacity:1; }
+  .bp-visual .bar .tag{ position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:.5rem; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; color:var(--primary-ink); }
+
+  /* ============ Z-INDEX ============ */
+  .z-stack{ position:relative; height:260px; margin-top:1.5rem; perspective:600px; }
+  .z-layer{ position:absolute; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:0 1.25rem; font-family:var(--mono); font-size:.65rem; letter-spacing:.12em; text-transform:uppercase; height:40px; }
+  .z-val{ font-style:italic; opacity:.7; }
+
+  /* ============ FOCUS & A11Y ============ */
+  .focus-demo{ display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:1.25rem; align-items:center; }
+  .focus-ex{ display:flex; flex-direction:column; align-items:center; gap:.6rem; }
+  .focus-ex .nm{ font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--on-surface-variant); }
+  .focus-ring-demo{ outline:2px solid var(--primary); outline-offset:3px; }
+  .contrast-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:1px; background:var(--outline-variant); margin-top:1.5rem; }
+  .contrast-cell{ background:var(--surface-container-lowest); padding:1rem; }
+  .contrast-cell .pair{ font-family:var(--sans); font-size:1rem; font-weight:600; margin-bottom:.4rem; }
+  .contrast-cell .ratio{ font-family:var(--mono); font-size:.65rem; letter-spacing:.08em; color:var(--on-surface-variant); }
+  .contrast-cell .badge-pass{ display:inline-block; background:rgba(27,120,60,.1); color:#1B783C; font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; padding:.15rem .45rem; font-weight:700; }
+  .contrast-cell .badge-aa{ display:inline-block; background:rgba(175,120,0,.1); color:#AF7800; font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; padding:.15rem .45rem; font-weight:700; }
+
+  /* ============ FORM ELEMENTS EXTENDED ============ */
+  .select-wrap{ position:relative; background:var(--surface-container-lowest); border-bottom:2px solid var(--surface-container-highest); transition:border-color .25s var(--ease); }
+  .select-wrap:focus-within{ border-bottom-color:var(--primary); }
+  .select-wrap label{ display:block; font-family:var(--sans); font-weight:500; font-size:.6875rem; letter-spacing:.08em; text-transform:uppercase; color:var(--on-surface-variant); padding:.85rem 1rem 0; }
+  .select-wrap select{ width:100%; background:transparent; border:0; outline:none; font-family:var(--sans); font-size:.95rem; color:var(--on-background); padding:.2rem 2.5rem .65rem 1rem; appearance:none; cursor:pointer; }
+  .select-wrap .arrow{ position:absolute; right:1rem; bottom:.8rem; pointer-events:none; color:var(--on-surface-variant); font-size:.65rem; }
+  .textarea-field{ background:var(--surface-container-lowest); border-bottom:2px solid var(--surface-container-highest); transition:border-color .25s var(--ease); padding:.85rem 1rem .65rem; }
+  .textarea-field:focus-within{ border-bottom-color:var(--primary); }
+  .textarea-field label{ display:block; font-family:var(--sans); font-weight:500; font-size:.6875rem; letter-spacing:.08em; text-transform:uppercase; color:var(--on-surface-variant); margin-bottom:.4rem; }
+  .textarea-field textarea{ width:100%; background:transparent; border:0; outline:none; font-family:var(--sans); font-size:.95rem; color:var(--on-background); resize:vertical; min-height:80px; }
+  .check-group{ display:flex; flex-direction:column; gap:.85rem; }
+  .check-item{ display:flex; align-items:center; gap:.75rem; cursor:pointer; }
+  .check-item input[type=checkbox], .check-item input[type=radio]{ appearance:none; width:18px; height:18px; border:1.5px solid var(--surface-container-highest); flex-shrink:0; position:relative; cursor:pointer; transition:background .2s, border-color .2s; background:var(--surface-container-lowest); }
+  .check-item input[type=radio]{ border-radius:50%; }
+  .check-item input[type=checkbox]:checked{ background:var(--primary); border-color:var(--primary); }
+  .check-item input[type=checkbox]:checked::after{ content:""; position:absolute; left:3px; top:0px; width:10px; height:6px; border-left:2px solid #FFF; border-bottom:2px solid #FFF; transform:rotate(-45deg); }
+  .check-item input[type=radio]:checked{ border-color:var(--primary); }
+  .check-item input[type=radio]:checked::after{ content:""; position:absolute; inset:3px; background:var(--primary); border-radius:50%; }
+  .check-item label{ font-family:var(--sans); font-size:.9rem; color:var(--on-background); cursor:pointer; }
+  .toggle-item{ display:flex; align-items:center; gap:.85rem; }
+  .toggle{ width:40px; height:22px; background:var(--surface-container-highest); border-radius:11px; position:relative; cursor:pointer; transition:background .25s var(--ease); flex-shrink:0; }
+  .toggle.on{ background:var(--primary); }
+  .toggle::after{ content:""; position:absolute; top:3px; left:3px; width:16px; height:16px; background:#FFF; border-radius:50%; transition:transform .25s var(--ease); box-shadow:0 1px 3px rgba(0,0,0,.2); }
+  .toggle.on::after{ transform:translateX(18px); }
+  .toggle-label{ font-family:var(--sans); font-size:.9rem; color:var(--on-background); }
+
+  /* ============ ALERTS ============ */
+  .alert{ display:flex; gap:.9rem; align-items:flex-start; padding:1rem 1.25rem; margin-bottom:.5rem; }
+  .alert:last-child{ margin-bottom:0; }
+  .alert svg{ flex-shrink:0; margin-top:.1rem; }
+  .alert-body .a-title{ font-family:var(--sans); font-weight:600; font-size:.875rem; margin-bottom:.2rem; }
+  .alert-body p{ font-family:var(--sans); font-size:.85rem; line-height:1.55; }
+  .alert-error{ background:rgba(176,0,32,.06); }
+  .alert-error svg, .alert-error .a-title{ color:#B00020; }
+  .alert-warning{ background:rgba(175,120,0,.07); }
+  .alert-warning svg, .alert-warning .a-title{ color:#AF7800; }
+  .alert-success{ background:rgba(27,120,60,.07); }
+  .alert-success svg, .alert-success .a-title{ color:#1B783C; }
+  .alert-info{ background:rgba(0,87,155,.06); }
+  .alert-info svg, .alert-info .a-title{ color:#00579B; }
+
+  /* ============ LOADING / SKELETON ============ */
+  @keyframes shimmer{ 0%{ background-position:-600px 0; } 100%{ background-position:600px 0; } }
+  .skeleton{ background:linear-gradient(90deg, var(--surface-container-low) 25%, var(--surface-container-high) 50%, var(--surface-container-low) 75%); background-size:1200px 100%; animation:shimmer 1.6s infinite linear; }
+  .sk-text{ height:.75rem; margin-bottom:.5rem; }
+  .sk-heading{ height:1.1rem; width:55%; margin-bottom:.85rem; }
+  .sk-pill{ height:.75rem; width:80px; margin-bottom:1rem; }
+  .sk-img{ height:180px; width:100%; }
+  .sk-btn{ height:36px; width:120px; }
+  .sk-avatar{ width:40px; height:40px; border-radius:50%; flex-shrink:0; }
+  .sk-full{ width:100%; }
+  .sk-3q{ width:75%; }
+  .sk-half{ width:50%; }
+  .sk-third{ width:35%; }
+  .skeleton-card{ background:var(--surface-container-lowest); padding:1.25rem 1.25rem 1.5rem; }
+  .spinner{ width:24px; height:24px; border:2px solid var(--surface-container-high); border-top-color:var(--primary); border-radius:50%; animation:spin .7s linear infinite; display:inline-block; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .spinner-lg{ width:40px; height:40px; border-width:3px; }
+
+  /* ============ BADGE ============ */
+  .badge{ display:inline-flex; align-items:center; padding:.25rem .65rem; font-family:var(--sans); font-weight:600; font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; }
+  .badge-primary{ background:var(--primary); color:#FFF; }
+  .badge-outline{ background:transparent; border:1px solid var(--on-background); color:var(--on-background); }
+  .badge-success{ background:rgba(27,120,60,.1); color:#1B783C; }
+  .badge-warning{ background:rgba(175,120,0,.1); color:#AF7800; }
+  .badge-error{ background:rgba(176,0,32,.1); color:#B00020; }
+  .badge-neutral{ background:var(--surface-container-high); color:var(--on-surface-variant); }
+
+  /* ============ PROGRESS ============ */
+  .progress-wrap{ width:100%; margin-bottom:1.25rem; }
+  .progress-wrap:last-child{ margin-bottom:0; }
+  .progress-lbl{ display:flex; justify-content:space-between; margin-bottom:.45rem; font-family:var(--mono); font-size:.65rem; letter-spacing:.1em; color:var(--on-surface-variant); }
+  .progress-track{ width:100%; height:4px; background:var(--surface-container-high); }
+  .progress-fill{ height:100%; background:linear-gradient(90deg, var(--primary), var(--primary-container)); }
+  .progress-track.md .progress-fill{ height:6px; }
+  .progress-track.md{ height:6px; }
+
+  /* ============ DIVIDERS ============ */
+  .divider-demo{ display:flex; flex-direction:column; gap:2rem; margin-top:1.5rem; }
+  .divider-row{ }
+  .divider-name{ font-family:var(--mono); font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--primary-ink); margin-bottom:.5rem; }
+  .divider-tonal-line{ height:1px; background:var(--outline-variant); }
+  .divider-shift-block{ height:32px; background:var(--surface-container-low); }
+  .divider-ink-line{ height:1px; background:var(--on-background); opacity:.08; }
+  .divider-gap-block{ height:64px; background:repeating-linear-gradient(45deg, var(--surface-container-low), var(--surface-container-low) 4px, transparent 4px, transparent 12px); border:1px dashed var(--outline-variant); display:grid; place-items:center; }
+
+  /* ============ MODAL ============ */
+  .modal-overlay-demo{ background:rgba(14,16,17,.55); padding:2rem; display:grid; place-items:center; min-height:340px; backdrop-filter:blur(4px); }
+  .modal-surface{ background:var(--surface-container-lowest); width:100%; max-width:440px; overflow:hidden; }
+  .modal-header{ padding:1.25rem 1.5rem; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--outline-variant); }
+  .modal-header h3{ font-family:var(--serif); font-weight:500; font-size:1.2rem; letter-spacing:-.018em; }
+  .modal-close{ width:26px; height:26px; display:grid; place-items:center; background:var(--surface-container-low); border:0; color:var(--on-surface-variant); cursor:pointer; font-size:1rem; flex-shrink:0; }
+  .modal-body{ padding:1.5rem; }
+  .modal-body p{ font-size:.9rem; color:var(--on-surface-variant); line-height:1.6; }
+  .modal-footer{ padding:1rem 1.5rem; background:var(--surface-container-low); display:flex; justify-content:flex-end; gap:.65rem; align-items:center; }
+
+  /* ============ SECTION ANATOMY ============ */
+  .anatomy-diagram{ border:1px dashed rgba(155,64,0,.3); margin-top:1.5rem; overflow:hidden; }
+  .anatomy-section{ position:relative; }
+  .anatomy-tag{ font-family:var(--mono); font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--primary-ink); background:rgba(155,64,0,.08); display:inline-block; padding:.2rem .5rem; margin-bottom:.5rem; }
+  .anatomy-zone{ border:1px dashed rgba(155,64,0,.2); padding:1rem 1.25rem; margin:.75rem; }
+  .anatomy-zone-lbl{ font-family:var(--mono); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(155,64,0,.6); margin-bottom:.35rem; }
+  .anatomy-zone-content{ font-family:var(--sans); font-size:.8rem; color:var(--on-surface-variant); }
+
+  @media(max-width:800px){ .motion-row{ grid-template-columns:1fr; } .bp-visual{ display:none; } }
 </style>
 </head>
 <body>
@@ -331,12 +473,16 @@
       <a href="#radius"><span>Radius</span><span class="num">04</span></a>
       <a href="#elevation"><span>Elevation</span><span class="num">05</span></a>
       <a href="#icons"><span>Icons</span><span class="num">06</span></a>
+      <a href="#motion"><span>Motion</span><span class="num">19</span></a>
+      <a href="#breakpoints"><span>Breakpoints</span><span class="num">20</span></a>
+      <a href="#zindex"><span>Z-Index</span><span class="num">21</span></a>
     </div>
 
     <h6>Components</h6>
     <div class="links">
       <a href="#buttons"><span>Buttons</span><span class="num">07</span></a>
       <a href="#inputs"><span>Inputs</span><span class="num">08</span></a>
+      <a href="#inputs-extended"><span>Form Extended</span><span class="num">22</span></a>
       <a href="#tags"><span>Tags · Pills</span><span class="num">09</span></a>
       <a href="#specs"><span>Spec Grid</span><span class="num">10</span></a>
       <a href="#cards"><span>Cards</span><span class="num">11</span></a>
@@ -344,6 +490,17 @@
       <a href="#faq"><span>FAQ Accordion</span><span class="num">13</span></a>
       <a href="#header"><span>Header · Nav</span><span class="num">14</span></a>
       <a href="#footer"><span>Footer</span><span class="num">15</span></a>
+      <a href="#alerts"><span>Alerts · Status</span><span class="num">23</span></a>
+      <a href="#loading"><span>Loading · Skeleton</span><span class="num">24</span></a>
+      <a href="#badges"><span>Badges · Progress</span><span class="num">25</span></a>
+    </div>
+
+    <h6>Patterns</h6>
+    <div class="links">
+      <a href="#a11y"><span>Focus · A11y</span><span class="num">26</span></a>
+      <a href="#dividers"><span>Dividers</span><span class="num">27</span></a>
+      <a href="#modal"><span>Modal · Dialog</span><span class="num">28</span></a>
+      <a href="#anatomy"><span>Section Anatomy</span><span class="num">29</span></a>
     </div>
 
     <h6>Tokens (Code)</h6>
@@ -366,8 +523,8 @@
         <div class="meta">
           <div><div class="k">Cor primária</div><div class="v">#9B4000</div></div>
           <div><div class="k">Tipografia</div><div class="v">3 <small>familias</small></div></div>
-          <div><div class="k">Componentes</div><div class="v">14 <small>blocos</small></div></div>
-          <div><div class="k">Versão</div><div class="v">1.0 <small>2026</small></div></div>
+          <div><div class="k">Componentes</div><div class="v">29 <small>blocos</small></div></div>
+          <div><div class="k">Versão</div><div class="v">1.1 <small>2026</small></div></div>
         </div>
       </div>
     </section>
@@ -823,6 +980,581 @@
       </div>
     </section>
 
+    <!-- MOTION -->
+    <section id="motion">
+      <div class="sect-num">19 / Motion</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Tokens de Animação</span></div>
+      <h2 class="h">Movimento com intenção. Cada transição comunica causa e efeito.</h2>
+      <p class="lead">Animações reforçam a sensação de material — não decoram. A curva <code>--ease</code> cubic-bezier(.2,.7,.2,1) é a assinatura cinética da Hmob: entrada rápida, desaceleração suave. Nunca linear.</p>
+
+      <div class="card" style="padding:1.5rem;">
+        <div class="motion-row">
+          <div class="lbl"><strong>duration-instant</strong><span>Micro-resposta</span></div>
+          <div style="overflow:hidden; height:40px; display:flex; align-items:center;">
+            <div class="motion-demo" style="transition:transform 80ms cubic-bezier(.2,.7,.2,1);" onmouseenter="this.style.transform='translateX(60px)'" onmouseleave="this.style.transform=''"></div>
+          </div>
+          <div class="motion-specs">80ms · cubic-bezier(.2,.7,.2,1)<br/>Estados ativos, tooltips</div>
+        </div>
+        <div class="motion-row">
+          <div class="lbl"><strong>duration-fast</strong><span>Micro-interação</span></div>
+          <div style="overflow:hidden; height:40px; display:flex; align-items:center;">
+            <div class="motion-demo" style="transition:transform 150ms cubic-bezier(.2,.7,.2,1);" onmouseenter="this.style.transform='translateX(60px)'" onmouseleave="this.style.transform=''"></div>
+          </div>
+          <div class="motion-specs">150ms · cubic-bezier(.2,.7,.2,1)<br/>Hover, focus, press</div>
+        </div>
+        <div class="motion-row">
+          <div class="lbl"><strong>duration-base</strong><span>Transição padrão</span></div>
+          <div style="overflow:hidden; height:40px; display:flex; align-items:center;">
+            <div class="motion-demo" style="transition:transform 250ms cubic-bezier(.2,.7,.2,1);" onmouseenter="this.style.transform='translateX(60px)'" onmouseleave="this.style.transform=''"></div>
+          </div>
+          <div class="motion-specs">250ms · cubic-bezier(.2,.7,.2,1)<br/>Accordion, reveal, toggles</div>
+        </div>
+        <div class="motion-row">
+          <div class="lbl"><strong>duration-slow</strong><span>Transição expressiva</span></div>
+          <div style="overflow:hidden; height:40px; display:flex; align-items:center;">
+            <div class="motion-demo" style="transition:transform 400ms cubic-bezier(.2,.7,.2,1);" onmouseenter="this.style.transform='translateX(60px)'" onmouseleave="this.style.transform=''"></div>
+          </div>
+          <div class="motion-specs">400ms · cubic-bezier(.2,.7,.2,1)<br/>Hero, overlays, modais</div>
+        </div>
+        <div class="motion-row">
+          <div class="lbl"><strong>easing-default</strong><span>Curva principal</span></div>
+          <div style="display:flex; align-items:center; gap:.75rem;">
+            <svg width="80" height="40" viewBox="0 0 80 40"><path d="M0 40 C8 40 16 0 80 0" fill="none" stroke="var(--primary)" stroke-width="1.5"/><circle cx="0" cy="40" r="3" fill="var(--primary)"/><circle cx="80" cy="0" r="3" fill="var(--primary)"/></svg>
+            <span class="motion-specs" style="font-size:.6rem;">ease-out</span>
+          </div>
+          <div class="motion-specs">cubic-bezier(.2,.7,.2,1)<br/>Entradas: ease-out · Saídas: ease-in</div>
+        </div>
+      </div>
+
+      <div class="card muted" style="margin-top:1.5rem;">
+        <div class="mono" style="color:var(--primary-ink); margin-bottom:.5rem;">Regra de Motion</div>
+        <p class="body-md" style="color:var(--on-background);">Sempre use <code>transform</code> e <code>opacity</code> — nunca anime <code>width</code>, <code>height</code>, <code>top</code> ou <code>left</code> (causam reflow). Hover: <code>translateY(-2px)</code>. Máximo 2 elementos animados simultaneamente por viewport.</p>
+      </div>
+    </section>
+
+    <!-- BREAKPOINTS -->
+    <section id="breakpoints">
+      <div class="sect-num">20 / Breakpoints</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Responsive Grid</span></div>
+      <h2 class="h">Cinco pontos de quebra. Mobile-first, desktop-aware.</h2>
+      <p class="lead">O sistema é projetado mobile-first. Cada breakpoint representa um contexto de uso real — não apenas um tamanho de tela.</p>
+
+      <div class="bp-visual">
+        <div class="bar" style="height:30%;"><span class="tag">xs</span></div>
+        <div class="bar" style="height:48%;"><span class="tag">sm</span></div>
+        <div class="bar" style="height:62%;"><span class="tag">md</span></div>
+        <div class="bar current" style="height:80%;"><span class="tag">lg</span></div>
+        <div class="bar" style="height:100%;"><span class="tag">xl</span></div>
+      </div>
+
+      <table class="bp-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Breakpoint</th>
+            <th>Dispositivo</th>
+            <th>Colunas</th>
+            <th>Gutter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>xs</td><td><code>0px</code></td><td>Mobile pequeno</td><td>4</td><td><code>1rem</code></td></tr>
+          <tr><td>sm</td><td><code>480px</code></td><td>Mobile grande</td><td>4</td><td><code>1.25rem</code></td></tr>
+          <tr><td>md</td><td><code>768px</code></td><td>Tablet</td><td>8</td><td><code>1.5rem</code></td></tr>
+          <tr><td>lg</td><td><code>1024px</code></td><td>Desktop</td><td>12</td><td><code>2rem</code></td></tr>
+          <tr><td>xl</td><td><code>1280px</code></td><td>Wide</td><td>12</td><td><code>2.5rem</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="card muted" style="margin-top:1.5rem;">
+        <div class="mono" style="color:var(--primary-ink); margin-bottom:.5rem;">Container max-width</div>
+        <p class="body-md" style="color:var(--on-background);">Container global: <code>max-width: 1280px</code> · Padding lateral responsivo: <code>clamp(1.25rem, 3vw, 2rem)</code>. Em desktop wide, layouts assimétricos (5/7fr, 6/6fr) performam melhor que 50/50 na percepção de luxury.</p>
+      </div>
+    </section>
+
+    <!-- Z-INDEX -->
+    <section id="zindex">
+      <div class="sect-num">21 / Z-Index</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Layer Architecture</span></div>
+      <h2 class="h">Camadas com semântica. Cada plano tem sua função.</h2>
+      <p class="lead">Z-index sem escala definida cria bugs difíceis de rastrear. O sistema define 7 camadas semânticas — do conteúdo base até overlays críticos de sistema.</p>
+
+      <div class="z-stack">
+        <div class="z-layer" style="bottom:210px; background:rgba(14,16,17,.04); border:1px solid var(--outline-variant);"><span class="mono" style="color:var(--on-surface-variant);">z-base · 0</span><span class="z-val mono">Conteúdo base</span></div>
+        <div class="z-layer" style="bottom:165px; background:rgba(14,16,17,.07);"><span class="mono" style="color:var(--on-surface-variant);">z-raised · 10</span><span class="z-val mono">Cards flutuantes</span></div>
+        <div class="z-layer" style="bottom:120px; background:rgba(14,16,17,.11);"><span class="mono" style="color:var(--on-surface-variant);">z-dropdown · 20</span><span class="z-val mono">Dropdowns, Tooltips</span></div>
+        <div class="z-layer" style="bottom:75px; background:rgba(14,16,17,.16);"><span class="mono" style="color:var(--on-surface-variant);">z-sticky · 40</span><span class="z-val mono">Header sticky</span></div>
+        <div class="z-layer" style="bottom:30px; background:rgba(14,16,17,.22); color:#F5F5F5;"><span class="mono">z-overlay · 60</span><span class="z-val mono">Overlay / Scrim</span></div>
+        <div class="z-layer" style="bottom:0px; background:rgba(14,16,17,.55); color:#F5F5F5;"><span class="mono">z-modal · 80</span><span class="z-val mono">Modais, Dialogs</span></div>
+      </div>
+
+      <pre class="code" style="margin-top:1.5rem;"><span class="c">/* Z-Index Scale */</span>
+<span class="k">--z-base</span>:       <span class="v">0</span>;
+<span class="k">--z-raised</span>:     <span class="v">10</span>;   <span class="c">/* cards flutuantes */</span>
+<span class="k">--z-dropdown</span>:   <span class="v">20</span>;   <span class="c">/* dropdowns, tooltips */</span>
+<span class="k">--z-sticky</span>:     <span class="v">40</span>;   <span class="c">/* header sticky */</span>
+<span class="k">--z-overlay</span>:    <span class="v">60</span>;   <span class="c">/* scrim de modal */</span>
+<span class="k">--z-modal</span>:      <span class="v">80</span>;   <span class="c">/* modais, drawers */</span>
+<span class="k">--z-toast</span>:      <span class="v">100</span>;  <span class="c">/* notificações de sistema */</span></pre>
+    </section>
+
+    <!-- FORM ELEMENTS EXTENDED -->
+    <section id="inputs-extended">
+      <div class="sect-num">22 / Form Elements Extended</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Selection controls</span></div>
+      <h2 class="h">Todos os controles de formulário. Mesma linguagem visual.</h2>
+      <p class="lead">Select, textarea, checkbox, radio e toggle seguem a mesma base: fundo <code>surface_container_lowest</code>, borda inferior 2px, foco em laranja primário. Sem arredondamentos excessivos.</p>
+
+      <div class="grid-2" style="gap:1.5rem; margin-top:1.5rem;">
+        <!-- Select -->
+        <div>
+          <p class="label-sm" style="color:var(--primary-ink); margin-bottom:.75rem;">Select</p>
+          <div class="select-wrap">
+            <label>Segmento de atuação</label>
+            <select>
+              <option>Corporativo</option>
+              <option>Educacional</option>
+              <option>Hospitalar</option>
+              <option>Coworking</option>
+            </select>
+            <span class="arrow">▾</span>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div>
+          <p class="label-sm" style="color:var(--primary-ink); margin-bottom:.75rem;">Textarea</p>
+          <div class="textarea-field">
+            <label>Descrição do projeto</label>
+            <textarea placeholder="Descreva brevemente o ambiente e as necessidades..."></textarea>
+          </div>
+        </div>
+
+        <!-- Checkbox -->
+        <div>
+          <p class="label-sm" style="color:var(--primary-ink); margin-bottom:.85rem;">Checkbox</p>
+          <div class="check-group">
+            <div class="check-item">
+              <input type="checkbox" id="ck1" checked />
+              <label for="ck1">Cadeiras ergonômicas certificadas</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="ck2" />
+              <label for="ck2">Divisórias acústicas</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" id="ck3" />
+              <label for="ck3">Lockers com fechadura eletrônica</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radio -->
+        <div>
+          <p class="label-sm" style="color:var(--primary-ink); margin-bottom:.85rem;">Radio</p>
+          <div class="check-group">
+            <div class="check-item">
+              <input type="radio" id="r1" name="tipo" checked />
+              <label for="r1">Projeto novo</label>
+            </div>
+            <div class="check-item">
+              <input type="radio" id="r2" name="tipo" />
+              <label for="r2">Reforma de ambiente existente</label>
+            </div>
+            <div class="check-item">
+              <input type="radio" id="r3" name="tipo" />
+              <label for="r3">Expansão de escritório</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle -->
+      <div style="margin-top:2rem; padding:1.5rem; background:var(--surface-container-low);">
+        <p class="label-sm" style="color:var(--primary-ink); margin-bottom:1rem;">Toggle · Switch</p>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div class="toggle-item">
+            <div class="toggle on"></div>
+            <span class="toggle-label">Receber atualizações de catálogo</span>
+          </div>
+          <div class="toggle-item">
+            <div class="toggle"></div>
+            <span class="toggle-label">Notificações por e-mail</span>
+          </div>
+          <div class="toggle-item">
+            <div class="toggle on"></div>
+            <span class="toggle-label">Compartilhar dados para personalização</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALERTS -->
+    <section id="alerts">
+      <div class="sect-num">23 / Alerts · Status</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Feedback sistêmico</span></div>
+      <h2 class="h">Quatro estados semânticos. Background tonal, sem bordas laterais.</h2>
+      <p class="lead">Alertas seguem a <strong>No-Line Rule</strong> — o fundo tonal com 6-8% de opacidade da cor semântica diferencia o estado sem recorrer a bordas de 1px. Ícone sempre alinhado com o título.</p>
+
+      <div class="card" style="padding:1.5rem;">
+        <div class="alert alert-error">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg>
+          <div class="alert-body">
+            <div class="a-title">Documento não encontrado</div>
+            <p>O memorial técnico solicitado não está disponível. Verifique o código do projeto ou entre em contato com o consultor responsável.</p>
+          </div>
+        </div>
+        <div class="alert alert-warning">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>
+          <div class="alert-body">
+            <div class="a-title">Prazo de entrega estimado</div>
+            <p>O prazo padrão de 22 dias pode ser afetado em regiões fora dos centros de distribuição. Confirme disponibilidade antes de fechar o pedido.</p>
+          </div>
+        </div>
+        <div class="alert alert-success">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div class="alert-body">
+            <div class="a-title">Proposta enviada com sucesso</div>
+            <p>Nosso consultor receberá sua solicitação e entrará em contato em até 24 horas úteis.</p>
+          </div>
+        </div>
+        <div class="alert alert-info">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div class="alert-body">
+            <div class="a-title">Certificação NBR 13962</div>
+            <p>Todos os produtos da linha Seating são testados conforme a norma ABNT, com laudos disponíveis no memorial técnico do pedido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOADING / SKELETON -->
+    <section id="loading">
+      <div class="sect-num">24 / Loading · Skeleton</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Empty states dinâmicos</span></div>
+      <h2 class="h">Shimmer tonal no lugar de spinners genéricos. Percepção de velocidade.</h2>
+      <p class="lead">Skeleton screens mimetizam a estrutura do conteúdo real — reduzem a percepção de espera e eliminam layout shift. O shimmer usa o gradiente da paleta de superfícies. Spinners apenas para ações curtas (botão, submit).</p>
+
+      <div class="grid-2" style="gap:1rem; margin-top:1.5rem;">
+        <!-- Skeleton Card -->
+        <div class="skeleton-card">
+          <div class="skeleton sk-pill sk-third"></div>
+          <div class="skeleton sk-heading"></div>
+          <div class="skeleton sk-text sk-full"></div>
+          <div class="skeleton sk-text sk-3q"></div>
+          <div class="skeleton sk-text sk-half"></div>
+          <div style="margin-top:1rem;">
+            <div class="skeleton sk-btn"></div>
+          </div>
+        </div>
+        <!-- Skeleton com Avatar -->
+        <div class="skeleton-card">
+          <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem;">
+            <div class="skeleton sk-avatar"></div>
+            <div style="flex:1;">
+              <div class="skeleton sk-text sk-half"></div>
+              <div class="skeleton sk-text sk-third"></div>
+            </div>
+          </div>
+          <div class="skeleton sk-img"></div>
+          <div style="margin-top:1rem;">
+            <div class="skeleton sk-text sk-full"></div>
+            <div class="skeleton sk-text sk-3q"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem; padding:2rem; background:var(--surface-container-low); display:flex; gap:2rem; align-items:center; flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div class="spinner" style="margin:0 auto .75rem;"></div>
+          <div class="mono" style="color:var(--on-surface-variant);">spinner · sm</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="spinner spinner-lg" style="margin:0 auto .75rem;"></div>
+          <div class="mono" style="color:var(--on-surface-variant);">spinner · lg</div>
+        </div>
+        <div class="card muted" style="flex:1; padding:1rem; min-width:200px;">
+          <div class="mono" style="color:var(--primary-ink); margin-bottom:.4rem;">Quando usar spinner</div>
+          <p class="body-md" style="color:var(--on-background);">Apenas em ações curtas (&lt;3s): submit de formulário, botão de CTA, upload. Para carregamento de página ou lista: use skeleton.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES / PROGRESS -->
+    <section id="badges">
+      <div class="sect-num">25 / Badges · Progress</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Status indicators</span></div>
+      <h2 class="h">Indicadores de status e progresso com semântica cromática.</h2>
+
+      <h3 class="title-lg" style="margin-bottom:.85rem;">Badges</h3>
+      <div class="card" style="padding:2rem;">
+        <div class="btn-row" style="gap:.75rem; flex-wrap:wrap;">
+          <span class="badge badge-primary">Novo</span>
+          <span class="badge badge-success">Certificado</span>
+          <span class="badge badge-warning">Atenção</span>
+          <span class="badge badge-error">Indisponível</span>
+          <span class="badge badge-neutral">Rascunho</span>
+          <span class="badge badge-outline">Em produção</span>
+        </div>
+      </div>
+
+      <h3 class="title-lg" style="margin: 2rem 0 .85rem;">Progress Bar</h3>
+      <p class="body-md" style="margin-bottom:1rem;">Track de 4px (padrão) ou 6px (md). Gradiente <code>primary → primary_container</code>. Nunca use rounded — alinhado com a linguagem machined do sistema.</p>
+      <div class="card" style="padding:2rem;">
+        <div class="progress-wrap">
+          <div class="progress-lbl"><span>Etapa 1 de 3 · Dados do projeto</span><span>33%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:33%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-lbl"><span>Revisão técnica</span><span>68%</span></div>
+          <div class="progress-track md"><div class="progress-fill" style="width:68%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-lbl"><span>Entrega confirmada</span><span>100%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS & A11Y -->
+    <section id="a11y">
+      <div class="sect-num">26 / Focus · Acessibilidade</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">WCAG 2.1 AA Compliance</span></div>
+      <h2 class="h">Contraste mínimo 4.5:1. Foco nunca removido, sempre visível.</h2>
+      <p class="lead">Acessibilidade não é opcional. O design system Hmob atende WCAG 2.1 nível AA em todos os pares texto/fundo críticos. O foco de teclado usa <code>outline: 2px solid var(--primary)</code> com <code>outline-offset: 3px</code> — jamais <code>outline: none</code>.</p>
+
+      <!-- Focus states -->
+      <h3 class="title-lg" style="margin-bottom:1rem;">Estados de foco</h3>
+      <div class="card" style="padding:2rem;">
+        <div class="focus-demo">
+          <div class="focus-ex">
+            <button class="btn focus-ring-demo">Solicitar Proposta</button>
+            <span class="nm">Button · focused</span>
+          </div>
+          <div class="focus-ex">
+            <div class="field focus-ring-demo" style="min-width:180px;">
+              <label>Campo · focused</label>
+              <input type="text" value="São Paulo" />
+            </div>
+            <span class="nm">Input · focused</span>
+          </div>
+          <div class="focus-ex">
+            <a class="btn tertiary focus-ring-demo" style="padding:.6rem .5rem;">Ver mais </a>
+            <span class="nm">Link · focused</span>
+          </div>
+          <div class="focus-ex">
+            <input type="checkbox" class="focus-ring-demo" style="appearance:none; width:18px; height:18px; border:1.5px solid var(--surface-container-highest); position:relative; background:var(--primary);" checked />
+            <span class="nm">Checkbox · focused</span>
+          </div>
+        </div>
+        <pre class="code" style="margin-top:1.5rem;"><span class="c">/* Focus ring universal */</span>
+<span class="k">:focus-visible</span> {
+  <span class="k">outline</span>: <span class="v">2px solid var(--primary)</span>;
+  <span class="k">outline-offset</span>: <span class="v">3px</span>;
+}
+<span class="c">/* NUNCA usar: outline: none sem substituição */</span></pre>
+      </div>
+
+      <!-- Contrast ratios -->
+      <h3 class="title-lg" style="margin: 2rem 0 .5rem;">Pares de contraste · WCAG AA</h3>
+      <p class="body-md" style="margin-bottom:.5rem;">Mínimo: <strong>4.5:1</strong> para texto normal · <strong>3:1</strong> para texto grande (≥18px bold ou ≥24px regular).</p>
+      <div class="contrast-grid">
+        <div class="contrast-cell" style="background:#1A1C1D;">
+          <div class="pair" style="color:#F9F9FA;">#F9F9FA sobre #1A1C1D</div>
+          <div class="ratio" style="color:rgba(245,245,245,.6);">Ratio: 16.5:1</div>
+          <span class="badge-pass">AAA ✓</span>
+        </div>
+        <div class="contrast-cell" style="background:#F9F9FA;">
+          <div class="pair" style="color:#1A1C1D;">#1A1C1D sobre #F9F9FA</div>
+          <div class="ratio" style="color:#45484A;">Ratio: 16.5:1</div>
+          <span class="badge-pass">AAA ✓</span>
+        </div>
+        <div class="contrast-cell" style="background:#F9F9FA;">
+          <div class="pair" style="color:#45484A;">#45484A sobre #F9F9FA</div>
+          <div class="ratio" style="color:#45484A;">Ratio: 6.8:1</div>
+          <span class="badge-pass">AA ✓</span>
+        </div>
+        <div class="contrast-cell" style="background:#F9F9FA;">
+          <div class="pair" style="color:#9B4000;">#9B4000 sobre #F9F9FA</div>
+          <div class="ratio" style="color:#45484A;">Ratio: 5.2:1</div>
+          <span class="badge-pass">AA ✓</span>
+        </div>
+        <div class="contrast-cell" style="background:#9B4000;">
+          <div class="pair" style="color:#FFF;">#FFFFFF sobre #9B4000</div>
+          <div class="ratio" style="color:rgba(255,255,255,.7);">Ratio: 4.6:1</div>
+          <span class="badge-pass">AA ✓</span>
+        </div>
+        <div class="contrast-cell" style="background:#0E1011;">
+          <div class="pair" style="color:#F9F9FA;">#F9F9FA sobre #0E1011</div>
+          <div class="ratio" style="color:rgba(245,245,245,.6);">Ratio: 18.9:1</div>
+          <span class="badge-pass">AAA ✓</span>
+        </div>
+        <div class="contrast-cell" style="background:#F9F9FA;">
+          <div class="pair" style="color:#DCDCDE; font-size:.85rem;">#DCDCDE sobre #F9F9FA</div>
+          <div class="ratio" style="color:#45484A;">Ratio: 1.3:1</div>
+          <span class="badge-aa" style="background:rgba(176,0,32,.1);color:#B00020;">FAIL ✗</span>
+        </div>
+        <div class="contrast-cell" style="background:#F9F9FA;">
+          <div class="pair" style="color:#6E2E00;">#6E2E00 sobre #F9F9FA</div>
+          <div class="ratio" style="color:#45484A;">Ratio: 7.4:1</div>
+          <span class="badge-pass">AAA ✓</span>
+        </div>
+      </div>
+      <div class="card muted" style="margin-top:1rem;">
+        <p class="body-md" style="color:var(--on-background);">⚠️ <strong>Atenção:</strong> <code>--surface-container-highest</code> (#DCDCDE) sobre <code>--surface</code> (#F9F9FA) falha em texto. Use-o apenas como borda decorativa de inputs, nunca como cor de texto.</p>
+      </div>
+    </section>
+
+    <!-- DIVIDERS -->
+    <section id="dividers">
+      <div class="sect-num">27 / Dividers · Separadores</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">No-Line Rule em prática</span></div>
+      <h2 class="h">Separação sem bordas. Quatro métodos tonais.</h2>
+      <p class="lead">A <strong>No-Line Rule</strong> proíbe <code>border: 1px solid</code> para separar seções. Use background-shifts, espaço ou a linha fantasma de 15% de opacidade apenas quando semântica exigir.</p>
+
+      <div class="divider-demo">
+        <div class="divider-row">
+          <div class="divider-name">Outline ghost · 15% — para inputs e separadores inline</div>
+          <div style="padding:1rem; background:var(--surface-container-lowest);">
+            <div class="divider-tonal-line"></div>
+          </div>
+          <div class="mono" style="margin-top:.4rem; color:var(--on-surface-variant);">background: rgba(26,28,29,.15) · height: 1px</div>
+        </div>
+
+        <div class="divider-row">
+          <div class="divider-name">Surface shift — separação primária de seções</div>
+          <div class="divider-shift-block"></div>
+          <div class="mono" style="margin-top:.4rem; color:var(--on-surface-variant);">background: var(--surface-container-low) · height: 32px</div>
+        </div>
+
+        <div class="divider-row">
+          <div class="divider-name">Ink ghost — sobre superfícies escuras</div>
+          <div style="padding:1rem; background:var(--ink-dark);">
+            <div class="divider-ink-line"></div>
+          </div>
+          <div class="mono" style="margin-top:.4rem; color:var(--on-surface-variant);">background: #F5F5F5 · opacity: 8% · height: 1px</div>
+        </div>
+
+        <div class="divider-row">
+          <div class="divider-name">Gap tonal — espaço amplo entre mega-seções</div>
+          <div class="divider-gap-block">
+            <span class="mono" style="color:var(--on-surface-variant); font-size:.6rem;">ESPAÇO RESPIRATÓRIO · 64px</span>
+          </div>
+          <div class="mono" style="margin-top:.4rem; color:var(--on-surface-variant);">background: var(--surface-container-low) · height: 64px+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <section id="modal">
+      <div class="sect-num">28 / Modal · Dialog</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Overlay pattern</span></div>
+      <h2 class="h">Scrim escuro com blur. Surface lowest flutua com ambient shadow.</h2>
+      <p class="lead">Modais usam scrim <code>rgba(14,16,17,.6)</code> com <code>backdrop-filter: blur(12px)</code>. A superfície do modal é <code>surface_container_lowest</code> com <code>box-shadow: ambient</code>. Rodapé em <code>surface_container_low</code> separa ações do conteúdo.</p>
+
+      <div class="modal-overlay-demo">
+        <div class="modal-surface" style="box-shadow:var(--shadow-ambient);">
+          <div class="modal-header">
+            <h3>Solicitar proposta técnica</h3>
+            <button class="modal-close">×</button>
+          </div>
+          <div class="modal-body">
+            <p style="margin-bottom:1.25rem;">Preencha os dados abaixo e nosso consultor entrará em contato em até 24 horas úteis com o memorial técnico e orçamento preliminar.</p>
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+              <div class="field">
+                <label>Nome da empresa</label>
+                <input type="text" placeholder="Razão social" />
+              </div>
+              <div class="field">
+                <label>E-mail comercial</label>
+                <input type="email" placeholder="contato@empresa.com.br" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn outline" style="font-size:.65rem; padding:.65rem .9rem;">Cancelar</button>
+            <button class="btn" style="font-size:.65rem; padding:.65rem .9rem;">Enviar solicitação</button>
+          </div>
+        </div>
+      </div>
+
+      <pre class="code" style="margin-top:1.5rem;"><span class="c">/* Modal Scrim */</span>
+<span class="k">background</span>: <span class="v">rgba(14,16,17, 0.60)</span>;
+<span class="k">backdrop-filter</span>: <span class="v">blur(12px) saturate(1.1)</span>;
+<span class="k">z-index</span>: <span class="v">var(--z-modal)</span>; <span class="c">/* 80 */</span>
+
+<span class="c">/* Modal Surface */</span>
+<span class="k">background</span>: <span class="v">var(--surface-container-lowest)</span>;
+<span class="k">box-shadow</span>: <span class="v">var(--shadow-ambient)</span>;
+<span class="k">border-radius</span>: <span class="v">var(--radius-md)</span>; <span class="c">/* 4px */</span></pre>
+    </section>
+
+    <!-- SECTION ANATOMY -->
+    <section id="anatomy">
+      <div class="sect-num">29 / Section Anatomy</div>
+      <div class="sect-kicker"><span class="sq"></span><span class="label-sm">Page composition</span></div>
+      <h2 class="h">Anatomia de uma seção Hmob. Cada elemento no lugar certo.</h2>
+      <p class="lead">Toda seção do site segue uma hierarquia de quatro zonas. A <strong>Kicker</strong> ancora o contexto; o <strong>Heading</strong> comunica a proposta; o <strong>Lead</strong> valida; o <strong>Content</strong> demonstra. CTAs ficam sempre no rodapé da seção.</p>
+
+      <div class="anatomy-diagram">
+        <!-- Kicker zone -->
+        <div class="anatomy-zone">
+          <div class="anatomy-zone-lbl">Zona A · Kicker</div>
+          <div class="anatomy-zone-content">
+            <div style="display:flex; align-items:center; gap:.5rem; margin-bottom:.25rem;">
+              <div style="width:6px; height:6px; background:var(--primary);"></div>
+              <span class="label-sm">Âncora de seção · mono uppercase · 11px</span>
+            </div>
+            <div class="mono" style="font-size:.6rem; color:var(--on-surface-variant);">sect-num (ex: "03 / Spacing") + sect-kicker com sq laranja</div>
+          </div>
+        </div>
+
+        <!-- Heading zone -->
+        <div class="anatomy-zone">
+          <div class="anatomy-zone-lbl">Zona B · Heading</div>
+          <div class="anatomy-zone-content">
+            <div style="font-family:var(--serif); font-size:1.5rem; line-height:1.1; letter-spacing:-.02em; color:var(--on-background);">Título da seção em Noto Serif Medium</div>
+            <div class="mono" style="font-size:.6rem; color:var(--on-surface-variant); margin-top:.25rem;">font: Noto Serif 500 · clamp(1.6rem, 2.4vw, 2.1rem) · max 12 palavras</div>
+          </div>
+        </div>
+
+        <!-- Lead zone -->
+        <div class="anatomy-zone">
+          <div class="anatomy-zone-lbl">Zona C · Lead / Subtítulo</div>
+          <div class="anatomy-zone-content">
+            <div style="color:var(--on-surface-variant); font-size:.9rem; line-height:1.6; max-width:600px;">Texto de apoio que contextualiza a seção e valida a proposta de valor. Nunca mais que 3 linhas em desktop. Max-width: 680px.</div>
+            <div class="mono" style="font-size:.6rem; color:var(--on-surface-variant); margin-top:.25rem;">font: Inter 400 · 1.0625rem · color: on-surface-variant</div>
+          </div>
+        </div>
+
+        <!-- Content zone -->
+        <div class="anatomy-zone" style="min-height:80px;">
+          <div class="anatomy-zone-lbl">Zona D · Content</div>
+          <div class="anatomy-zone-content">Componente principal: grid de cards, spec table, carrossel de depoimentos, formulário...</div>
+        </div>
+
+        <!-- CTA zone (optional) -->
+        <div class="anatomy-zone">
+          <div class="anatomy-zone-lbl">Zona E · CTA (opcional)</div>
+          <div class="anatomy-zone-content" style="display:flex; align-items:center; gap:1rem;">
+            <button class="btn" style="font-size:.65rem; padding:.6rem .9rem;">Ação primária</button>
+            <a class="btn tertiary" style="font-size:.65rem;">Ação secundária </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:1.5rem;">
+        <div class="card">
+          <div class="mono" style="color:var(--primary-ink); margin-bottom:.5rem;">DO</div>
+          <p class="body-md" style="color:var(--on-background);">Sempre incluir kicker + heading. Máximo 1 CTA primário por seção. Lead com max-width de 680px para legibilidade ideal.</p>
+        </div>
+        <div class="card">
+          <div class="mono" style="color:#B33; margin-bottom:.5rem;">DON'T</div>
+          <p class="body-md" style="color:var(--on-background);">Dois botões primários na mesma seção. Headings com mais de 14 palavras. Ausência de kicker (âncora de contexto).</p>
+        </div>
+      </div>
+    </section>
+
     <!-- TOKENS · CSS -->
     <section id="tokens-css">
       <div class="sect-num">16 / Tokens — CSS Variables</div>
@@ -870,6 +1602,38 @@
   <span class="k">--radius-md</span>: <span class="v">4px</span>;
   <span class="k">--shadow-ambient</span>: <span class="v">0px 24px 48px -12px rgba(26,28,29,0.08)</span>;
   <span class="k">--ease</span>: <span class="v">cubic-bezier(.2,.7,.2,1)</span>;
+
+  <span class="c">/* Motion */</span>
+  <span class="k">--duration-instant</span>: <span class="v">80ms</span>;
+  <span class="k">--duration-fast</span>: <span class="v">150ms</span>;
+  <span class="k">--duration-base</span>: <span class="v">250ms</span>;
+  <span class="k">--duration-slow</span>: <span class="v">400ms</span>;
+
+  <span class="c">/* Z-Index */</span>
+  <span class="k">--z-base</span>: <span class="v">0</span>;
+  <span class="k">--z-raised</span>: <span class="v">10</span>;
+  <span class="k">--z-dropdown</span>: <span class="v">20</span>;
+  <span class="k">--z-sticky</span>: <span class="v">40</span>;
+  <span class="k">--z-overlay</span>: <span class="v">60</span>;
+  <span class="k">--z-modal</span>: <span class="v">80</span>;
+  <span class="k">--z-toast</span>: <span class="v">100</span>;
+
+  <span class="c">/* Breakpoints (reference only) */</span>
+  <span class="k">--bp-xs</span>: <span class="v">0px</span>;
+  <span class="k">--bp-sm</span>: <span class="v">480px</span>;
+  <span class="k">--bp-md</span>: <span class="v">768px</span>;
+  <span class="k">--bp-lg</span>: <span class="v">1024px</span>;
+  <span class="k">--bp-xl</span>: <span class="v">1280px</span>;
+
+  <span class="c">/* Semantic status colors */</span>
+  <span class="k">--color-error</span>: <span class="v">#B00020</span>;
+  <span class="k">--color-warning</span>: <span class="v">#AF7800</span>;
+  <span class="k">--color-success</span>: <span class="v">#1B783C</span>;
+  <span class="k">--color-info</span>: <span class="v">#00579B</span>;
+  <span class="k">--color-error-surface</span>: <span class="v">rgba(176,0,32,.06)</span>;
+  <span class="k">--color-warning-surface</span>: <span class="v">rgba(175,120,0,.07)</span>;
+  <span class="k">--color-success-surface</span>: <span class="v">rgba(27,120,60,.07)</span>;
+  <span class="k">--color-info-surface</span>: <span class="v">rgba(0,87,155,.06)</span>;
 }</pre>
     </section>
 
@@ -905,6 +1669,22 @@
         <span class="k">'cta-gradient'</span>: <span class="v">'linear-gradient(135deg, #9B4000 0%, #C35200 100%)'</span>,
       },
       <span class="k">letterSpacing</span>: { <span class="k">tight</span>: <span class="v">'-0.02em'</span>, <span class="k">tighter</span>: <span class="v">'-0.028em'</span>, <span class="k">caps</span>: <span class="v">'0.08em'</span>, <span class="k">mono</span>: <span class="v">'0.2em'</span> },
+      <span class="k">transitionDuration</span>: {
+        <span class="k">instant</span>: <span class="v">'80ms'</span>,
+        <span class="k">fast</span>: <span class="v">'150ms'</span>,
+        <span class="k">base</span>: <span class="v">'250ms'</span>,
+        <span class="k">slow</span>: <span class="v">'400ms'</span>,
+      },
+      <span class="k">transitionTimingFunction</span>: {
+        <span class="k">hmob</span>: <span class="v">'cubic-bezier(.2,.7,.2,1)'</span>,
+      },
+      <span class="k">zIndex</span>: {
+        <span class="k">raised</span>: <span class="v">'10'</span>, <span class="k">dropdown</span>: <span class="v">'20'</span>, <span class="k">sticky</span>: <span class="v">'40'</span>,
+        <span class="k">overlay</span>: <span class="v">'60'</span>, <span class="k">modal</span>: <span class="v">'80'</span>, <span class="k">toast</span>: <span class="v">'100'</span>,
+      },
+      <span class="k">screens</span>: {
+        <span class="k">sm</span>: <span class="v">'480px'</span>, <span class="k">md</span>: <span class="v">'768px'</span>, <span class="k">lg</span>: <span class="v">'1024px'</span>, <span class="k">xl</span>: <span class="v">'1280px'</span>,
+      },
     },
   },
 }</pre>
@@ -950,17 +1730,40 @@
     <span class="k">"2xl"</span>: <span class="v">"4rem"</span>, <span class="k">"3xl"</span>: <span class="v">"6.5rem"</span>
   },
   <span class="k">"radius"</span>: { <span class="k">"sm"</span>: <span class="v">"2px"</span>, <span class="k">"md"</span>: <span class="v">"4px"</span> },
-  <span class="k">"shadow"</span>: { <span class="k">"ambient"</span>: <span class="v">"0 24px 48px -12px rgba(26,28,29,0.08)"</span> }
+  <span class="k">"shadow"</span>: { <span class="k">"ambient"</span>: <span class="v">"0 24px 48px -12px rgba(26,28,29,0.08)"</span> },
+  <span class="k">"motion"</span>: {
+    <span class="k">"durationInstant"</span>: { <span class="k">"value"</span>: <span class="v">"80ms"</span> },
+    <span class="k">"durationFast"</span>: { <span class="k">"value"</span>: <span class="v">"150ms"</span> },
+    <span class="k">"durationBase"</span>: { <span class="k">"value"</span>: <span class="v">"250ms"</span> },
+    <span class="k">"durationSlow"</span>: { <span class="k">"value"</span>: <span class="v">"400ms"</span> },
+    <span class="k">"easing"</span>: { <span class="k">"value"</span>: <span class="v">"cubic-bezier(.2,.7,.2,1)"</span> }
+  },
+  <span class="k">"zIndex"</span>: {
+    <span class="k">"raised"</span>: { <span class="k">"value"</span>: <span class="v">10</span> }, <span class="k">"dropdown"</span>: { <span class="k">"value"</span>: <span class="v">20</span> },
+    <span class="k">"sticky"</span>: { <span class="k">"value"</span>: <span class="v">40</span> }, <span class="k">"overlay"</span>: { <span class="k">"value"</span>: <span class="v">60</span> },
+    <span class="k">"modal"</span>: { <span class="k">"value"</span>: <span class="v">80</span> }, <span class="k">"toast"</span>: { <span class="k">"value"</span>: <span class="v">100</span> }
+  },
+  <span class="k">"breakpoint"</span>: {
+    <span class="k">"xs"</span>: { <span class="k">"value"</span>: <span class="v">"0px"</span> }, <span class="k">"sm"</span>: { <span class="k">"value"</span>: <span class="v">"480px"</span> },
+    <span class="k">"md"</span>: { <span class="k">"value"</span>: <span class="v">"768px"</span> }, <span class="k">"lg"</span>: { <span class="k">"value"</span>: <span class="v">"1024px"</span> },
+    <span class="k">"xl"</span>: { <span class="k">"value"</span>: <span class="v">"1280px"</span> }
+  },
+  <span class="k">"statusColor"</span>: {
+    <span class="k">"error"</span>: { <span class="k">"value"</span>: <span class="v">"#B00020"</span> },
+    <span class="k">"warning"</span>: { <span class="k">"value"</span>: <span class="v">"#AF7800"</span> },
+    <span class="k">"success"</span>: { <span class="k">"value"</span>: <span class="v">"#1B783C"</span> },
+    <span class="k">"info"</span>: { <span class="k">"value"</span>: <span class="v">"#00579B"</span> }
+  }
 }</pre>
 
       <div class="card muted" style="margin-top:2rem;">
         <div class="mono" style="color:var(--primary-ink); margin-bottom:.5rem;">Como usar no Antigravity</div>
-        <p class="body-md" style="color:var(--on-background);">1. Importe as 3 famílias do Google Fonts (Noto Serif, Inter, JetBrains Mono).<br/>2. Cole o bloco de <code>:root</code> da seção 16 no seu CSS global.<br/>3. Use as classes utilitárias mostradas em cada componente (<code>.btn</code>, <code>.field</code>, <code>.specs</code>, <code>.cat-card</code>, <code>.testi</code>, <code>.faq-item</code>).<br/>4. Respeite a <strong>No-Line Rule</strong>: nunca <code>border: 1px solid</code> para separar seções — sempre background-shifts.</p>
+        <p class="body-md" style="color:var(--on-background);">1. Importe as 3 famílias do Google Fonts (Noto Serif, Inter, JetBrains Mono).<br/>2. Cole o bloco de <code>:root</code> da seção 16 no seu CSS global — inclui tokens de motion, z-index e status colors.<br/>3. Use as classes utilitárias mostradas em cada componente (<code>.btn</code>, <code>.field</code>, <code>.alert</code>, <code>.badge</code>, <code>.skeleton</code>, <code>.spinner</code>, <code>.progress-track</code>, <code>.specs</code>, <code>.cat-card</code>, <code>.testi</code>, <code>.faq-item</code>).<br/>4. Respeite a <strong>No-Line Rule</strong>: nunca <code>border: 1px solid</code> para separar seções — sempre background-shifts.<br/>5. Aplique <code>:focus-visible</code> com o padrão da seção 26 em todos os elementos interativos.<br/>6. Use a Section Anatomy (seção 29) como checklist antes de montar qualquer nova seção de página.</p>
       </div>
     </section>
 
     <div class="ds-footer">
-      <div class="mono">Hmob Design System v1.0 · 2026 · Architectural Blueprint</div>
+      <div class="mono">Hmob Design System v1.1 · 2026 · Architectural Blueprint · 29 tokens + componentes</div>
     </div>
 
   </main>
