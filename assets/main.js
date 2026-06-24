@@ -80,8 +80,8 @@
     <div class="footer-grid">
       <div class="col brand">
         <div class="mark">H<span class="bar"></span>MOB <span class="tag">for offices</span></div>
-        <p>Soluções corporativas certificadas para ambientes de alta performance. Engenharia de produto, conformidade e operação nacional.</p>
-        <div class="seal"><span class="sq"></span><span>ABNT NR-17 · certificado</span></div>
+        <p>Mobiliário corporativo. Engenharia, conformidade e atendimento nacional desde 2009.</p>
+        <div class="seal"><span class="sq"></span><span>Em conformidade com ABNT NR-17</span></div>
       </div>
       <div class="col"><h5>Mobiliário</h5><ul>
         <li><a href="mesas-e-plataformas.html">Mesas e Plataformas</a></li>
@@ -98,10 +98,9 @@
         <li><a href="armarios-deslizantes.html">Armários Deslizantes</a></li>
       </ul></div>
       <div class="col contact-col"><h5>Contato</h5>
-        <a class="wa" href="contato.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg><span>Falar com um Consultor</span></a>
-        <div class="ci"><div class="k">Comercial</div><div class="v">(11) 4705-9947 · (11) 5627-9020</div></div>
-        <div class="ci"><div class="k">E-mail</div><div class="v">atendimento.hmob@gmail.com</div></div>
-        <div class="ci"><div class="k">Endereço</div><div class="v">Barra Funda · São Paulo · SP</div></div>
+        <div class="ci"><div class="k">Comercial</div><div class="v">(11) 4705-9942</div></div>
+        <div class="ci"><div class="k">E-mail</div><div class="v">comercial@hmob.com.br</div></div>
+        <div class="ci"><div class="k">Endereço</div><div class="v">São Paulo, SP</div></div>
         <div class="social">
           <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.4-1.1 2.5-2.5 2.5S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5zM.2 21h4.6V8H.2v13zm7.6-13h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7V21h-4.6v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H7.8V8z"/></svg></a>
           <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
@@ -260,13 +259,7 @@
       }));
     }
 
-    // REVEAL ON SCROLL
-    const revealEls = document.querySelectorAll('.sect-head, .intro-grid, .series-grid, .pb-grid, .apps-grid, .tech-grid, .related-grid, .cta-band-grid, .contact-grid, .swatches-cluster, .subhero-inner');
-    revealEls.forEach(el => el.classList.add('reveal'));
-    const rio = new IntersectionObserver((es) => {
-      es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); rio.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => rio.observe(el));
+    // (reveal antigo removido — substituído por GSAP ScrollTrigger em loadMotion)
 
     // SUBHERO PARALLAX
     const subheroImg = document.querySelector('.subhero-img');
@@ -297,5 +290,110 @@
         }, 800);
       });
     }
+  }
+
+  // ===========================================================
+  // MOTION — Lenis (smooth scroll) + GSAP ScrollTrigger (reveals)
+  // Re-trigger: anima ao entrar, reverte ao subir, re-anima ao descer.
+  // ===========================================================
+  loadMotion();
+
+  function loadMotion(){
+    function load(src){
+      return new Promise(function(res, rej){
+        var s = document.createElement('script');
+        s.src = src; s.async = true; s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+    load('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js')
+      .then(function(){ return load('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js'); })
+      .then(function(){ return load('https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js'); })
+      .then(initMotion)
+      .catch(function(){ /* CDN indisponível: o site segue funcionando sem animações */ });
+  }
+
+  function initMotion(){
+    if (!window.gsap || !window.ScrollTrigger) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---- Smooth scroll (Lenis) integrado ao ScrollTrigger ----
+    if (window.Lenis){
+      var lenis = new Lenis({
+        duration: 1.05,
+        smoothWheel: true,
+        easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+      // âncoras internas (#...) via Lenis
+      document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var id = a.getAttribute('href');
+          if (id && id.length > 1){
+            var t = document.querySelector(id);
+            if (t){ e.preventDefault(); lenis.scrollTo(t, { offset: -72 }); }
+          }
+        });
+      });
+      window.__lenis = lenis;
+    }
+
+    if (reduce) return; // reduced-motion: mantém smooth scroll, dispensa animações
+
+    var EASE = 'power3.out';
+    var TA = 'play none none reverse'; // entra ao descer, reverte ao subir
+
+    // Cabeçalhos de seção e blocos de texto — sobem com fade
+    gsap.utils.toArray('.sect-head, .sc-intro, .fl-intro, .cta-band-grid').forEach(function(el){
+      gsap.from(el, { y: 42, opacity: 0, duration: .9, ease: EASE,
+        scrollTrigger: { trigger: el, start: 'top 84%', toggleActions: TA } });
+    });
+
+    // Bandas — imagem sobe, painel desliza do lado oposto (image-forward)
+    gsap.utils.toArray('.pband, .sc-band').forEach(function(band){
+      var img = band.querySelector('.pband-img, .sc-img');
+      var panel = band.querySelector('.pband-panel, .sc-panel');
+      var isRev = band.classList.contains('reverse');
+      if (img) gsap.from(img, { y: 34, opacity: 0, duration: 1.1, ease: EASE,
+        scrollTrigger: { trigger: band, start: 'top 80%', toggleActions: TA } });
+      if (panel) gsap.from(panel, { x: isRev ? -52 : 52, opacity: 0, duration: 1, ease: EASE,
+        scrollTrigger: { trigger: band, start: 'top 80%', toggleActions: TA } });
+    });
+
+    // Imagens de destaque (flagship/sobre/intro) — fade-rise suave
+    gsap.utils.toArray('.ab-img, .about-visual, .intro-visual').forEach(function(el){
+      gsap.from(el, { y: 40, opacity: 0, duration: 1.1, ease: EASE,
+        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: TA } });
+    });
+
+    // Colunas de texto (sobre/contato/deslizantes) — entram lateralmente
+    gsap.utils.toArray('.ab-text, .contact-info, .about-copy, .intro-copy, .fl-content').forEach(function(el){
+      gsap.from(el, { x: -42, opacity: 0, duration: .95, ease: EASE,
+        scrollTrigger: { trigger: el, start: 'top 84%', toggleActions: TA } });
+    });
+
+    // Grades com stagger (cards, amostras, features, números...)
+    [['.pband-features', 'li'], ['.related-grid', '.related-card'], ['.swatches-grid', '.swatch-item'],
+     ['.tech-grid', '.tech-card'], ['.series-grid', '.series-card'], ['.stats .row', '.stat'],
+     ['.about-stats', '.stat'], ['.cs-grid', '.pcard'], ['.marquee', '.li'], ['.htrust .row', '.item'],
+     ['.contact-form', '.form-row']
+    ].forEach(function(pair){
+      document.querySelectorAll(pair[0]).forEach(function(w){
+        var items = w.querySelectorAll(pair[1]);
+        if (!items.length) return;
+        gsap.from(items, { y: 28, opacity: 0, duration: .65, ease: EASE, stagger: .07,
+          scrollTrigger: { trigger: w, start: 'top 86%', toggleActions: TA } });
+      });
+    });
+
+    // Recalcula posições conforme as imagens (pesadas) carregam e no load completo
+    ScrollTrigger.refresh();
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+    document.querySelectorAll('img').forEach(function(im){
+      if (!im.complete){ im.addEventListener('load', function(){ ScrollTrigger.refresh(); }, { once: true }); }
+    });
   }
 })();
