@@ -79,7 +79,7 @@
   <div class="container rail-pad">
     <div class="footer-grid">
       <div class="col brand">
-        <div class="mark">H<span class="bar"></span>MOB <span class="tag">for offices</span></div>
+        <a href="index.html" style="display:inline-block; margin-bottom:1.25rem;"><img src="uploads/logo.png" alt="Hmob For Offices" style="width:350px; height:auto; display:block;"></a>
         <p>Mobiliário corporativo. Engenharia, conformidade e atendimento nacional desde 2009.</p>
         <div class="seal"><span class="sq"></span><span>Em conformidade com ABNT NR-17</span></div>
       </div>
@@ -204,8 +204,19 @@
       navToggle.addEventListener('click', () => {
         const open = navToggle.classList.toggle('open');
         nav.classList.toggle('open', open);
+        if (header) {
+          header.classList.toggle('nav-open', open);
+        }
         navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         document.body.style.overflow = open ? 'hidden' : '';
+        
+        if (window.__lenis) {
+          if (open) {
+            window.__lenis.stop();
+          } else {
+            window.__lenis.start();
+          }
+        }
       });
     }
 

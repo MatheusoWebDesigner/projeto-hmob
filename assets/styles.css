@@ -48,7 +48,7 @@
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:auto; } /* Lenis controla o smooth scroll */
+html{ scroll-behavior:auto; overflow-x:hidden; } /* Lenis controla o smooth scroll e evita overflow horizontal */
 body{
   font-family: var(--sans);
   color: var(--on-background);
@@ -264,10 +264,17 @@ img{ display:block; max-width:100%; }
     background:rgba(14,16,17,.98); backdrop-filter:blur(20px);
     flex-direction:column; gap:0; align-items:stretch;
     padding:1.5rem 1.25rem; overflow-y:auto;
-    transform:translateX(100%); transition:transform .3s var(--ease);
+    transform:translateX(100%); transition:transform .3s var(--ease), visibility .3s var(--ease);
+    visibility:hidden;
     z-index:25;
   }
-  .nav.open{ transform:translateX(0); }
+  .nav.open{ transform:translateX(0); visibility:visible; }
+  .header.nav-open {
+    background: rgba(14,16,17,.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom-color: rgba(245,245,245,.06) !important;
+  }
   .nav-item{ border-bottom:1px solid rgba(245,245,245,.06); padding:0; }
   .nav-item > a, .nav-item > button{ width:100%; padding:1rem 0; opacity:1; font-size:.95rem; }
   .mega{
@@ -417,8 +424,8 @@ img{ display:block; max-width:100%; }
 .subhero{
   position:relative;
   min-height:90vh;
-  background: var(--ink-dark);
-  color:#F5F5F5;
+  background: var(--surface);
+  color: var(--on-background);
   padding: 5rem 0;
   overflow:hidden;
   display: flex;
@@ -429,55 +436,58 @@ img{ display:block; max-width:100%; }
 }
 .subhero-bg{
   position:absolute; inset:0; z-index:0;
-  background:
-    radial-gradient(900px 600px at 80% 30%, rgba(155,64,0,.28), transparent 55%),
-    radial-gradient(700px 500px at 100% 100%, rgba(195,82,0,.18), transparent 60%),
-    linear-gradient(180deg, #0E1011 0%, #15181A 60%, #1D2022 100%);
+  background: linear-gradient(90deg, rgba(249,249,250,0.82) 0%, rgba(249,249,250,0.65) 45%, rgba(249,249,250,0.1) 100%);
 }
 .subhero-bg::after{
   content:""; position:absolute; inset:0;
   background:
-    repeating-linear-gradient(90deg, rgba(245,245,245,.025) 0 1px, transparent 1px 120px),
-    repeating-linear-gradient(0deg, rgba(245,245,245,.025) 0 1px, transparent 1px 120px);
-  mix-blend-mode:screen;
+    repeating-linear-gradient(90deg, rgba(26,28,29,.015) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg, rgba(26,28,29,.015) 0 1px, transparent 1px 120px);
+  mix-blend-mode:multiply;
 }
 .subhero-img{
   position:absolute; inset:0; z-index:1;
-  background: linear-gradient(135deg, #2A2E31 0%, #45494D 60%, #5A5E62 100%);
+  background-size:cover;
+  background-position:center;
   overflow:hidden;
 }
 .subhero-img::before{
   content:""; position:absolute; inset:0;
-  background: linear-gradient(to right, rgba(14,16,17,.88) 0%, rgba(14,16,17,.60) 45%, rgba(14,16,17,.30) 100%);
+  background: linear-gradient(to right, rgba(249,249,250,0.82) 0%, rgba(249,249,250,0.65) 45%, rgba(249,249,250,0.1) 100%);
 }
 .subhero-img .ph{
   position:absolute; bottom:1rem; right:1rem;
   font-family:var(--mono); font-size:.625rem; letter-spacing:.2em; text-transform:uppercase;
-  color:rgba(245,245,245,.4); padding:.4rem .6rem;
-  border:1px dashed rgba(245,245,245,.25);
+  color:var(--on-surface-variant); padding:.4rem .6rem;
+  border:1px dashed var(--outline-variant);
 }
-@media(max-width:900px){ .subhero-img{ display:none; } }
+@media(max-width:900px){
+  .subhero-img{ display:none; }
+  .subhero-bg{
+    background: linear-gradient(180deg, rgba(249,249,250,0.55), rgba(249,249,250,0.82));
+  }
+}
 .subhero-inner{ position:relative; z-index:2; }
 .subhero-crumb{
   display:flex; gap:.6rem; align-items:center;
   font-family:var(--mono); font-size:.625rem; letter-spacing:.22em; text-transform:uppercase;
-  color:rgba(245,245,245,.55); margin-bottom:1.5rem;
+  color:var(--on-surface-variant); margin-bottom:1.5rem;
 }
 .subhero-crumb a{ color:inherit; transition:color .2s; }
-.subhero-crumb a:hover{ color:var(--primary-container); }
-.subhero-crumb .sep{ color:rgba(245,245,245,.3); }
-.subhero-crumb .cur{ color:#F5F5F5; }
+.subhero-crumb a:hover{ color:var(--primary); }
+.subhero-crumb .sep{ color:var(--outline-variant); }
+.subhero-crumb .cur{ color:var(--on-background); }
 .subhero-tag{
   display:inline-flex; align-items:center; gap:.6rem;
   padding:.45rem .7rem;
-  background:rgba(245,245,245,.06);
-  border:1px solid rgba(245,245,245,.12);
+  background:rgba(26,28,29,.04);
+  border:1px solid rgba(26,28,29,.12);
   margin-bottom:1.5rem;
 }
-.subhero-tag .sq{ width:8px; height:8px; background:var(--primary-container); }
-.subhero-h1{ color:#F9F9FA; max-width:780px; margin-bottom:1.25rem; }
-.subhero-h1 .em{ font-style:italic; color:#E6D1BF; font-weight:500; }
-.subhero-sub{ color:rgba(245,245,245,.78); font-size:1.05rem; line-height:1.6; max-width:600px; }
+.subhero-tag .sq{ width:8px; height:8px; background:var(--primary); }
+.subhero-h1{ color:var(--on-background); max-width:780px; margin-bottom:1.25rem; }
+.subhero-h1 .em{ font-style:italic; color:var(--primary-ink); font-weight:500; }
+.subhero-sub{ color:var(--on-surface-variant); font-size:1.05rem; line-height:1.6; max-width:600px; }
 
 /* SECTIONS */
 section{ position:relative; }
@@ -886,11 +896,11 @@ section{ position:relative; }
 .scroll-ind{
   position:absolute; bottom:1.5rem; left:50%; transform:translateX(-50%); z-index:3;
   display:flex; flex-direction:column; align-items:center; gap:.6rem;
-  color:rgba(245,245,245,.55); font-family:var(--mono); font-size:.625rem; letter-spacing:.25em; text-transform:uppercase;
+  color:var(--on-surface-variant); font-family:var(--mono); font-size:.625rem; letter-spacing:.25em; text-transform:uppercase;
   pointer-events:none;
 }
-.scroll-ind .line{ width:1px; height:42px; background:linear-gradient(to bottom, transparent, rgba(245,245,245,.6)); position:relative; }
-.scroll-ind .line::after{ content:""; position:absolute; top:0; left:-2px; width:5px; height:16px; background:var(--primary-container); animation: scrollRun 2.4s var(--ease) infinite; }
+.scroll-ind .line{ width:1px; height:42px; background:linear-gradient(to bottom, transparent, var(--outline-variant)); position:relative; }
+.scroll-ind .line::after{ content:""; position:absolute; top:0; left:-2px; width:5px; height:16px; background:var(--primary); animation: scrollRun 2.4s var(--ease) infinite; }
 @keyframes scrollRun{ 0%{ top:-10%; opacity:0;} 30%{opacity:1;} 90%{opacity:.2;} 100%{ top:100%; opacity:0;} }
 
 /* ============ ABOUT SECTION (SHARED) ============ */

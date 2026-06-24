@@ -16,37 +16,40 @@
    ============================================================ */
 
 /* HERO CARROSSEL */
-.hero-v2{ position:relative; min-height:clamp(640px,92vh,940px); background:var(--ink-dark); overflow:hidden; display:flex; align-items:center; }
+.hero-v2{ position:relative; min-height:clamp(640px,92vh,940px); background:var(--surface); overflow:hidden; display:flex; align-items:center; }
 .hero-slides{ position:absolute; inset:0; }
 .hero-slide{ position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transform:scale(1.06); transition:opacity 1.2s var(--ease), transform 7s linear; }
 .hero-slide.active{ opacity:1; transform:scale(1); }
-.hero-scrim{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,9,10,.86) 0%, rgba(8,9,10,.62) 45%, rgba(8,9,10,.30) 100%); }
-.hero-scrim::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(8,9,10,.55), transparent 35%); }
+.hero-scrim{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(249,249,250,0.82) 0%, rgba(249,249,250,0.65) 45%, rgba(249,249,250,0.1) 100%); }
+.hero-scrim::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(249,249,250,0.5), transparent 35%); }
 .hero-inner{ position:relative; z-index:2; width:100%; padding-top:120px; padding-bottom:120px; }
-.hero-eyebrow{ display:inline-flex; align-items:center; gap:.6rem; color:rgba(245,245,245,.8); margin-bottom:1.5rem; }
-.hero-eyebrow .sq{ width:8px; height:8px; background:var(--primary-container); }
-.hero-h1{ color:#F9F9FA; max-width:980px; margin-bottom:1.75rem; font-size: 3.75rem; }
-.hero-h1 .em{ font-style:italic; color:#E6D1BF; font-weight:500; }
-.hero-sub{ color:rgba(245,245,245,.78); font-size:1.08rem; line-height:1.6; max-width:560px; margin-bottom:2.25rem; }
+.hero-eyebrow{ display:inline-flex; align-items:center; gap:.6rem; color:var(--on-surface-variant); margin-bottom:1.5rem; }
+.hero-eyebrow .sq{ width:8px; height:8px; background:var(--primary); }
+.hero-h1{ color:var(--on-background); max-width:980px; margin-bottom:1.75rem; font-size: 3.75rem; }
+.hero-h1 .em{ font-style:italic; color:var(--primary-ink); font-weight:500; }
+.hero-sub{ color:var(--on-surface-variant); font-size:1.08rem; line-height:1.6; max-width:560px; margin-bottom:2.25rem; }
 .hero-ctas{ display:flex; gap:1rem; flex-wrap:wrap; }
 .btn-ghost{
   display:inline-flex; align-items:center; gap:.6rem;
-  padding:.95rem 1.5rem; border:1px solid rgba(245,245,245,.32); color:#F5F5F5;
+  padding:.95rem 1.5rem; border:1px solid rgba(26,28,29,.25); color:var(--on-background);
   font-family:var(--sans); font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
   border-radius:var(--radius-sm); transition:background .25s var(--ease), border-color .25s var(--ease);
 }
-.btn-ghost:hover{ background:rgba(245,245,245,.08); border-color:rgba(245,245,245,.6); }
+.btn-ghost:hover{ background:rgba(26,28,29,.05); border-color:rgba(26,28,29,.5); }
 .hero-arrow{
   position:absolute; top:50%; transform:translateY(-50%); z-index:3;
   width:48px; height:48px; display:flex; align-items:center; justify-content:center;
-  color:#F5F5F5; opacity:.6; transition:opacity .25s; cursor:pointer;
+  color:var(--on-background); opacity:.6; transition:opacity .25s; cursor:pointer;
 }
 .hero-arrow:hover{ opacity:1; }
 .hero-arrow.prev{ left:18px; } .hero-arrow.next{ right:18px; }
 .hero-dots{ position:absolute; bottom:36px; left:50%; transform:translateX(-50%); z-index:3; display:flex; gap:10px; }
-.hero-dot{ width:8px; height:8px; border-radius:1px; background:rgba(245,245,245,.35); transition:all .3s var(--ease); cursor:pointer; }
-.hero-dot.active{ width:26px; background:#F5F5F5; }
-@media(max-width:760px){ .hero-scrim{ background:linear-gradient(180deg, rgba(8,9,10,.6), rgba(8,9,10,.82)); } }
+.hero-dot{ width:8px; height:8px; border-radius:1px; background:rgba(26,28,29,.25); transition:all .3s var(--ease); cursor:pointer; }
+.hero-dot.active{ width:26px; background:var(--on-background); }
+@media(max-width:760px){
+  .hero-scrim{ background:linear-gradient(180deg, rgba(249,249,250,0.55), rgba(249,249,250,0.82)); }
+  .hero-h1{ font-size: 2.5rem; }
+}
 
 /* TRUST STRIP */
 .htrust{ background:var(--surface-container-low); border-top:1px solid var(--outline-variant); border-bottom:1px solid var(--outline-variant); }
