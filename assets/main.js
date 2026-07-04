@@ -328,6 +328,7 @@
     if (!window.gsap || !window.ScrollTrigger) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true }); // evita re-pin/pulos qdo a barra de endereço do celular esconde/aparece
 
     // ---- Smooth scroll (Lenis) integrado ao ScrollTrigger ----
     if (window.Lenis){
@@ -363,15 +364,95 @@
         scrollTrigger: { trigger: el, start: 'top 84%', toggleActions: TA } });
     });
 
-    // Bandas — imagem sobe, painel desliza do lado oposto (image-forward)
+    // Bandas — efeito "cover → split": a imagem cobre 100% da seção com o
+    // título centralizado sobre um scrim (como na Hero); ao rolar, a seção
+    // se divide e a imagem recolhe para a posição dela (esq/dir no desktop,
+    // topo no mobile empilhado). Scrub = reversível ao subir/descer.
+    var isMobile = window.matchMedia('(max-width: 900px)').matches;
     gsap.utils.toArray('.pband, .sc-band').forEach(function(band){
       var img = band.querySelector('.pband-img, .sc-img');
       var panel = band.querySelector('.pband-panel, .sc-panel');
       var isRev = band.classList.contains('reverse');
-      if (img) gsap.from(img, { y: 34, opacity: 0, duration: 1.1, ease: EASE,
-        scrollTrigger: { trigger: band, start: 'top 80%', toggleActions: TA } });
-      if (panel) gsap.from(panel, { x: isRev ? -52 : 52, opacity: 0, duration: 1, ease: EASE,
-        scrollTrigger: { trigger: band, start: 'top 80%', toggleActions: TA } });
+
+      if (!img || !panel){
+        // Fallback: reveal simples
+        if (img) gsap.from(img, { y: 34, opacity: 0, duration: 1.1, ease: EASE,
+          scrollTrigger: { trigger: band, start: 'top 80%', toggleActions: TA } });
+        if (panel) gsap.from(panel, { x: isRev ? -52 : 52, opacity: 0, duration: 1, ease: EASE,
+          scrollTrigger: { trigger: band, start: 'top 80%', toggleActions: TA } });
+        return;
+      }
+
+      // --- monta o cover dinamicamente (sem tocar no HTML) ---
+      var cover = document.createElement('div');
+      cover.className = 'band-cover';
+      var srcImg = img.querySelector('img');
+      if (srcImg && srcImg.getAttribute('src')){
+        var ci = document.createElement('img');
+        ci.src = srcImg.getAttribute('src');
+        ci.alt = '';
+        cover.appendChild(ci);
+      } else {
+        var fill = document.createElement('div');
+        fill.className = 'bc-fill';
+        cover.appendChild(fill);
+      }
+      var scrim = document.createElement('div');
+      scrim.className = 'bc-scrim';
+      cover.appendChild(scrim);
+
+      var cap = document.createElement('div');
+      cap.className = 'bc-caption';
+      var numEl = band.querySelector('.pband-num, .sc-num');
+      var titleEl = band.querySelector('.pband-content h3, .sc-content h3');
+      var descEl = band.querySelector('.pband-content > p, .sc-content > p');
+      cap.innerHTML =
+        (numEl ? '<div class="k">' + numEl.textContent + '</div>' : '') +
+        (titleEl ? '<div class="t">' + titleEl.innerHTML + '</div>' : '') +
+        (descEl ? '<p class="d">' + descEl.textContent + '</p>' : '');
+      cover.appendChild(cap);
+
+      if (getComputedStyle(band).position === 'static') band.style.position = 'relative';
+      band.appendChild(cover);
+      gsap.set(cover, { clipPath: 'inset(0px 0px 0px 0px)' });
+
+      var content = panel.querySelector('.pband-content, .sc-content') || panel;
+
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: band,
+          start: 'top top',
+          end: isMobile ? '+=100%' : '+=130%',   // pin mais curto no mobile
+          pin: true,
+          scrub: isMobile ? 0.8 : 1.2,           // amortecimento mais leve no touch
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // Entrada do conteúdo: lateral no desktop (colunas), vertical no mobile (empilhado)
+      var contentFrom = isMobile ? { opacity: 0, y: 34 } : { opacity: 0, x: isRev ? -40 : 40 };
+      var contentTo   = isMobile ? { opacity: 1, y: 0, duration: .38, ease: 'power1.out', immediateRender: true }
+                                 : { opacity: 1, x: 0, duration: .38, ease: 'power1.out', immediateRender: true };
+
+      tl.to(cap,   { opacity: 0, y: -30, duration: .34, ease: 'power1.out' }, 0)
+        .to(scrim, { opacity: 0, duration: .55, ease: 'power1.inOut' }, .06)
+        .to(cover, {
+          clipPath: function(){
+            // Mede a posição real da imagem dentro da banda e recolhe o cover
+            // até ela — funciona no desktop (colunas) e no mobile (empilhado).
+            var br = band.getBoundingClientRect();
+            var ir = img.getBoundingClientRect();
+            var t = Math.max(0, Math.round(ir.top - br.top));
+            var r = Math.max(0, Math.round(br.right - ir.right));
+            var b = Math.max(0, Math.round(br.bottom - ir.bottom));
+            var l = Math.max(0, Math.round(ir.left - br.left));
+            return 'inset(' + t + 'px ' + r + 'px ' + b + 'px ' + l + 'px)';
+          },
+          duration: .66, ease: 'power2.inOut'   // divisão acelera e desacelera suavemente
+        }, .12)
+        .fromTo(content, contentFrom, contentTo, .5)
+        .to(cover, { opacity: 0, duration: .16, ease: 'power1.inOut' }, .84);
     });
 
     // Imagens de destaque (flagship/sobre/intro) — fade-rise suave
@@ -387,7 +468,7 @@
     });
 
     // Grades com stagger (cards, amostras, features, números...)
-    [['.pband-features', 'li'], ['.related-grid', '.related-card'], ['.swatches-grid', '.swatch-item'],
+    [['.related-grid', '.related-card'], ['.swatches-grid', '.swatch-item'],
      ['.tech-grid', '.tech-card'], ['.series-grid', '.series-card'], ['.stats .row', '.stat'],
      ['.about-stats', '.stat'], ['.cs-grid', '.pcard'], ['.marquee', '.li'], ['.htrust .row', '.item'],
      ['.contact-form', '.form-row']

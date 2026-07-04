@@ -1,1 +1,5 @@
 .imgtmp/
+.claude/
+.vscode/
+*.bak
+docs/

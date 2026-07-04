@@ -579,7 +579,7 @@ section{ position:relative; }
 
 /* PRODUCT BANDS — séries image-forward (fiel ao layout V2 do Figma) */
 .pbands{ background:var(--surface-container-lowest); }
-.pband{ display:grid; grid-template-columns:1.34fr 1fr; min-height:100vh; }
+.pband{ display:grid; grid-template-columns:1.34fr 1fr; height:100vh; min-height:100vh; max-height:100vh; }
 .pband.reverse{ grid-template-columns:1fr 1.34fr; } /* imagem sempre na coluna grande (mesma largura), só troca de lado */
 .pband.reverse .pband-img{ order:2; }
 .pband.reverse .pband-panel{ order:1; }
@@ -596,10 +596,32 @@ section{ position:relative; }
 .pband-features li{ display:flex; gap:.6rem; align-items:flex-start; font-size:.9rem; color:var(--on-background); line-height:1.45; }
 .pband-features .chk{ color:var(--primary); flex-shrink:0; margin-top:3px; }
 @media(max-width:900px){
-  .pband, .pband.reverse{ grid-template-columns:1fr; min-height:0; }
+  .pband, .pband.reverse{ grid-template-columns:1fr; min-height:0; height:auto; max-height:none; }
   .pband.reverse .pband-img{ order:1; }
   .pband.reverse .pband-panel{ order:2; }
   .pband-img{ min-height:320px; }
+}
+
+/* BAND COVER — efeito scroll: imagem cobre 100% da seção → divide p/ o layout atual.
+   Elemento criado via JS (main.js/initMotion); nada muda nos HTMLs. */
+.band-cover{ position:absolute; inset:0; z-index:6; overflow:hidden; will-change:clip-path,opacity; }
+.band-cover > img{ width:100%; height:100%; object-fit:cover; display:block; }
+.band-cover .bc-fill{ position:absolute; inset:0; background:linear-gradient(135deg,#C9C7C2,#75716A); }
+.band-cover .bc-scrim{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(249,249,250,.8) 0%, rgba(249,249,250,.58) 50%, rgba(249,249,250,.8) 100%); }
+.band-cover .bc-scrim::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(249,249,250,.5), transparent 35%); }
+.band-cover .bc-caption{
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; color:var(--on-background); padding:0 10%;
+}
+.band-cover .bc-caption .k{ font-family:var(--mono); font-size:.6875rem; letter-spacing:.22em; text-transform:uppercase; color:var(--primary-ink); margin-bottom:1rem; }
+.band-cover .bc-caption .t{ font-family:var(--serif); font-weight:500; font-size:clamp(2.2rem,4vw,3.4rem); letter-spacing:-.02em; line-height:1.05; color:var(--on-background); }
+.band-cover .bc-caption .t em{ font-style:italic; color:var(--primary-ink); }
+.band-cover .bc-caption .d{ margin-top:1rem; max-width:560px; color:var(--on-surface-variant); font-size:1rem; line-height:1.6; }
+@media(max-width:900px){
+  .band-cover .bc-caption{ padding:0 7%; }
+  .band-cover .bc-caption .t{ font-size:clamp(1.7rem,7vw,2.4rem); }
+  .band-cover .bc-caption .d{ font-size:.92rem; }
 }
 
 /* SINGLE PRODUCT BLOCK (used on simpler pages) */

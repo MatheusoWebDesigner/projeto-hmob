@@ -64,7 +64,7 @@
 .sc-kicker .sq{ width:8px; height:8px; background:var(--primary-container); }
 .sc-intro h2{ max-width:900px; color:var(--on-background); }
 .sc-intro h2 em{ font-style:italic; color:var(--primary-ink); }
-.sc-band{ display:grid; grid-template-columns:1.34fr 1fr; min-height:100vh; }
+.sc-band{ display:grid; grid-template-columns:1.34fr 1fr; height:100vh; min-height:100vh; max-height:100vh; }
 .sc-band.reverse{ grid-template-columns:1fr 1.34fr; } /* imagem sempre na coluna grande, só troca de lado */
 .sc-band.reverse .sc-img{ order:2; } .sc-band.reverse .sc-panel{ order:1; }
 .sc-img{ position:relative; overflow:hidden; background:linear-gradient(135deg,#C9C7C2,#75716A); }
@@ -78,7 +78,7 @@
 .sc-link{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--sans); font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--primary-ink); transition:gap .25s var(--ease); }
 .sc-link:hover{ gap:.85rem; }
 .sc-cta{ display:flex; justify-content:center; padding:var(--space-2xl) 0 var(--space-3xl); }
-@media(max-width:900px){ .sc-band, .sc-band.reverse{ grid-template-columns:1fr; min-height:0; } .sc-band.reverse .sc-img{ order:1; } .sc-band.reverse .sc-panel{ order:2; } .sc-img{ min-height:340px; } }
+@media(max-width:900px){ .sc-band, .sc-band.reverse{ grid-template-columns:1fr; min-height:0; height:auto; max-height:none; } .sc-band.reverse .sc-img{ order:1; } .sc-band.reverse .sc-panel{ order:2; } .sc-img{ min-height:340px; } }
 
 /* FLAGSHIP */
 .flagship-v2{ background:var(--surface); }
@@ -359,9 +359,9 @@
       <div class="ab-img"><img src="assets/about-workspace.png" alt="Operação Hmob"></div>
       <div class="ab-text">
         <div class="ab-kicker"><span class="sq"></span><span class="label-sm">Sobre a Hmob</span></div>
-        <h2 class="display-md">Mobiliário é <em>arquitetura habitada</em>. Tratamos como tal.</h2>
-        <p style="margin-bottom:1rem;">Desde 2009 a Hmob desenha, fabrica e instala mobiliário corporativo para empresas, escritórios de arquitetura e construtoras em todo o Brasil. Operação verticalizada — do esboço técnico à última peça parafusada no lugar.</p>
-        <p style="margin-bottom:1.75rem;">Trabalhamos com prazos que se cumprem, materiais que se sustentam e padrões que resistem à auditoria mais exigente. Não porque seja diferencial — porque é o mínimo que um móvel corporativo deveria entregar.</p>
+        <h2 class="display-md" style="font-size: 3rem !important;">Mobiliário é <em>arquitetura habitada</em>. Tratamos como tal.</h2>
+        <p style="margin-bottom:1rem;">Desde 2009 a Hmob desenha, fabrica e instala mobiliário corporativo para empresas, escritórios de arquitetura e construtoras em todo o Brasil. Operação verticalizada do esboço técnico à última peça parafusada no lugar.</p>
+        <p style="margin-bottom:1.75rem;">Trabalhamos com prazos que se cumprem, materiais que se sustentam e padrões que resistem à auditoria mais exigente. Não porque seja diferencial porque é o mínimo que um móvel corporativo deveria entregar.</p>
         <a class="ab-link" href="sobre.html">Sobre a empresa <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
     </div>
