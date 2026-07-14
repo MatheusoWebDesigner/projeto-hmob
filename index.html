@@ -49,7 +49,11 @@
 @media(max-width:760px){
   .hero-scrim{ background:linear-gradient(180deg, rgba(249,249,250,0.55), rgba(249,249,250,0.82)); }
   .hero-h1{ font-size: 2.5rem; }
+  .hero-dots{ gap: 6px; bottom: 20px; width: 90%; justify-content: center; flex-wrap: wrap; }
+  .hero-dot{ width: 6px; height: 6px; }
+  .hero-dot.active{ width: 18px; }
 }
+
 
 /* TRUST STRIP */
 .htrust{ background:var(--surface-container-low); border-top:1px solid var(--outline-variant); border-bottom:1px solid var(--outline-variant); }
@@ -149,16 +153,32 @@
 <!-- 01 · HERO CARROSSEL -->
 <section class="hero-v2" id="hero">
   <div class="hero-slides" id="heroSlides">
-    <div class="hero-slide active" style="background-image:url('assets/modern_office_hero.png');"></div>
-    <div class="hero-slide" style="background-image:url('uploads/hero-images/CAPA arquibancada 03.png');"></div>
-    <div class="hero-slide" style="background-image:url('uploads/hero-images/hero_reunioes_1777942019774.png');"></div>
-    <div class="hero-slide" style="background-image:url('assets/cat-cadeiras.png');"></div>
+    <div class="hero-slide active" style="background-image:url('uploads/hero-images/pag-inicial.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/conheca-hmob-17.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-arquibancada.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-arquibancada-1.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-biombo.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-cabine-dupla.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-cabine-ferrari-plataforma.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-deslizante-ropeiro.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-deslizante.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-dupla.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-flipchart.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-locker-mdf.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-locker-mdf-1.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-mesa.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-mobiliario.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-mobiliciario.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-plataforma.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-puff.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/hmob-trevvo.webp');"></div>
+    <div class="hero-slide" style="background-image:url('uploads/hero-images/homb-estante.webp');"></div>
   </div>
   <div class="hero-scrim"></div>
   <div class="container rail-pad hero-inner">
     <div class="hero-eyebrow"><span class="sq"></span><span class="label-sm">Mobiliário corporativo · desde 2009</span></div>
-    <h1 class="display-lg hero-h1">Mobiliário corporativo inteligente, do projeto à <span class="em">última peça instalada</span>.</h1>
-    <p class="hero-sub">Há mais de duas décadas equipando escritórios em todo o Brasil. Sem subcontrato, sem terceirização, sem prazo se mexendo. O móvel sai da nossa fábrica e chega ao seu escritório pelas mãos da mesma equipe que o desenhou.</p>
+    <h1 class="display-lg hero-h1">Mobiliário inteligente, do projeto à <span class="em">instalação final</span>.</h1>
+    <p class="hero-sub">Equipamos escritórios em todo o Brasil desde 2009. Sem intermediários ou terceirização: controlamos desde a fabricação até a montagem final com equipe própria.</p>
     <div class="hero-ctas">
       <a href="#showcase" class="cta"><span>Conheça o catálogo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       <a href="contato.html" class="btn-ghost"><span>Falar com um especialista</span></a>
@@ -171,6 +191,22 @@
     <span class="hero-dot" data-i="1"></span>
     <span class="hero-dot" data-i="2"></span>
     <span class="hero-dot" data-i="3"></span>
+    <span class="hero-dot" data-i="4"></span>
+    <span class="hero-dot" data-i="5"></span>
+    <span class="hero-dot" data-i="6"></span>
+    <span class="hero-dot" data-i="7"></span>
+    <span class="hero-dot" data-i="8"></span>
+    <span class="hero-dot" data-i="9"></span>
+    <span class="hero-dot" data-i="10"></span>
+    <span class="hero-dot" data-i="11"></span>
+    <span class="hero-dot" data-i="12"></span>
+    <span class="hero-dot" data-i="13"></span>
+    <span class="hero-dot" data-i="14"></span>
+    <span class="hero-dot" data-i="15"></span>
+    <span class="hero-dot" data-i="16"></span>
+    <span class="hero-dot" data-i="17"></span>
+    <span class="hero-dot" data-i="18"></span>
+    <span class="hero-dot" data-i="19"></span>
   </div>
 </section>
 
@@ -190,7 +226,7 @@
 <section class="showcase" id="showcase">
   <div class="container rail-pad sc-intro">
     <div class="sc-kicker"><span class="sq"></span><span class="label-sm">Nosso Portfólio</span></div>
-    <h2 class="display-md">Catálogo desenhado em volta da forma como o <em>trabalho acontece</em>.</h2>
+    <h2 class="display-md">Mobiliário projetado para a forma como o <em>trabalho acontece</em>.</h2>
   </div>
 
   <!-- Banda 01 -->
@@ -199,7 +235,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 01 · Acústica</div>
       <h3>Cabines Acústicas</h3>
-      <p>Quatro paredes para a reunião que não pode vazar, a ligação que não pode falhar e o momento de foco que não pode esperar uma sala se desocupar.</p>
+      <p>Privacidade acústica e foco absoluto para reuniões, chamadas ou concentração individual no escritório.</p>
       <a class="sc-link" href="cabines.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -210,7 +246,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 02 · Sistemas</div>
       <h3>Mobiliário Corporativo</h3>
-      <p>Mesas, estações, recepções, plataformas, armários e gaveteiros pensados para a ergonomia de quem passa oito horas sentado e a estética de quem precisa impressionar em cinco minutos de visita.</p>
+      <p>Mesas, estações de trabalho e arquivos projetados para aliar ergonomia diária e alto padrão estético corporativo.</p>
       <a class="sc-link" href="mobiliario-corporativo.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -221,7 +257,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 03 · Integração</div>
       <h3>Mobiliário Colaborativo</h3>
-      <p>Arquibancadas, sofás e mesas dinâmicas para convivência. Onde a cultura da empresa se encontra fora da mesa.</p>
+      <p>Arquibancadas, sofás e módulos dinâmicos que estimulam a integração espontânea e a cultura da empresa.</p>
       <a class="sc-link" href="mobiliario-colaborativo.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -232,7 +268,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 04 · Organização</div>
       <h3>Estantes</h3>
-      <p>Sistemas modulares e configuráveis. Organização que acompanha o ritmo do escritório.</p>
+      <p>Sistemas modulares configuráveis que organizam e se adaptam dinamicamente ao layout do seu espaço.</p>
       <a class="sc-link" href="estantes.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -243,7 +279,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 05 · Ergonomia</div>
       <h3>Cadeiras &amp; Assentos</h3>
-      <p>Diretivas, operativas e colaborativas. Ergonomia certificada para as oito horas que importam.</p>
+      <p>Assentos diretivos, operativos e colaborativos com ergonomia certificada para alto desempenho diário.</p>
       <a class="sc-link" href="diretivas.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -254,7 +290,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 06 · Segurança</div>
       <h3>Lockers</h3>
-      <p>Segurança e organização para escritórios em freeaddress, vestiários industriais e áreas técnicas. Aço ou madeira com travamento eletrônico.</p>
+      <p>Armários inteligentes em aço ou madeira com travamento eletrônico para escritórios híbridos e áreas técnicas.</p>
       <a class="sc-link" href="lockers-em-aco.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -265,7 +301,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 07 · Arquivamento</div>
       <h3>Armários Deslizantes</h3>
-      <p>O que ocupa três salas em arquivo convencional cabe numa só — sem perder acesso, sem perder ordem. Ideal para documentos, TI, almoxarifado ou biblioteca.</p>
+      <p>Alta densidade de armazenagem para triplicar a capacidade de arquivos, almoxarifados e acervos de TI.</p>
       <a class="sc-link" href="armarios-deslizantes.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -276,7 +312,7 @@
     <div class="sc-panel"><div class="sc-content">
       <div class="sc-num">/ 08 · Acervos</div>
       <h3>Trainéis</h3>
-      <p>Sistemas deslizantes para acervos. Proteção, conservação técnica e otimização sob trilhos.</p>
+      <p>Sistemas modulares sob trilhos voltados para a guarda, proteção e conservação técnica de acervos.</p>
       <a class="sc-link" href="traineis.html">Conheça <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div></div>
   </div>
@@ -290,7 +326,7 @@
 <section class="flagship-v2" id="flagship">
   <div class="container rail-pad fl-intro">
     <div class="sc-kicker"><span class="sq"></span><span class="label-sm">Em destaque</span></div>
-    <h2 class="display-md">A engenharia por trás de <em>oito horas sentado</em>.</h2>
+    <h2 class="display-md">Ergonomia e engenharia para <em>alta performance</em>.</h2>
   </div>
   <div class="fl-stage">
     <img class="fl-bg" src="uploads/hero-images/hero_mesas_1777942034569.png" alt="Linha flagship Hmob | Série 200">
@@ -300,7 +336,7 @@
         <div class="fl-eyebrow"><span class="ln"></span>Produto principal · 01</div>
         <h3 class="fl-title">H | Série 200</h3>
         <p class="fl-desc" style="margin-bottom:0.75rem; font-weight:500; color:var(--primary-container)">diretiva ergonômica de longa permanência</p>
-        <p class="fl-desc">Desenvolvida para o profissional que mede o dia em horas de cadeira, não em minutos. Ajuste lombar dinâmico, mecanismo sincronizado em quatro pontos, encosto em malha técnica que respira tanto quanto quem a usa.</p>
+        <p class="fl-desc">Projetada para jornadas longas. Possui ajuste lombar dinâmico, mecanismo relax sincronizado e encosto em malha técnica respirável.</p>
         <div class="fl-specs">
           <div class="fl-spec"><div class="k">Mecanismo</div><div class="v">Synchro com 4 travas</div></div>
           <div class="fl-spec"><div class="k">Norma</div><div class="v">ABNT NBR 13962</div></div>
@@ -317,13 +353,13 @@
 <section class="cases">
   <div class="container rail-pad">
     <div class="cs-kicker"><span class="sq"></span><span class="label-sm">Quem confia na Hmob</span></div>
-    <h2 class="display-md">Os ambientes onde nosso trabalho está em uso hoje.</h2>
+    <h2 class="display-md">Projetos entregues em todo o Brasil.</h2>
     <div class="cs-grid">
       <article class="pcard"><img src="assets/case-01.png" alt="Sede corporativa">
-        <div class="meta"><div class="ec">Projeto entregue · São Paulo</div><h4>Sede corporativa · 14 andares · 2.100 postos de trabalho</h4></div>
+        <div class="meta"><div class="ec">Projeto entregue · São Paulo</div><h4>Sede corporativa: 14 andares e 2.100 postos instalados.</h4></div>
       </article>
       <article class="pcard"><img src="assets/case-02.png" alt="Hub operacional">
-        <div class="meta"><div class="ec">Projeto entregue · Operação nacional</div><h4>Hub operacional multissite · 6 cidades</h4></div>
+        <div class="meta"><div class="ec">Projeto entregue · Operação nacional</div><h4>Hub operacional multissite integrado em 6 cidades.</h4></div>
       </article>
     </div>
     <div class="mono" style="color:var(--on-surface-variant); margin-top:var(--space-xl); margin-bottom:var(--space-sm); text-transform:uppercase; letter-spacing:0.08em;">Algumas das empresas que ocupam ambientes Hmob:</div>
@@ -359,9 +395,9 @@
       <div class="ab-img"><img src="assets/about-workspace.png" alt="Operação Hmob"></div>
       <div class="ab-text">
         <div class="ab-kicker"><span class="sq"></span><span class="label-sm">Sobre a Hmob</span></div>
-        <h2 class="display-md" style="font-size: 3rem !important;">Mobiliário é <em>arquitetura habitada</em>. Tratamos como tal.</h2>
-        <p style="margin-bottom:1rem;">Desde 2009 a Hmob desenha, fabrica e instala mobiliário corporativo para empresas, escritórios de arquitetura e construtoras em todo o Brasil. Operação verticalizada do esboço técnico à última peça parafusada no lugar.</p>
-        <p style="margin-bottom:1.75rem;">Trabalhamos com prazos que se cumprem, materiais que se sustentam e padrões que resistem à auditoria mais exigente. Não porque seja diferencial porque é o mínimo que um móvel corporativo deveria entregar.</p>
+        <h2 class="display-md" style="font-size: 3rem !important;">Mobiliário corporativo como <em>arquitetura funcional</em>.</h2>
+        <p style="margin-bottom:1rem;">Desde 2009, criamos, fabricamos e instalamos mobiliário corporativo em todo o Brasil. Controlamos todas as etapas da cadeia, do desenho inicial ao encaixe final.</p>
+        <p style="margin-bottom:1.75rem;">Garantimos cumprimento rigoroso de prazos e materiais de alta resistência que atendem às normas mais exigentes de engenharia e sustentabilidade.</p>
         <a class="ab-link" href="sobre.html">Sobre a empresa <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
     </div>
@@ -374,10 +410,10 @@
     <div class="cta-band-grid">
       <div>
         <div class="mono" style="color:rgba(245,245,245,.55);margin-bottom:.75rem;">Começar um projeto</div>
-        <h2>Comece pelo briefing. O resto é <em>com a gente</em>.</h2>
+        <h2>Envie seu briefing. Nós cuidamos do <em>resto</em>.</h2>
       </div>
       <div class="cta-actions">
-        <span class="mono" style="color:rgba(245,245,245,.55); margin-bottom:0.5rem;">Atendimento técnico para empresas, escritórios de arquitetura e construtoras.</span>
+        <span class="mono" style="color:rgba(245,245,245,.55); margin-bottom:0.5rem;">Suporte completo para empresas, arquitetos e construtoras.</span>
         <a href="contato.html" class="cta" style="padding:1rem 1.25rem; width:100%; justify-content:space-between;">
           <span>Solicitar catálogo técnico</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
