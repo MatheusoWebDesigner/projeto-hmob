@@ -326,24 +326,29 @@
       window.addEventListener('resize', updateArrows);
       updateArrows();
 
-      // arrastar com o mouse (touch usa o scroll nativo)
-      let down = false, startX = 0, startLeft = 0, moved = false;
+      // arrastar com o mouse (touch usa o scroll nativo). O "drag" só começa
+      // DEPOIS que o mouse se move além do limiar — assim um clique simples é
+      // preservado e o card <a> navega para a categoria.
+      let down = false, dragging = false, startX = 0, startLeft = 0, moved = false, pid = null;
       rail.addEventListener('pointerdown', (e) => {
         if (e.pointerType === 'touch') return;
-        down = true; moved = false; startX = e.clientX; startLeft = rail.scrollLeft;
-        rail.classList.add('dragging');
-        try { rail.setPointerCapture(e.pointerId); } catch (_) {}
+        down = true; dragging = false; moved = false; startX = e.clientX; startLeft = rail.scrollLeft; pid = e.pointerId;
       });
       rail.addEventListener('pointermove', (e) => {
         if (!down) return;
         const dx = e.clientX - startX;
-        if (Math.abs(dx) > 6) moved = true;
-        rail.scrollLeft = startLeft - dx;
+        if (!dragging && Math.abs(dx) > 6){
+          dragging = true; moved = true;
+          rail.classList.add('dragging');
+          try { rail.setPointerCapture(pid); } catch (_) {}
+        }
+        if (dragging) rail.scrollLeft = startLeft - dx;
       });
-      function endDrag(e){
+      function endDrag(){
         if (!down) return;
-        down = false; rail.classList.remove('dragging');
-        try { rail.releasePointerCapture(e.pointerId); } catch (_) {}
+        down = false;
+        if (dragging){ rail.classList.remove('dragging'); try { rail.releasePointerCapture(pid); } catch (_) {} }
+        dragging = false;
         updateArrows();
       }
       rail.addEventListener('pointerup', endDrag);
@@ -352,6 +357,85 @@
       track.addEventListener('click', (e) => {
         if (moved){ e.preventDefault(); e.stopPropagation(); moved = false; }
       }, true);
+    })();
+
+    // GALERIA DE PRODUTO — botão "Ver mais imagens" + lightbox (popup)
+    (function initProductGallery(){
+      var bands = Array.prototype.slice.call(document.querySelectorAll('.pband'));
+      if (!bands.length) return;
+
+      // imagens da banda: cover (ambientada) + foto (fundo branco) + extras (data-gallery, separadas por | , ou quebra de linha)
+      function imagesOf(band){
+        var list = [];
+        var cover = band.getAttribute('data-cover-src'); if (cover) list.push(cover);
+        var pi = band.querySelector('.pband-img img'); if (pi && pi.getAttribute('src')) list.push(pi.getAttribute('src'));
+        var extra = band.getAttribute('data-gallery');
+        if (extra) extra.split(/[|,\n]/).forEach(function(s){ s = s.trim(); if (s) list.push(s); });
+        return list.filter(function(v, i){ return v && list.indexOf(v) === i; });
+      }
+
+      // modal compartilhado (criado uma vez)
+      var modal = document.createElement('div');
+      modal.className = 'pgal-modal';
+      modal.innerHTML =
+        '<button class="pgal-close" type="button" aria-label="Fechar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+        '<div class="pgal-cap"></div>' +
+        '<button class="pgal-nav prev" type="button" aria-label="Anterior"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg></button>' +
+        '<div class="pgal-stage"><img class="pgal-img" alt=""></div>' +
+        '<button class="pgal-nav next" type="button" aria-label="Próxima"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>' +
+        '<div class="pgal-counter"></div>';
+      document.body.appendChild(modal);
+      var imgEl = modal.querySelector('.pgal-img'), capEl = modal.querySelector('.pgal-cap'), counterEl = modal.querySelector('.pgal-counter');
+      var btnPrev = modal.querySelector('.pgal-nav.prev'), btnNext = modal.querySelector('.pgal-nav.next'), btnClose = modal.querySelector('.pgal-close');
+      var current = [], idx = 0;
+
+      function render(){
+        if (!current.length) return;
+        idx = (idx + current.length) % current.length;
+        imgEl.classList.remove('ready');
+        imgEl.onload = function(){ imgEl.classList.add('ready'); };
+        imgEl.src = current[idx];
+        counterEl.textContent = (idx + 1) + ' / ' + current.length;
+        var multi = current.length > 1;
+        btnPrev.style.display = btnNext.style.display = counterEl.style.display = multi ? '' : 'none';
+      }
+      function openModal(imgs, cap){
+        current = imgs; idx = 0; capEl.textContent = cap || '';
+        render(); modal.classList.add('open');
+        document.documentElement.style.overflow = 'hidden';
+        if (window.__lenis) { try { window.__lenis.stop(); } catch(_){} }
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        document.documentElement.style.overflow = '';
+        if (window.__lenis) { try { window.__lenis.start(); } catch(_){} }
+      }
+      btnPrev.addEventListener('click', function(){ idx--; render(); });
+      btnNext.addEventListener('click', function(){ idx++; render(); });
+      btnClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e){
+        if (!modal.classList.contains('open')) return;
+        if (e.key === 'Escape') closeModal();
+        else if (e.key === 'ArrowLeft'){ idx--; render(); }
+        else if (e.key === 'ArrowRight'){ idx++; render(); }
+      });
+
+      // injeta o botão abaixo do texto de cada banda com imagens
+      bands.forEach(function(band){
+        var content = band.querySelector('.pband-content');
+        if (!content || content.querySelector('.pgal-btn')) return;
+        var imgs = imagesOf(band);
+        if (!imgs.length) return;
+        var nameEl = content.querySelector('h3');
+        var name = nameEl ? nameEl.textContent.trim() : '';
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'pgal-btn';
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Ver mais imagens</span>';
+        btn.addEventListener('click', function(){ openModal(imagesOf(band), name); });
+        content.appendChild(btn);
+      });
     })();
   }
 

@@ -117,7 +117,7 @@ img{ display:block; max-width:100%; }
   padding:0 clamp(calc(var(--rail) + 1rem), calc(var(--rail) + 3vw), calc(var(--rail) + 2.5rem));
   height:72px;
   display:flex; align-items:center; justify-content:space-between;
-  color: #d75a21;
+  color: #F9F9FA;
   transition: color .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease), border-color .35s var(--ease);
   border-bottom:1px solid transparent;
 }
@@ -631,6 +631,54 @@ section{ position:relative; }
   .band-cover .bc-caption{ padding:0 7%; }
   .band-cover .bc-caption .t{ font-size:clamp(1.5rem,6.2vw,2.1rem); }
   .band-cover .bc-caption .d{ font-size:.92rem; }
+}
+
+/* GALERIA DE PRODUTO — botão "Ver mais imagens" + lightbox (popup) */
+.pgal-btn{
+  display:inline-flex; align-items:center; gap:.6rem; margin-top:1.75rem;
+  padding:.8rem 1.25rem; border:1px solid var(--outline-variant);
+  background:transparent; color:var(--on-background); cursor:pointer;
+  font-family:var(--sans); font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  border-radius:var(--radius-sm); transition:background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+}
+.pgal-btn:hover{ background:var(--primary); border-color:var(--primary); color:#fff; }
+.pgal-btn svg{ flex-shrink:0; }
+.pgal-btn .n{ font-family:var(--mono); opacity:.6; }
+
+.pgal-modal{
+  position:fixed; inset:0; z-index:120; display:flex; align-items:center; justify-content:center;
+  background:rgba(8,9,10,.94); opacity:0; visibility:hidden; transition:opacity .3s var(--ease), visibility .3s var(--ease);
+}
+.pgal-modal.open{ opacity:1; visibility:visible; }
+.pgal-stage{ position:relative; width:min(1100px,92vw); height:min(80vh,820px); display:flex; align-items:center; justify-content:center; }
+.pgal-img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:var(--radius-sm); box-shadow:0 30px 80px rgba(0,0,0,.5); opacity:0; transition:opacity .25s var(--ease); }
+.pgal-img.ready{ opacity:1; }
+.pgal-nav{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  width:52px; height:52px; border-radius:50%; border:1px solid rgba(245,245,245,.25);
+  background:rgba(8,9,10,.4); color:#F9F9FA; display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:background .2s, border-color .2s;
+}
+.pgal-nav:hover{ background:rgba(245,245,245,.14); border-color:rgba(245,245,245,.6); }
+.pgal-nav.prev{ left:-8px; } .pgal-nav.next{ right:-8px; }
+.pgal-close{
+  position:absolute; top:1.4rem; right:1.6rem; z-index:3;
+  width:44px; height:44px; border-radius:50%; border:1px solid rgba(245,245,245,.25);
+  background:rgba(8,9,10,.4); color:#F9F9FA; display:flex; align-items:center; justify-content:center; cursor:pointer;
+  transition:background .2s, border-color .2s;
+}
+.pgal-close:hover{ background:rgba(245,245,245,.14); border-color:rgba(245,245,245,.6); }
+.pgal-counter{
+  position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%); z-index:3;
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.22em; color:rgba(245,245,245,.75);
+}
+.pgal-cap{
+  position:absolute; top:1.5rem; left:1.7rem; z-index:3;
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,245,245,.7);
+}
+@media(max-width:640px){
+  .pgal-nav{ width:42px; height:42px; } .pgal-nav.prev{ left:2px; } .pgal-nav.next{ right:2px; }
+  .pgal-stage{ width:94vw; height:74vh; }
 }
 
 /* SINGLE PRODUCT BLOCK (used on simpler pages) */
