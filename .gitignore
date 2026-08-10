@@ -3,3 +3,6 @@
 .vscode/
 *.bak
 docs/
+# fotos originais de produto (~208MB) — fonte para a galeria.
+# O site usa as versões otimizadas em uploads/produtos/galeria/
+uploads/produtos/PASTA FINAL FOTOS/
