@@ -18,8 +18,9 @@
 /* HERO CARROSSEL */
 .hero-v2{ position:relative; min-height:clamp(640px,92vh,940px); background:var(--surface); overflow:hidden; display:flex; align-items:center; }
 .hero-slides{ position:absolute; inset:0; }
-.hero-slide{ position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transform:scale(1.06); transition:opacity 1.2s var(--ease), transform 7s linear; }
-.hero-slide.active{ opacity:1; transform:scale(1); }
+/* entra no tamanho original (mostra mais o produto) e vai se APROXIMANDO devagar */
+.hero-slide{ position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transform:scale(1); transition:opacity 1.2s var(--ease), transform 7s linear; }
+.hero-slide.active{ opacity:1; transform:scale(1.06); }
 .hero-scrim{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,9,10,0.62) 0%, rgba(8,9,10,0.42) 45%, rgba(8,9,10,0.25) 100%); }
 .hero-scrim::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(8,9,10,0.42), transparent 40%); }
 .hero-inner{ position:relative; z-index:2; width:100%; padding-top:120px; padding-bottom:120px; transition: opacity 0.8s var(--ease), visibility 0.8s var(--ease); }
