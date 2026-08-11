@@ -39,6 +39,7 @@
 
   --container: 1280px;
   --rail: 56px;
+  --header-h: 72px;
 
   --serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -115,7 +116,7 @@ img{ display:block; max-width:100%; }
 .header{
   position:fixed; top:0; left:0; right:0; z-index:30;
   padding:0 clamp(calc(var(--rail) + 1rem), calc(var(--rail) + 3vw), calc(var(--rail) + 2.5rem));
-  height:72px;
+  height:var(--header-h);
   display:flex; align-items:center; justify-content:space-between;
   color: #F9F9FA;
   transition: color .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease), border-color .35s var(--ease);
@@ -870,6 +871,15 @@ section{ position:relative; }
 
 /* CONTACT FORM */
 .contact-section{ padding: var(--space-3xl) 0; background: var(--surface); }
+
+/* Páginas sem hero (ex.: contato): o header é fixo e transparente no topo, então
+   o menu ficaria ilegível sobre o fundo claro. A classe .force-solid-header (no
+   <body>) mantém a faixa escura do header desde o início — ela já ocupa toda a
+   largura da tela, em qualquer dispositivo — e o conteúdo começa abaixo dela. */
+body.force-solid-header .contact-section{ padding-top: calc(var(--space-3xl) + var(--header-h)); }
+@media(max-width:860px){
+  body.force-solid-header .contact-section{ padding-top: calc(var(--space-2xl) + var(--header-h)); }
+}
 .contact-grid{ display:grid; grid-template-columns: 5fr 7fr; gap: 4rem; align-items:start; }
 .contact-info h3{ font-family:var(--serif); font-weight:500; font-size:1.5rem; letter-spacing:-.02em; margin-bottom:1.25rem; }
 .contact-info p{ color:var(--on-surface-variant); font-size:1rem; line-height:1.65; margin-bottom:2rem; }

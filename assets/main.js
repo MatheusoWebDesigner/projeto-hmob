@@ -124,7 +124,9 @@
     // HEADER SCROLL
     const header = document.getElementById('header');
     if (header){
-      // Make header solid by default if page has class .force-solid-header (e.g. contact-only pages)
+      // Páginas sem hero (ex.: contato) marcam o body com .force-solid-header:
+      // o header ganha fundo escuro já no topo, senão o menu fica ilegível.
+      if (document.body.classList.contains('force-solid-header')) header.classList.add('solid');
       const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
       onScroll();
       window.addEventListener('scroll', onScroll, { passive:true });
