@@ -98,9 +98,9 @@
         <li><a href="armarios-deslizantes.html">Armários Deslizantes</a></li>
       </ul></div>
       <div class="col contact-col"><h5>Contato</h5>
-        <div class="ci"><div class="k">Comercial</div><div class="v">(11) 4705-9942</div></div>
+        <div class="ci"><div class="k">Comercial</div><div class="v">(11) 94167-6724</div></div>
         <div class="ci"><div class="k">E-mail</div><div class="v">comercial@hmob.com.br</div></div>
-        <div class="ci"><div class="k">Endereço</div><div class="v">São Paulo, SP</div></div>
+        <div class="ci"><div class="k">Endereço</div><div class="v">R. Inácio Pereira da Rocha, 141<br/>Pinheiros — São Paulo / SP</div></div>
         <div class="social">
           <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.4-1.1 2.5-2.5 2.5S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5zM.2 21h4.6V8H.2v13zm7.6-13h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7V21h-4.6v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H7.8V8z"/></svg></a>
           <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
