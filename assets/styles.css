@@ -466,7 +466,12 @@ img{ display:block; max-width:100%; }
   border:1px dashed var(--outline-variant);
 }
 @media(max-width:900px){
-  .subhero-img{ display:none; }
+  /* A foto da capa TAMBÉM aparece no mobile. Como o texto ocupa toda a largura
+     aqui, o escurecimento deixa de ser lateral e passa a ser vertical, para o
+     título seguir legível sobre a imagem. */
+  .subhero-img::before{
+    background: linear-gradient(180deg, rgba(8,9,10,0.45) 0%, rgba(8,9,10,0.62) 55%, rgba(8,9,10,0.78) 100%);
+  }
   .subhero-bg{
     background: linear-gradient(180deg, rgba(8,9,10,0.4), rgba(8,9,10,0.66));
   }
