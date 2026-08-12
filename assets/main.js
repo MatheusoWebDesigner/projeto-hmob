@@ -146,24 +146,23 @@
     const searchItem = document.querySelector('.search-item');
 
     const products = [
-      { title: 'Mesas e Plataformas', cat: 'Mobiliário', url: 'mesas-e-plataformas.html' },
-
-      { title: 'Arquivamento', cat: 'Mobiliário', url: 'arquivamento.html' },
+      { title: 'Mobiliário Corporativo', cat: 'Mobiliário', url: 'mobiliario-corporativo.html' },
+      { title: 'Mobiliário Colaborativo', cat: 'Mobiliário', url: 'mobiliario-colaborativo.html' },
+      { title: 'Estantes', cat: 'Mobiliário', url: 'estantes.html' },
       { title: 'Acabamentos', cat: 'Mobiliário', url: 'acabamentos.html' },
       { title: 'Cadeiras Diretivas', cat: 'Cadeiras', url: 'diretivas.html' },
       { title: 'Cadeiras Operativas', cat: 'Cadeiras', url: 'operativas.html' },
       { title: 'Cadeiras de Diálogo', cat: 'Cadeiras', url: 'dialogo.html' },
       { title: 'Cadeiras Coletivas', cat: 'Cadeiras', url: 'coletivas.html' },
       { title: 'Assentos Colaborativos', cat: 'Cadeiras', url: 'colaborativos.html' },
+      { title: 'Cabines Acústicas', cat: 'Acústica', url: 'cabines.html' },
+      { title: 'Biombos Acústicos', cat: 'Acústica', url: 'biombos.html' },
       { title: 'Lockers em Aço', cat: 'Lockers', url: 'lockers-em-aco.html' },
       { title: 'Lockers em Madeira', cat: 'Lockers', url: 'lockers-em-madeira.html' },
       { title: 'Armários Deslizantes - Linhas', cat: 'Armários', url: 'armarios-deslizantes.html' },
       { title: 'Armários Deslizantes - Aplicações', cat: 'Armários', url: 'armarios-deslizantes-aplicacao.html' },
-      { title: 'Divisórias Corporativas', cat: 'Divisórias', url: 'divisorias.html' },
-      { title: 'H | Série 200 (Flagship)', cat: 'Produto', url: 'index.html#flagship' },
-      { title: 'H | Mesa Axial', cat: 'Produto', url: 'index.html#flagship' },
-      { title: 'H | Locker Flex', cat: 'Produto', url: 'index.html#flagship' },
-      { title: 'H | Divisória Linear', cat: 'Produto', url: 'index.html#flagship' }
+      { title: 'Trainéis', cat: 'Armazenagem', url: 'traineis.html' },
+      { title: 'H | Série 200', cat: 'Produto', url: 'index.html#flagship' }
     ];
 
     if (searchBtn && searchInput) {
