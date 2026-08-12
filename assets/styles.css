@@ -301,9 +301,15 @@ img{ display:block; max-width:100%; }
      O recuo do rail (56px) nao existe aqui — a .rail some — entao o padding
      lateral volta ao normal, senao sobrariam so ~230px de 375px. */
   .header{ padding:0 clamp(1.15rem,4vw,1.5rem); }
-  /* a logo tem proporcao 2:1 e vinha com width:350px inline, estourando a
-     altura de 72px do header; limitamos pela altura para ela caber e centralizar */
-  .logo img{ width:auto !important; height:54px !important; }
+  /* O arquivo da logo tem muita margem em branco: a marca ocupa ~44% da largura
+     e ~27% da altura. Por isso, limitar so a altura deixava a marca minuscula.
+     Aqui a imagem e ampliada e a moldura vazia recortada, de modo que a MARCA
+     (e nao a caixa) fique com ~52px de altura dentro do header de 72px. */
+  .logo{ display:block; width:186px; height:64px; overflow:hidden; position:relative; }
+  .logo img{
+    position:absolute; left:47.5%; top:58%; transform:translate(-50%,-50%);
+    width:395px !important; height:auto !important; max-width:none;
+  }
 }
 
 /* ============ SEARCH COMPONENT ============ */
