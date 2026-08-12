@@ -84,18 +84,25 @@
         <div class="seal"><span class="sq"></span><span>Em conformidade com ABNT NR-17</span></div>
       </div>
       <div class="col"><h5>Mobiliário</h5><ul>
-        <li><a href="mesas-e-plataformas.html">Mesas e Plataformas</a></li>
-
-        <li><a href="arquivamento.html">Arquivamento</a></li>
+        <li><a href="mobiliario-corporativo.html">Mobiliário Corporativo</a></li>
+        <li><a href="mobiliario-colaborativo.html">Mobiliário Colaborativo</a></li>
+        <li><a href="estantes.html">Estantes</a></li>
         <li><a href="acabamentos.html">Acabamentos</a></li>
-        <li><a href="divisorias.html">Divisórias</a></li>
       </ul></div>
-      <div class="col"><h5>Cadeiras &amp; Lockers</h5><ul>
-        <li><a href="diretivas.html">Diretivas</a></li>
-        <li><a href="operativas.html">Operativas</a></li>
-        <li><a href="dialogo.html">Diálogo</a></li>
+      <div class="col"><h5>Cadeiras &amp; Assentos</h5><ul>
+        <li><a href="diretivas.html">Cadeiras Diretivas</a></li>
+        <li><a href="operativas.html">Cadeiras Operativas</a></li>
+        <li><a href="dialogo.html">Cadeiras de Diálogo</a></li>
+        <li><a href="coletivas.html">Cadeiras Coletivas</a></li>
+        <li><a href="colaborativos.html">Assentos Colaborativos</a></li>
+      </ul></div>
+      <div class="col"><h5>Acústica &amp; Armazenagem</h5><ul>
+        <li><a href="cabines.html">Cabines Acústicas</a></li>
+        <li><a href="biombos.html">Biombos Acústicos</a></li>
         <li><a href="lockers-em-aco.html">Lockers em Aço</a></li>
+        <li><a href="lockers-em-madeira.html">Lockers em Madeira</a></li>
         <li><a href="armarios-deslizantes.html">Armários Deslizantes</a></li>
+        <li><a href="traineis.html">Trainéis</a></li>
       </ul></div>
       <div class="col contact-col"><h5>Contato</h5>
         <div class="ci"><div class="k">Comercial</div><div class="v">(11) 94167-6724</div></div>
