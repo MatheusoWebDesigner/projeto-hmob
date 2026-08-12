@@ -296,6 +296,14 @@ img{ display:block; max-width:100%; }
   .mega .mega-title{ display:none; }
   .nav-toggle{ display:flex; }
   .header .cta{ display:none; }
+
+  /* No mobile o header fica com logo na borda esquerda e menu na direita.
+     O recuo do rail (56px) nao existe aqui — a .rail some — entao o padding
+     lateral volta ao normal, senao sobrariam so ~230px de 375px. */
+  .header{ padding:0 clamp(1.15rem,4vw,1.5rem); }
+  /* a logo tem proporcao 2:1 e vinha com width:350px inline, estourando a
+     altura de 72px do header; limitamos pela altura para ela caber e centralizar */
+  .logo img{ width:auto !important; height:40px !important; }
 }
 
 /* ============ SEARCH COMPONENT ============ */
