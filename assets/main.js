@@ -19,14 +19,7 @@
       <div class="mega" style="max-height: 70vh; overflow-y: auto;">
         <a href="acabamentos.html">Acabamentos</a>
         
-        <details class="mega-details">
-          <summary>Armários Deslizantes</summary>
-          <div class="mega-sub">
-            <a href="armarios-deslizantes-aplicacao.html">Aplicações</a>
-            <a href="armarios-deslizantes.html">Linhas</a>
-          </div>
-        </details>
-
+        <a href="armarios-deslizantes.html">Armários Deslizantes</a>
         <a href="biombos.html">Biombos Acústicos</a>
         <a href="cabines.html">Cabines</a>
         
@@ -108,14 +101,13 @@
         <div class="ci"><div class="k">Comercial</div><div class="v">(11) 94167-6724</div></div>
         <div class="ci"><div class="k">E-mail</div><div class="v">comercial@hmob.com.br</div></div>
         <div class="ci"><div class="k">Endereço</div><div class="v">R. Inácio Pereira da Rocha, 141<br/>Pinheiros — São Paulo / SP</div></div>
-        <div class="social">
-          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.4-1.1 2.5-2.5 2.5S0 4.9 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5zM.2 21h4.6V8H.2v13zm7.6-13h4.4v2h.1c.6-1.1 2.1-2.3 4.3-2.3 4.6 0 5.5 3 5.5 7V21h-4.6v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H7.8V8z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4A3 3 0 0 0 23 16.5 31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.5zM9.75 15.5v-7L15.5 12l-5.75 3.5z"/></svg></a>
-        </div>
+        <!-- Icones de redes sociais retirados por enquanto: apontavam para "#" e
+             nao levavam a lugar nenhum. Basta informar os perfis para religar. -->
       </div>
     </div>
-    <div class="legal"><div>© 2026 Hmob For Offices. Todos os direitos reservados.</div><div><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div></div>
+    <!-- "Politica de Privacidade" e "Termos de Uso" sairam: as paginas ainda nao
+         existem e os links apontavam para "#". Religar quando forem criadas. -->
+    <div class="legal"><div>© 2026 Hmob For Offices. Todos os direitos reservados.</div></div>
   </div>
 </footer>`;
 
@@ -159,10 +151,8 @@
       { title: 'Biombos Acústicos', cat: 'Acústica', url: 'biombos.html' },
       { title: 'Lockers em Aço', cat: 'Lockers', url: 'lockers-em-aco.html' },
       { title: 'Lockers em Madeira', cat: 'Lockers', url: 'lockers-em-madeira.html' },
-      { title: 'Armários Deslizantes - Linhas', cat: 'Armários', url: 'armarios-deslizantes.html' },
-      { title: 'Armários Deslizantes - Aplicações', cat: 'Armários', url: 'armarios-deslizantes-aplicacao.html' },
-      { title: 'Trainéis', cat: 'Armazenagem', url: 'traineis.html' },
-      { title: 'H | Série 200', cat: 'Produto', url: 'index.html#flagship' }
+      { title: 'Armários Deslizantes', cat: 'Armários', url: 'armarios-deslizantes.html' },
+      { title: 'Trainéis', cat: 'Armazenagem', url: 'traineis.html' }
     ];
 
     if (searchBtn && searchInput) {
