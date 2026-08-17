@@ -23,16 +23,7 @@
         <a href="biombos.html">Biombos Acústicos</a>
         <a href="cabines.html">Cabines</a>
         
-        <details class="mega-details">
-          <summary>Cadeiras e Assentos</summary>
-          <div class="mega-sub">
-            <a href="colaborativos.html">Assentos Colaborativos</a>
-            <a href="coletivas.html">Cadeiras Coletivas</a>
-            <a href="dialogo.html">Cadeiras de Diálogo</a>
-            <a href="diretivas.html">Cadeiras Diretivas</a>
-            <a href="operativas.html">Cadeiras Operativas</a>
-          </div>
-        </details>
+        <a href="colaborativos.html">Assentos Colaborativos</a>
 
         <a href="estantes.html">Estantes</a>
 
@@ -83,10 +74,6 @@
         <li><a href="acabamentos.html">Acabamentos</a></li>
       </ul></div>
       <div class="col"><h5>Cadeiras &amp; Assentos</h5><ul>
-        <li><a href="diretivas.html">Cadeiras Diretivas</a></li>
-        <li><a href="operativas.html">Cadeiras Operativas</a></li>
-        <li><a href="dialogo.html">Cadeiras de Diálogo</a></li>
-        <li><a href="coletivas.html">Cadeiras Coletivas</a></li>
         <li><a href="colaborativos.html">Assentos Colaborativos</a></li>
       </ul></div>
       <div class="col"><h5>Acústica &amp; Armazenagem</h5><ul>
@@ -142,11 +129,8 @@
       { title: 'Mobiliário Colaborativo', cat: 'Mobiliário', url: 'mobiliario-colaborativo.html' },
       { title: 'Estantes', cat: 'Mobiliário', url: 'estantes.html' },
       { title: 'Acabamentos', cat: 'Mobiliário', url: 'acabamentos.html' },
-      { title: 'Cadeiras Diretivas', cat: 'Cadeiras', url: 'diretivas.html' },
-      { title: 'Cadeiras Operativas', cat: 'Cadeiras', url: 'operativas.html' },
-      { title: 'Cadeiras de Diálogo', cat: 'Cadeiras', url: 'dialogo.html' },
-      { title: 'Cadeiras Coletivas', cat: 'Cadeiras', url: 'coletivas.html' },
       { title: 'Assentos Colaborativos', cat: 'Cadeiras', url: 'colaborativos.html' },
+      { title: 'Cadeiras e Assentos', cat: 'Cadeiras', url: 'colaborativos.html' },
       { title: 'Cabines Acústicas', cat: 'Acústica', url: 'cabines.html' },
       { title: 'Biombos Acústicos', cat: 'Acústica', url: 'biombos.html' },
       { title: 'Lockers em Aço', cat: 'Lockers', url: 'lockers-em-aco.html' },
